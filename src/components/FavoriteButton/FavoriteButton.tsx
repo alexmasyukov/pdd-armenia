@@ -8,9 +8,10 @@ import { PiStar } from 'react-icons/pi';
 
 interface Props {
   questionId: QuestionId;
+  addButton?: boolean;
 }
 
-const FavoriteButton: React.FC<Props> = ({ questionId }) => {
+const FavoriteButton: React.FC<Props> = ({ questionId, addButton = true }) => {
   const [hasInFavorite, setHasInFavorite] = useState(FavoriteStore.hasQuestionIdInFavorites(questionId));
 
   useEffect(() => {
@@ -34,9 +35,13 @@ const FavoriteButton: React.FC<Props> = ({ questionId }) => {
       <PiStarFill size={20} /> Удалить из избранного
     </button>
   ) : (
-    <button className='favorite-btn' onClick={handleAddToFavoriteClick}>
-      <PiStar size={20} /> Добавить в избранное
-    </button>
+    <>
+      {addButton && (
+        <button className='favorite-btn' onClick={handleAddToFavoriteClick}>
+          <PiStar size={20} /> Добавить в избранное
+        </button>
+      )}
+    </>
   );
 };
 
