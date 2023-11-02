@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  margin: 50px;
 }
 
 .App-logo {
@@ -35,4 +35,113 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.questions {
+  width: 700px;
+}
+
+.questions .buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.question img {
+  margin: 20px 0 0 0;
+}
+
+.answers {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 700px;
+}
+
+.answers li {
+  cursor: pointer;
+  background: #eee;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.answers li.currect {
+  background: rgb(140, 228, 140);
+}
+
+.answers li.wrong {
+  background: rgb(255, 135, 135);
+}
+
+.question-numbers {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  
+}
+
+.question-numbers li {
+  position: relative;
+  width: 35px;
+  height: 35px;
+  background: #bbb;
+  text-align: center;
+  line-height: 35px;
+  margin-right: 3px;
+  cursor: pointer;
+}
+
+.question-numbers li.currect {
+  background: rgb(140, 228, 140)!important;
+}
+
+.question-numbers li.wrong {
+  background: rgb(255, 135, 135) !important;
+}
+
+.question-numbers li.active {
+  background: #ddd;
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 4px solid #fff;
+  }
+}
+
+.favorite-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #3b3b3b;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  color: #3527ff;
+  font-size: 14px;
+}
+
+.favorite-btn svg {
+  margin-right: 5px;
+}
+
+.next-question-btn {
+  background: #54cff1;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/** css star /**/
+.star {
+ 
 }
