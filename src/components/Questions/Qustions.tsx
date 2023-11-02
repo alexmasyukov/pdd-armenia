@@ -55,7 +55,9 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true }
 
     if (answerIsCurrect) {
       // auto move to next question
-      hanldeNextQuestionClick();
+      setTimeout(() => {
+        hanldeNextQuestionClick();
+      }, 200);
     }
   };
 
