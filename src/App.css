@@ -1,3 +1,9 @@
+:root {
+  --color-status-currect:  rgb(140, 228, 140);
+  --color-status-wrong: rgb(255, 135, 135);
+  --color-status-not-answered: #eee;
+}
+
 .App {
   margin: 50px;
 }
@@ -67,11 +73,11 @@
 }
 
 .answers li.currect {
-  background: rgb(140, 228, 140);
+  background: var(--color-status-currect);
 }
 
 .answers li.wrong {
-  background: rgb(255, 135, 135);
+  background: var(--color-status-wrong);
 }
 
 .question-numbers {
@@ -87,7 +93,7 @@
   position: relative;
   width: 35px;
   height: 35px;
-  background: #bbb;
+  background: var(--color-status-not-answered);
   text-align: center;
   line-height: 35px;
   margin-right: 3px;
@@ -141,7 +147,45 @@
   cursor: pointer;
 }
 
-/** css star /**/
-.star {
- 
+.percent {
+  width: 20%;
+  font-size: 12px;
+  color:#000;
+  margin: 20px 0;
+}
+
+.percent .scale {
+  display: flex;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 5px;
+}
+
+.percent .scale .currect {
+  background: var(--color-status-currect);
+  transition: all 0.3s ease-in-out; 
+}
+
+.percent .scale .wrong {
+  background: var(--color-status-wrong);
+  transition: all 0.3s ease-in-out; 
+}
+
+.percent .scale .not-answered {
+  background: var(--color-status-not-answered);
+  transition: all 0.3s ease-in-out; 
+}
+
+.percent .values {
+  display: flex;
+  margin-bottom: 3px;
+}
+
+.percent .values .wrong {
+  text-align: right;
+}
+
+.statistic {
+  display: flex;
+  justify-content: space-between;
 }
