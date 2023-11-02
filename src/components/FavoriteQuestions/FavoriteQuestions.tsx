@@ -17,9 +17,7 @@ const FavoriteQuestions: React.FC<Props> = ({ questions }) => {
 
   useEffect(() => {
     const onStorageEvent = () => {
-      setTimeout(() => {
-        setFavoriteQuestions(getFavotiteQuestions(questions));
-      }, 200);
+      setFavoriteQuestions(getFavotiteQuestions(questions));
     };
 
     window.addEventListener('storage', onStorageEvent, false);
@@ -29,7 +27,7 @@ const FavoriteQuestions: React.FC<Props> = ({ questions }) => {
     };
   }, []);
 
-  return <Questions questions={favoriteQuestions} favoriteButtonVisible={false} />;
+  return <Questions questions={favoriteQuestions} favoriteAddButton={false} />;
 };
 
 export default FavoriteQuestions;

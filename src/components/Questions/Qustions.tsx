@@ -7,7 +7,7 @@ import FavoriteButton from '../FavoriteButton/FavoriteButton';
 
 interface Props {
   questions: QuestionType[];
-  favoriteButtonVisible?: boolean;
+  favoriteAddButton?: boolean;
 }
 
 const setEmptyAnswerHistory = (questions: QuestionType[]) => {
@@ -18,7 +18,7 @@ const setEmptyAnswerHistory = (questions: QuestionType[]) => {
   }));
 };
 
-const Questions: React.FC<Props> = ({ questions = [], favoriteButtonVisible = true }) => {
+const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true }) => {
   const [answerHistory, setAnswerHistory] = useState<AnswerHistoryType>(setEmptyAnswerHistory(questions));
   const [questionIndex, setQuestionIndex] = useState(0);
   const maxIndex = questions.length - 1;
@@ -79,7 +79,7 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteButtonVisible = tr
       />
 
       <div className='buttons'>
-        {favoriteButtonVisible && <FavoriteButton questionId={currentQuestion.id} />}
+        <FavoriteButton questionId={currentQuestion.id} addButton={favoriteAddButton} />
 
         {answerFromHistory.status === QuestionStatus.Wrong && !isLastQuestion && (
           <button className='next-question-btn' onClick={hanldeNextQuestionClick}>
