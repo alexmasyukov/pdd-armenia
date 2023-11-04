@@ -9,6 +9,7 @@ import { Routes, Route } from 'react-router-dom';
 import Layout from './layouts/Layout/Layout';
 import Page404 from './pages/404/404';
 import HomeSkeleton from './components/Skeleton/HomeSkeleton';
+import Favorite from './pages/Fovorite/Fovorite';
 
 // lazy load Home page
 const Home = React.lazy(() => import('./pages/Home/Home'));
@@ -31,6 +32,14 @@ function App() {
           element={
             <Suspense fallback={<HomeSkeleton />}>
               <Groups />
+            </Suspense>
+          }
+        />
+        <Route
+          path='favorite'
+          element={
+            <Suspense fallback={<HomeSkeleton />}>
+              <Favorite />
             </Suspense>
           }
         />

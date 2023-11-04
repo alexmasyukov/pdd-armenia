@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import FavoriteQuestions from '../../components/FavoriteQuestions/FavoriteQuestions';
 import { Question } from '../../types';
-import FavoriteQuestions from './../../components/FavoriteQuestions/FavoriteQuestions';
-import Questions from './../../components/Questions/Qustions';
 
-const Groups: React.FC = () => {
+const Favorite: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -15,12 +14,13 @@ const Groups: React.FC = () => {
   }, []);
 
   return loading ? (
-    <>Loaing</>
+    <>loading</>
   ) : (
     <>
-      <Questions questions={questions} />
+      <h1>Избранное</h1>
+      {questions.length > 0 ? <FavoriteQuestions questions={questions} /> : <p>В избранном нет вопросов</p>}
     </>
   );
 };
 
-export default Groups;
+export default Favorite;
