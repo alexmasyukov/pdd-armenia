@@ -1,16 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Question } from '../../types';
 import FavoriteQuestions from './../../components/FavoriteQuestions/FavoriteQuestions';
 import Questions from './../../components/Questions/Qustions';
-import { questions_ru } from './../../data/questions';
 
 const Groups: React.FC = () => {
-  return (
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    import('././../../data/ru.json').then((data) => {
+      setQuestions(data.questions as Question[]);
+      setLoading(false);
+    });
+  }, []);
+
+  return loading ? (
+    <>Loaing</>
+  ) : (
     <>
-      <Questions questions={questions_ru} />
+      <Questions questions={questions} />
 
       <br />
       <h3>Избранное</h3>
-      <FavoriteQuestions questions={questions_ru} />
+      <FavoriteQuestions questions={questions} />
     </>
   );
 };
