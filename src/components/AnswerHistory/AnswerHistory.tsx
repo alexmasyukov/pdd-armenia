@@ -15,15 +15,15 @@ const AnswerHistory: React.FC<Props> = ({ answerHistory, activeQuestionIndex, on
 
   useEffect(() => {
     const center = Math.round(382 / 39 / 2) + 1;
-    console.log(center);
+    // console.log(center);
 
     if (numbersContainer.current) {
       // const activeNumber = numbersContainer.current.querySelector(`.index-${activeQuestionIndex}`);
       const activeNumber = numbersContainer.current.querySelector(`.active`);
       if (activeNumber) {
-        console.log(activeNumber);
+        // console.log(activeNumber);
         const left = activeNumber.getBoundingClientRect().x;
-        console.log(left);
+        // console.log(left);
 
         if (activeQuestionIndex > center) {
           scrollContainer.current?.scrollTo({
