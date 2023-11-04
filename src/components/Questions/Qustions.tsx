@@ -5,6 +5,7 @@ import { QuestionStatus } from '../../enums';
 import AnswerHistory from '../AnswerHistory/AnswerHistory';
 import FavoriteButton from '../FavoriteButton/FavoriteButton';
 import Percent from '../Percent/Percent';
+import { PiCaretLeftBold } from 'react-icons/pi';
 
 interface Props {
   questions: QuestionType[];
@@ -68,7 +69,12 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true }
 
   return (
     <div className='questions'>
-      <Percent answerHistory={answerHistory} />
+      <div className='statistic'>
+        <div className='btn-prev-page'>
+          <PiCaretLeftBold /> Назад
+        </div>
+        <Percent answerHistory={answerHistory} />
+      </div>
 
       <AnswerHistory
         answerHistory={answerHistory}
