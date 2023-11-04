@@ -17,7 +17,7 @@ const AnswerHistory: React.FC<Props> = ({ answerHistory, activeQuestionIndex, on
     if (numbersContainer.current) {
       const activeNumber = numbersContainer.current.querySelector('.move-to');
       if (activeNumber) {
-        activeNumber.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        activeNumber.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }
   }, [activeQuestionIndex]);
