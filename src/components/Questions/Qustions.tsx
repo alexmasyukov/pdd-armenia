@@ -68,14 +68,13 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true }
 
   return (
     <div className='questions'>
-      {/* <div className='statistic'> */}
+      <Percent answerHistory={answerHistory} />
+
       <AnswerHistory
         answerHistory={answerHistory}
         activeQuestionIndex={questionIndex}
         onSelectQuestion={handleSelectQuestionClick}
       />
-      {/* <Percent answerHistory={answerHistory} /> */}
-      {/* </div> */}
 
       <Question
         item={currentQuestion}
