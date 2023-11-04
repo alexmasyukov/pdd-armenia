@@ -11,13 +11,19 @@ type Props = {
 const Layout: React.FC<Props> = ({ children }) => {
   return (
     <Container>
-      <Header />
-
+      <div
+        style={{
+          fontSize: '14px',
+          fontWeight: 500,
+        }}
+      >
+        {`<`} Назад
+      </div>
       <main>
         {children}
         <Outlet />
       </main>
-
+      <Header />
       <footer>{/* Footer content */}</footer>
     </Container>
   );

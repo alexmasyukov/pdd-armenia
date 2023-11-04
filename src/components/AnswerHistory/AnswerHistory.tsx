@@ -15,7 +15,7 @@ const AnswerHistory: React.FC<Props> = ({ answerHistory, activeQuestionIndex, on
 
   useEffect(() => {
     if (numbersContainer.current) {
-      const activeNumber = numbersContainer.current.querySelector('.last');
+      const activeNumber = numbersContainer.current.querySelector('.move-to');
       if (activeNumber) {
         activeNumber.scrollIntoView({ behavior: 'smooth', block: 'end' });
       }
@@ -24,15 +24,6 @@ const AnswerHistory: React.FC<Props> = ({ answerHistory, activeQuestionIndex, on
 
   return (
     <div className='answer-history'>
-      <button
-        onClick={() => {
-          if (scrollContainer.current) {
-            scrollContainer.current.scrollTo(400, 0);
-          }
-        }}
-      >
-        Scroll to random
-      </button>
       <ScrollContainer innerRef={scrollContainer}>
         <ul ref={numbersContainer} className='question-numbers'>
           {answerHistory.map((item, index) => (
@@ -41,7 +32,7 @@ const AnswerHistory: React.FC<Props> = ({ answerHistory, activeQuestionIndex, on
               className={clsx(
                 {
                   active: item.questionIndex === activeQuestionIndex,
-                  last: item.questionIndex === activeQuestionIndex + 4,
+                  'move-to': item.questionIndex === activeQuestionIndex + 2,
                 },
                 item.status
               )}
