@@ -20,6 +20,26 @@ const setEmptyAnswerHistory = (questions: QuestionType[]) => {
   }));
 };
 
+const saveToStorage = () => {
+  const start = performance.now();
+  const count = 1000;
+
+  // Setup data
+  const data = {};
+
+  // Create data array
+  for (var i = 0; i < count; i++) {
+    // @ts-ignore
+    data[i] = [20, 30];
+  }
+
+  localStorage.setItem('answerHistory', JSON.stringify(data));
+  const res = JSON.stringify(localStorage.getItem('answerHistory'));
+  const end = performance.now();
+  console.log('It took ' + (end - start) + 'ms.');
+  // console.log(res);
+};
+
 const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true }) => {
   const [answerHistory, setAnswerHistory] = useState<AnswerHistoryType>(setEmptyAnswerHistory(questions));
   const [questionIndex, setQuestionIndex] = useState(0);
@@ -45,6 +65,8 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true }
   };
 
   const handleAnswer = ({ answer, answerIsCurrect }: AnswerEvent) => {
+    saveToStorage();
+
     setAnswerHistory((prev) => {
       const newHistory = [...prev];
       newHistory[questionIndex] = {
