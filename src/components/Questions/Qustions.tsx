@@ -54,12 +54,12 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true }
       return newHistory;
     });
 
-    if (answerIsCurrect) {
-      // auto move to next question
-      setTimeout(() => {
-        hanldeNextQuestionClick();
-      }, 200);
-    }
+    // if (answerIsCurrect) {
+    // auto move to next question
+    setTimeout(() => {
+      hanldeNextQuestionClick();
+    }, 200);
+    // }
   };
 
   if (!currentQuestion || !answerFromHistory) {
