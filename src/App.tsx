@@ -1,33 +1,42 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import FavoriteQuestions from './components/FavoriteQuestions/FavoriteQuestions';
-import Questions from './components/Questions/Qustions';
-import { questions_ru } from './data/questions';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import { Routes, Route } from 'react-router-dom';
+import Layout from './layouts/Layout/Layout';
+import Page404 from './pages/404/404';
+import HomeSkeleton from './components/Skeleton/HomeSkeleton';
+
+// lazy load Home page
+const Home = React.lazy(() => import('./pages/Home/Home'));
+const Groups = React.lazy(() => import('./pages/Groups/Groups'));
 
 function App() {
   return (
-    <div className='App'>
-      <Questions questions={questions_ru} />
-
-      <br />
-      <h3>Избранное</h3>
-      <FavoriteQuestions questions={questions_ru} />
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-    </div>
+    <Routes>
+      <Route path='/' element={<Layout />}>
+        <Route
+          index
+          element={
+            <Suspense fallback={<HomeSkeleton />}>
+              <Home />
+            </Suspense>
+          }
+        />
+        <Route
+          path='groups'
+          element={
+            <Suspense fallback={<HomeSkeleton />}>
+              <Groups />
+            </Suspense>
+          }
+        />
+        <Route path='*' element={<Page404 />} />
+      </Route>
+    </Routes>
   );
 }
 
