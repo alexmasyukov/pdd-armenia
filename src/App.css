@@ -3,7 +3,7 @@
   --color-status-wrong: rgb(255, 135, 135);
   --color-status-not-answered: #eee;
 }
-
+/* 
 .App {
   margin: 50px;
 }
@@ -17,8 +17,8 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
-
+} */
+/* 
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -32,8 +32,8 @@
 
 .App-link {
   color: #61dafb;
-}
-
+} */
+/* 
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -41,11 +41,7 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-.questions {
-  width: 700px;
-}
+} */
 
 .questions .buttons {
   display: flex;
