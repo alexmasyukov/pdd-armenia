@@ -19,13 +19,13 @@ const AnswerHistory: React.FC<Props> = ({ answerHistory, activeQuestionIndex, on
     }
 
     const scrollContainerWidth = scrollContainer.current.clientWidth;
-    const center = Math.round(scrollContainerWidth / 39 / 2) + 1;
+    const center = Math.floor(scrollContainerWidth / 39 / 2);
     const activeNumber = numbersContainer.current.querySelector(`.active`);
 
     if (activeNumber) {
       if (activeQuestionIndex > center) {
         scrollContainer.current?.scrollTo({
-          left: (activeQuestionIndex - (center - 1)) * 39,
+          left: (activeQuestionIndex - center) * 39,
           behavior: 'smooth',
         });
       }

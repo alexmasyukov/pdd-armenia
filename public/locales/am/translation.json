@@ -15,5 +15,10 @@
   "removeFromFavorite": "Remove from favorite",
   "nextQuestion": "Next question",
   "pdd": "PDD",
-  "report": "Report an error"
+  "report": "Report an error",
+  "group": "Group",
+  "all": "All",
+  "solved": "Solved",
+  "trainingOnTopics": "Training on topics",
+  "mostDifficultQuestions": "Most difficult questions"
 }
