@@ -2,13 +2,13 @@ import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PiListBold } from 'react-icons/pi';
-import { Link } from 'react-router-dom';
 import s from './Header.module.scss';
 
 const Header: FC = () => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const changeLanguage = (lng: string) => {
+    localStorage.setItem('lang', lng);
     i18n.changeLanguage(lng);
   };
 
@@ -35,19 +35,25 @@ const Header: FC = () => {
         </div> */}
 
         <h1>
-          <span>ПДД</span> 2023
+          <span>{t('pdd')}</span> 2023
         </h1>
       </div>
 
       <div className={s.right}>
-        <button onClick={() => changeLanguage('ru')} className={clsx({ [s.active]: i18n.language === 'ru' })}>
+        <span
+          onClick={() => changeLanguage('ru')}
+          className={clsx(s['lang-btn'], clsx({ [s.active]: i18n.language === 'ru' }))}
+        >
           Рус
-        </button>
-        <button onClick={() => changeLanguage('am')} className={clsx({ [s.active]: i18n.language === 'am' })}>
+        </span>
+        <span
+          onClick={() => changeLanguage('am')}
+          className={clsx(s['lang-btn'], { [s.active]: i18n.language === 'am' })}
+        >
           Հայ
-        </button>
+        </span>
 
-        <PiListBold size={20} className={s['menu-btn']} />
+        <PiListBold size={22} className={s['menu-btn']} />
       </div>
     </header>
   );
