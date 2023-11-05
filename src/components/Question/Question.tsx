@@ -30,7 +30,7 @@ const Question: React.FC<Props> = ({
     <div className='question'>
       <img src={`${process.env.PUBLIC_URL}/images/questions/${img}.jpg`} alt='' />
 
-      <h2>{q}</h2>
+      <h3>{q}</h3>
 
       <ul className='answers'>
         {a1 && (
