@@ -1,0 +1,26 @@
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  & > span {
+    font-size: 14px;
+    padding-bottom: 8px;
+    color: var(--color-gray-dark);
+
+    & > span {
+      color: var(--color-black-light);
+    }
+
+    &:last-of-type {
+      font-size: 12px;
+      padding: 8px 0 0 0;
+      color: var(--color-black);
+    }
+  }
+
+  .bar {
+    width: 56px;
+  }
+}

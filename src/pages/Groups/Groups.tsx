@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Question } from '../../types';
 import FavoriteQuestions from './../../components/FavoriteQuestions/FavoriteQuestions';
-import Questions from './../../components/Questions/Qustions';
+import Questions from './../../components/Questions/Questions';
 
 const Groups: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([]);

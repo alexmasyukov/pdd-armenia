@@ -1,6 +1,9 @@
+import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { PiListBold } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
+import s from './Header.module.scss';
 
 const Header: FC = () => {
   const { i18n } = useTranslation();
@@ -10,8 +13,9 @@ const Header: FC = () => {
   };
 
   return (
-    <header>
-      <nav>
+    <header className={s.header}>
+      <div className={s.left}>
+        {/* <nav>
         <ul>
           <li>
             <Link to='/'>Home</Link>
@@ -20,14 +24,25 @@ const Header: FC = () => {
             <Link to='/groups'>Groups</Link>
           </li>
         </ul>
-      </nav>
+      </nav> */}
 
-      <button type='button' onClick={() => changeLanguage('ru')}>
-        ru
-      </button>
-      <button type='button' onClick={() => changeLanguage('am')}>
-        am
-      </button>
+        <img src={`${process.env.PUBLIC_URL}/images/flag-my.png`} alt='' />
+
+        <h1>
+          <span>ПДД</span> 2023
+        </h1>
+      </div>
+
+      <div className={s.right}>
+        <button onClick={() => changeLanguage('ru')} className={clsx({ [s.active]: i18n.language === 'ru' })}>
+          Рус
+        </button>
+        <button onClick={() => changeLanguage('am')} className={clsx({ [s.active]: i18n.language === 'am' })}>
+          Հայ
+        </button>
+
+        <PiListBold size={20} className={s['menu-btn']} />
+      </div>
     </header>
   );
 };

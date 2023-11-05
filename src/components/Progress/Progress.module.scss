@@ -1,0 +1,17 @@
+.progress {
+  position: relative;
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+  height: 4px;
+  border-radius: 10px;
+  background: var(--color-gray-light);
+  overflow: hidden;
+
+  .value {
+    position: absolute;
+    height: inherit;
+    background: var(--color-blue);
+    left: 0;
+    top: 0;
+  }
+}

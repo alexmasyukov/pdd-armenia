@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FavoriteStore } from '../../services/FavoriteStore';
 import { Question } from '../../types';
-import Questions from '../Questions/Qustions';
+import Questions from '../Questions/Questions';
 
 interface Props {
   questions: Question[];
