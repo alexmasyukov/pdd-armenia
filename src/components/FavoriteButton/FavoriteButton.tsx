@@ -4,7 +4,7 @@ import { FavoriteStore } from '../../services/FavoriteStore';
 import { QuestionId } from '../../types';
 
 import { PiStarFill } from 'react-icons/pi';
-import { PiStar } from 'react-icons/pi';
+import { PiStarLight } from 'react-icons/pi';
 import { useTranslation } from 'react-i18next';
 
 interface Props {
@@ -40,7 +40,7 @@ const FavoriteButton: React.FC<Props> = ({ questionId, addButton = true }) => {
     <>
       {addButton && (
         <button className='favorite-btn' onClick={handleAddToFavoriteClick}>
-          <PiStar size={20} /> {t('addToFavorite')}
+          <PiStarLight size={20} /> {t('addToFavorite')}
         </button>
       )}
     </>

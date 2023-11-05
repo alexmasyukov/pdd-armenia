@@ -14,5 +14,6 @@
   "addToFavorite": "Добавить в избранное",
   "removeFromFavorite": "Удалить из избранного",
   "nextQuestion": "Следующий вопрос",
-  "pdd": "ПДД"
+  "pdd": "ПДД",
+  "report": "Сообщить об ошибке"
 }

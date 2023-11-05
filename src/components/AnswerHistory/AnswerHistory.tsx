@@ -14,31 +14,20 @@ const AnswerHistory: React.FC<Props> = ({ answerHistory, activeQuestionIndex, on
   const numbersContainer = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
-    const center = Math.round(382 / 39 / 2) + 1;
-    // console.log(center);
+    if (!scrollContainer.current || !numbersContainer.current) {
+      return;
+    }
 
-    if (numbersContainer.current) {
-      // const activeNumber = numbersContainer.current.querySelector(`.index-${activeQuestionIndex}`);
-      const activeNumber = numbersContainer.current.querySelector(`.active`);
-      if (activeNumber) {
-        // console.log(activeNumber);
-        const left = activeNumber.getBoundingClientRect().x;
-        // console.log(left);
+    const scrollContainerWidth = scrollContainer.current.clientWidth;
+    const center = Math.round(scrollContainerWidth / 39 / 2) + 1;
+    const activeNumber = numbersContainer.current.querySelector(`.active`);
 
-        if (activeQuestionIndex > center) {
-          scrollContainer.current?.scrollTo({
-            left: (activeQuestionIndex - (center - 1)) * 39,
-
-            behavior: 'smooth',
-          });
-        }
-
-        // activeNumber.scrollIntoView({ behavior: 'smooth', inline: 'end', block: 'end' }); //,
-        // activeNumber.getBoundingClientRect()
-        // scrollContainer.current?.scrollTo({
-        //   left: activeNumber.getBoundingClientRect().left + activeNumber.getBoundingClientRect().width + 5,
-        //   behavior: 'smooth',
-        // });
+    if (activeNumber) {
+      if (activeQuestionIndex > center) {
+        scrollContainer.current?.scrollTo({
+          left: (activeQuestionIndex - (center - 1)) * 39,
+          behavior: 'smooth',
+        });
       }
     }
   }, [activeQuestionIndex]);
@@ -51,7 +40,6 @@ const AnswerHistory: React.FC<Props> = ({ answerHistory, activeQuestionIndex, on
             <li
               key={index}
               className={clsx(
-                `index-${activeQuestionIndex}`,
                 {
                   active: item.questionIndex === activeQuestionIndex,
                   'move-to': item.questionIndex === activeQuestionIndex + 1,

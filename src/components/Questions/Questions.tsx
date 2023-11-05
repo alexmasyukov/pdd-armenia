@@ -5,7 +5,7 @@ import { QuestionStatus } from '../../enums';
 import AnswerHistory from '../AnswerHistory/AnswerHistory';
 import FavoriteButton from '../FavoriteButton/FavoriteButton';
 import Percent from '../Percent/Percent';
-import { PiCaretLeftBold } from 'react-icons/pi';
+import { PiCaretLeftBold, PiWarningLight } from 'react-icons/pi';
 import { useTranslation } from 'react-i18next';
 
 interface Props {
@@ -114,7 +114,13 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true }
       />
 
       <div className='buttons'>
-        <FavoriteButton questionId={currentQuestion.id} addButton={favoriteAddButton} />
+        <div>
+          <FavoriteButton questionId={currentQuestion.id} addButton={favoriteAddButton} />
+
+          <div className='favorite-btn report-btn'>
+            <PiWarningLight size={16} /> {t('report')}
+          </div>
+        </div>
 
         {answerFromHistory.status === QuestionStatus.Wrong && !isLastQuestion && (
           <button className='next-question-btn' onClick={hanldeNextQuestionClick}>
