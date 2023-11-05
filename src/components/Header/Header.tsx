@@ -26,7 +26,13 @@ const Header: FC = () => {
         </ul>
       </nav> */}
 
-        <img src={`${process.env.PUBLIC_URL}/images/flag-my.png`} alt='' />
+        {/* <img src={`${process.env.PUBLIC_URL}/images/flag-my.png`} alt='' /> */}
+        <img src={`${process.env.PUBLIC_URL}/images/flag.png`} alt='' />
+        {/* <img src={`${process.env.PUBLIC_URL}/images/wa1.png`} alt='' /> */}
+        {/* <div className={s.logo}>
+          <div />
+          <div />
+        </div> */}
 
         <h1>
           <span>ПДД</span> 2023
