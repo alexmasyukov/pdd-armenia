@@ -26,9 +26,11 @@ const Layout: React.FC<Props> = ({ children }) => {
   return (
     <>
       {pathname === '/' ? (
-        <Grid container justifyContent='center'>
-          <div className='home-page-container'>{base}</div>
-        </Grid>
+        <Container>
+          <Grid container justifyContent='center'>
+            <div className='home-page-container'>{base}</div>
+          </Grid>
+        </Container>
       ) : (
         <Container>{base}</Container>
       )}
