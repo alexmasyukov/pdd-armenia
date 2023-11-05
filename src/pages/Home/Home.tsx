@@ -8,6 +8,9 @@ import { PiBookBookmarkFill } from 'react-icons/pi';
 import { PiClockCountdownFill } from 'react-icons/pi';
 import { FavoriteStore } from '../../services/FavoriteStore';
 import Button from '../../components/Button/Button';
+import HomeStatistic from '../../components/HomeStatistic/HomeStatistic';
+import ShadowBox from '../../components/ShadowBox/ShadowBox';
+import Paper from '@mui/material/Paper';
 
 const Home: React.FC = () => {
   const { t } = useTranslation();
@@ -16,6 +19,19 @@ const Home: React.FC = () => {
     <>
       <Grid container justifyContent='center'>
         <div className='home-page-container'>
+          <Paper
+            sx={{
+              padding: '25px',
+              pt: 2,
+              pb: 2,
+              mt: 2,
+              mb: 3,
+              borderRadius: '6px',
+              boxShadow: '0 0 15px 0 rgba(0, 0, 0, 0.06)',
+            }}
+          >
+            <HomeStatistic />
+          </Paper>
           <Grid container spacing={1}>
             <Grid item xs={6}>
               <Link to='/groups'>
@@ -52,7 +68,7 @@ const Home: React.FC = () => {
               <Link to='/groups'>
                 <Button>
                   <PiWarningFill size={22} />
-                  {t('errors')} <div>{t('inDevelop')}</div>
+                  {t('errors')}
                 </Button>
               </Link>
             </Grid>

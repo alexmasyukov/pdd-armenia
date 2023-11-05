@@ -5,6 +5,7 @@ import { QuestionId } from '../../types';
 
 import { PiStarFill } from 'react-icons/pi';
 import { PiStar } from 'react-icons/pi';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   questionId: QuestionId;
@@ -12,6 +13,7 @@ interface Props {
 }
 
 const FavoriteButton: React.FC<Props> = ({ questionId, addButton = true }) => {
+  const { t } = useTranslation();
   const [hasInFavorite, setHasInFavorite] = useState(FavoriteStore.hasQuestionIdInFavorites(questionId));
 
   useEffect(() => {
@@ -32,13 +34,13 @@ const FavoriteButton: React.FC<Props> = ({ questionId, addButton = true }) => {
 
   return hasInFavorite ? (
     <button className='favorite-btn' onClick={handleRemoveFromFavoriteClick}>
-      <PiStarFill size={20} /> Удалить из избранного
+      <PiStarFill size={20} /> {t('removeFromFavorite')}
     </button>
   ) : (
     <>
       {addButton && (
         <button className='favorite-btn' onClick={handleAddToFavoriteClick}>
-          <PiStar size={20} /> Добавить в избранное
+          <PiStar size={20} /> {t('addToFavorite')}
         </button>
       )}
     </>

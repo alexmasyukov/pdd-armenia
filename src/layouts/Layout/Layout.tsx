@@ -1,7 +1,7 @@
 import React from 'react';
-import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
-import { Outlet } from 'react-router-dom';
+import Grid from '@mui/material/Grid';
+import { Outlet, useLocation } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 
 type Props = {
@@ -9,15 +9,30 @@ type Props = {
 };
 
 const Layout: React.FC<Props> = ({ children }) => {
-  return (
-    <Container>
+  const { pathname } = useLocation();
+
+  const base = (
+    <>
+      <Header />
       <main>
         {children}
         <Outlet />
       </main>
-      <Header />
+
       <footer>{/* Footer content */}</footer>
-    </Container>
+    </>
+  );
+
+  return (
+    <>
+      {pathname === '/' ? (
+        <Grid container justifyContent='center'>
+          <div className='home-page-container'>{base}</div>
+        </Grid>
+      ) : (
+        <Container>{base}</Container>
+      )}
+    </>
   );
 };
 

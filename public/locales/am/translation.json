@@ -3,11 +3,15 @@
   "tickets": "Tickets",
   "ticket": "Ticket",
   "question": "Question",
+  "questions": "Questions",
   "topic": "Topic",
   "topics": "Topics",
   "marathon": "Marathon",
   "errors": "Errors",
   "error": "Error",
   "favorite": "Favorite",
-  "inDevelop": "In develop"
+  "inDevelop": "in develop",
+  "addToFavorite": "Add to favorite",
+  "removeFromFavorite": "Remove from favorite",
+  "nextQuestion": "Next question"
 }

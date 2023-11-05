@@ -6,6 +6,7 @@ import AnswerHistory from '../AnswerHistory/AnswerHistory';
 import FavoriteButton from '../FavoriteButton/FavoriteButton';
 import Percent from '../Percent/Percent';
 import { PiCaretLeftBold } from 'react-icons/pi';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   questions: QuestionType[];
@@ -41,6 +42,7 @@ const saveToStorage = () => {
 };
 
 const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true }) => {
+  const { t } = useTranslation();
   const [answerHistory, setAnswerHistory] = useState<AnswerHistoryType>(setEmptyAnswerHistory(questions));
   const [questionIndex, setQuestionIndex] = useState(0);
   const maxIndex = questions.length - 1;
@@ -93,7 +95,7 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true }
     <div className='questions'>
       <div className='statistic'>
         <div className='btn-prev-page'>
-          <PiCaretLeftBold /> Назад
+          <PiCaretLeftBold />
         </div>
         <Percent answerHistory={answerHistory} />
       </div>
@@ -116,7 +118,7 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true }
 
         {answerFromHistory.status === QuestionStatus.Wrong && !isLastQuestion && (
           <button className='next-question-btn' onClick={hanldeNextQuestionClick}>
-            Следующий вопрос
+            {t('nextQuestion')}
           </button>
         )}
       </div>

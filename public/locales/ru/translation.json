@@ -3,11 +3,15 @@
   "tickets": "Билеты",
   "ticket": "Билет",
   "question": "Вопрос",
+  "questions": "Вопросы",
   "topic": "Тема",
   "topics": "Темы",
   "marathon": "Марафон",
   "errors": "Ошибки",
   "error": "Ошибка",
   "favorite": "Избранное",
-  "inDevelop": "В разработке"
+  "inDevelop": "в разработке",
+  "addToFavorite": "Добавить в избранное",
+  "removeFromFavorite": "Удалить из избранного",
+  "nextQuestion": "Следующий вопрос"
 }
