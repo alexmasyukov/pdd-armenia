@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { PiListBold } from 'react-icons/pi';
+import { PiListLight } from 'react-icons/pi';
 import s from './Header.module.scss';
 
 const Header: FC = () => {
@@ -53,7 +53,7 @@ const Header: FC = () => {
           Հայ
         </span>
 
-        <PiListBold size={22} className={s['menu-btn']} />
+        <PiListLight size={22} className={s['menu-btn']} />
       </div>
     </header>
   );
