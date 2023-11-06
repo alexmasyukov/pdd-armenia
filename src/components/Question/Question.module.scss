@@ -1,0 +1,14 @@
+.withoutImg {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  color: var(--color-gray-dark);
+  margin: 20px 0;
+
+  & > div {
+    margin-left: 10px;
+    height: 1px;
+    border-bottom: 1px solid var(--color-gray-dark);
+    flex: 1;
+  }
+}

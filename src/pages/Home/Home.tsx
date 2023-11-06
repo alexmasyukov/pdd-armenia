@@ -9,8 +9,8 @@ import { PiClockCountdownFill } from 'react-icons/pi';
 import { FavoriteStore } from '../../services/FavoriteStore';
 import Button from '../../components/Button/Button';
 import HomeStatistic from '../../components/HomeStatistic/HomeStatistic';
-import ShadowBox from '../../components/ShadowBox/ShadowBox';
 import Paper from '@mui/material/Paper';
+import { routes } from '../../router/constants';
 
 const Home: React.FC = () => {
   const { t } = useTranslation();
@@ -34,7 +34,7 @@ const Home: React.FC = () => {
           </Paper>
           <Grid container spacing={1}>
             <Grid item xs={6}>
-              <Link to='/groups'>
+              <Link to={''}>
                 <Button blue largeFont>
                   {t('tickets')}
                   <div>{t('inDevelop')}</div>
@@ -42,7 +42,7 @@ const Home: React.FC = () => {
               </Link>
             </Grid>
             <Grid item xs={6}>
-              <Link to='/groups'>
+              <Link to={''}>
                 <Button red largeFont>
                   {t('exam')}
                   <div>{t('inDevelop')}</div>
@@ -50,14 +50,14 @@ const Home: React.FC = () => {
               </Link>
             </Grid>
             <Grid item xs={6}>
-              <Link to='/groups'>
+              <Link to={routes.topics.path}>
                 <Button>
                   <PiBookBookmarkFill size={22} /> {t('topics')}
                 </Button>
               </Link>
             </Grid>
             <Grid item xs={6}>
-              <Link to='/groups'>
+              <Link to=''>
                 <Button>
                   <PiClockCountdownFill size={22} />
                   {t('marathon')} <div>{t('inDevelop')}</div>
@@ -65,7 +65,7 @@ const Home: React.FC = () => {
               </Link>
             </Grid>
             <Grid item xs={6}>
-              <Link to='/groups'>
+              <Link to={routes.errors.path}>
                 <Button>
                   <PiWarningFill size={22} />
                   {t('errors')}
@@ -73,7 +73,7 @@ const Home: React.FC = () => {
               </Link>
             </Grid>
             <Grid item xs={6}>
-              <Link to='/favorite'>
+              <Link to={routes.favorite.path}>
                 <Button counter={FavoriteStore.getFavorites().length}>
                   <PiStarFill size={22} />
                   {t('favorite')}

@@ -11,6 +11,7 @@
   --color-gray-dark: #8b8b8b;
   --color-gray-soft: #e8e8e8;
   --color-gray-night: #e1e1e1;
+  --color-gray-night2: #c1c1c1;
   --color-green: #85b73e;
   --color-wrong: #bf3328;
   --color-violet-light: #c461fe;
@@ -319,9 +320,22 @@ a {
 
 
 .answer-history {
+  position: relative;
   width: 100%;
-  border-bottom: 1px solid var(--color-gray-night);
+  border-bottom: 1px solid var(--color-gray-night2);
   padding-bottom: 7px;
+
+ 
+} 
+
+.answer-history::after {
+  position: absolute;
+  content: '';
+  width: 2000px;
+  left: -2000px;
+  height: 1px;
+  background: var(--color-gray-night2);
+  bottom: -1px;
 }
 
 .answer-history .question-numbers {

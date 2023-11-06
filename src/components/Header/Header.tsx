@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PiListLight } from 'react-icons/pi';
+import { Link } from 'react-router-dom';
 import s from './Header.module.scss';
 
 const Header: FC = () => {
@@ -27,7 +28,9 @@ const Header: FC = () => {
       </nav> */}
 
         {/* <img src={`${process.env.PUBLIC_URL}/images/flag-my.png`} alt='' /> */}
-        <img src={`${process.env.PUBLIC_URL}/images/flag.png`} alt='' />
+        <Link to='/'>
+          <img src={`${process.env.PUBLIC_URL}/images/flag.png`} alt='' />
+        </Link>
         {/* <img src={`${process.env.PUBLIC_URL}/images/wa1.png`} alt='' /> */}
         {/* <div className={s.logo}>
           <div />
