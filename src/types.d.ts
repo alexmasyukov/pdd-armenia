@@ -19,6 +19,16 @@ export type Question = {
   img: string;
 };
 
+export type Group = {
+  id: string;
+  name: string;
+};
+
+export type BaseData = {
+  groups: Group[];
+  questions: Question[];
+};
+
 export type AnswerEvent = {
   answer: AnswerKey;
   answerIsCurrect: boolean;

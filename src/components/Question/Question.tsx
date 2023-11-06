@@ -1,6 +1,8 @@
 import React from 'react';
-import { AnswerEvent, Question as QuestionType, AnswerKey } from '../../types';
+import { useTranslation } from 'react-i18next';
 import Answer from './Answer';
+import { AnswerEvent, Question as QuestionType, AnswerKey } from '../../types';
+import s from './Question.module.scss';
 
 interface Props {
   item: QuestionType;
@@ -13,8 +15,9 @@ const Question: React.FC<Props> = ({
   onAnswer,
   enabled,
   answerFromHistory,
-  item: { q, a1, a2, a3, a4, a5, a6, currect, img },
+  item: { q, a1, a2, a3, a4, a5, a6, currect, img, gid },
 }) => {
+  const { t } = useTranslation();
   const answered = answerFromHistory;
 
   const handleAnswerClick = (answerKey: AnswerKey) => () => {
@@ -28,7 +31,13 @@ const Question: React.FC<Props> = ({
 
   return (
     <div className='question'>
-      <img src={`${process.env.PUBLIC_URL}/images/questions/${img}.jpg`} alt='' />
+      {img && <img src={`${process.env.PUBLIC_URL}/images/questions/${gid}/${img}.jpg`} alt='' />}
+      {!img && (
+        <div className={s.withoutImg}>
+          {t('questionWithoutImg')}
+          <div />
+        </div>
+      )}
 
       <p>{q}</p>
 
