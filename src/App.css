@@ -75,11 +75,15 @@
   }
 } */
 
+html {
+  overflow: hidden;
+}
+
 body {
   color: var(--color-black);
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
-  overflow: hidden;
+  
 }
 
 .questions .buttons {
