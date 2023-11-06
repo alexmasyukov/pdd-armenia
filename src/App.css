@@ -12,6 +12,7 @@
   --color-gray-soft: #e8e8e8;
   --color-gray-night: #e1e1e1;
   --color-gray-night2: #c1c1c1;
+  --color-gray-night3: #c6c6c6;
   --color-green: #85b73e;
   --color-wrong: #bf3328;
   --color-violet-light: #c461fe;
@@ -78,6 +79,7 @@ body {
   color: var(--color-black);
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
+  overflow: hidden;
 }
 
 .questions .buttons {
@@ -243,10 +245,12 @@ body {
 
 .home-page-container {
   max-width: 450px;
+  margin-bottom: 50px;
 }
 
 .page-container {
   max-width: 664px;
+  margin-bottom: 50px;
 }
 
 .btn {
