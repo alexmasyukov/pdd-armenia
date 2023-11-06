@@ -338,6 +338,16 @@ a {
   bottom: -1px;
 }
 
+.answer-history::before {
+  position: absolute;
+  content: '';
+  width: 2000px;
+  right: -2000px;
+  height: 1px;
+  background: var(--color-gray-night2);
+  bottom: -1px;
+}
+
 .answer-history .question-numbers {
  
 }
