@@ -15,7 +15,7 @@ const Question: React.FC<Props> = ({
   onAnswer,
   enabled,
   answerFromHistory,
-  item: { q, a1, a2, a3, a4, a5, a6, currect, img, gid },
+  item: { q, a1, a2, a3, a4, a5, a6, correct, img, gid },
 }) => {
   const { t } = useTranslation();
   const answered = answerFromHistory;
@@ -24,7 +24,7 @@ const Question: React.FC<Props> = ({
     if (enabled) {
       onAnswer({
         answer: answerKey,
-        answerIsCurrect: currect === answerKey,
+        answerIsCorrect: correct === answerKey,
       });
     }
   };
@@ -46,48 +46,48 @@ const Question: React.FC<Props> = ({
           <Answer
             onClick={handleAnswerClick('a1')}
             text={a1}
-            isCurrect={!!answered && currect === 'a1'}
-            isWrong={answered === 'a1' && currect !== 'a1'}
+            isCorrect={!!answered && correct === 'a1'}
+            isWrong={answered === 'a1' && correct !== 'a1'}
           />
         )}
         {a2 && (
           <Answer
             onClick={handleAnswerClick('a2')}
             text={a2}
-            isCurrect={!!answered && currect === 'a2'}
-            isWrong={answered === 'a2' && currect !== 'a2'}
+            isCorrect={!!answered && correct === 'a2'}
+            isWrong={answered === 'a2' && correct !== 'a2'}
           />
         )}
         {a3 && (
           <Answer
             onClick={handleAnswerClick('a3')}
             text={a3}
-            isCurrect={!!answered && currect === 'a3'}
-            isWrong={answered === 'a3' && currect !== 'a3'}
+            isCorrect={!!answered && correct === 'a3'}
+            isWrong={answered === 'a3' && correct !== 'a3'}
           />
         )}
         {a4 && (
           <Answer
             onClick={handleAnswerClick('a4')}
             text={a4}
-            isCurrect={!!answered && currect === 'a4'}
-            isWrong={answered === 'a4' && currect !== 'a4'}
+            isCorrect={!!answered && correct === 'a4'}
+            isWrong={answered === 'a4' && correct !== 'a4'}
           />
         )}
         {a5 && (
           <Answer
             onClick={handleAnswerClick('a5')}
             text={a5}
-            isCurrect={!!answered && currect === 'a5'}
-            isWrong={answered === 'a5' && currect !== 'a5'}
+            isCorrect={!!answered && correct === 'a5'}
+            isWrong={answered === 'a5' && correct !== 'a5'}
           />
         )}
         {a6 && (
           <Answer
             onClick={handleAnswerClick('a6')}
             text={a6}
-            isCurrect={!!answered && currect === 'a6'}
-            isWrong={answered === 'a6' && currect !== 'a6'}
+            isCorrect={!!answered && correct === 'a6'}
+            isWrong={answered === 'a6' && correct !== 'a6'}
           />
         )}
       </ul>

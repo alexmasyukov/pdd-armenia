@@ -1,5 +1,5 @@
 :root {
-  --color-status-currect:  rgb(140, 228, 140);
+  --color-status-correct:  rgb(140, 228, 140);
   --color-status-wrong: rgb(255, 135, 135);
   --color-red: #db001b;
   --color-sky: #e8eff9;
@@ -20,7 +20,7 @@
   --color-violet-soft: #f1eef9;
   --color-yellow: #ffda00;
   --color-answer-wrong: #c82a29;
-  --color-answer-currect: #8bb050;
+  --color-answer-correct: #8bb050;
 
   /**
   img
@@ -118,8 +118,8 @@ body {
   padding: 12px 15px;
 }
 
-.answers li.currect {
-  background: var(--color-answer-currect);
+.answers li.correct {
+  background: var(--color-answer-correct);
   color: #fff;
 }
 
@@ -150,7 +150,7 @@ body {
   font-size: 14px;
 }
 
-.question-numbers li.currect {
+.question-numbers li.correct {
   background: var(--color-green)!important;
   color: #fff;
 }
@@ -219,8 +219,8 @@ body {
   height: 5px;
 }
 
-.percent .scale .currect {
-  background: var(--color-status-currect);
+.percent .scale .correct {
+  background: var(--color-status-correct);
   transition: all 0.3s ease-in-out; 
 }
 

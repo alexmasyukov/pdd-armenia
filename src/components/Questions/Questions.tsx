@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import Question from '../Question/Question';
-import { AnswerEvent, AnswerHistory as AnswerHistoryType, Question as QuestionType } from '../../types';
+import {
+  AnswerEvent,
+  AnswerHistory as AnswerHistoryType,
+  Question as QuestionType,
+  QuestionStatisticsByLanguage,
+} from '../../types';
 import { QuestionStatus } from '../../enums';
 import AnswerHistory from '../AnswerHistory/AnswerHistory';
 import FavoriteButton from '../FavoriteButton/FavoriteButton';
 import Percent from '../Percent/Percent';
 import { PiCaretLeftBold, PiWarningLight } from 'react-icons/pi';
 import { useTranslation } from 'react-i18next';
+import { isObject } from '../../helpers';
 
 interface Props {
   questions: QuestionType[];
@@ -21,28 +27,38 @@ const setEmptyAnswerHistory = (questions: QuestionType[]) => {
   }));
 };
 
-const saveToStorage = () => {
-  const start = performance.now();
-  const count = 1000;
+const saveToStorage = (questionId: QuestionType['id'], answerIsCorrect: boolean, lang: string) => {
+  const key = `questionStatistics-${lang}`;
+  const result = (answerIsCorrect ? QuestionStatus.Correct : QuestionStatus.Wrong) as unknown as number;
 
-  // Setup data
-  const data = {};
+  try {
+    const start = performance.now();
 
-  // Create data array
-  for (var i = 0; i < count; i++) {
-    // @ts-ignore
-    data[i] = [20, 30];
+    const questionStatisticsByLanguage = JSON.parse(
+      localStorage.getItem(key)!
+    ) as QuestionStatisticsByLanguage | null;
+
+    if (isObject(questionStatisticsByLanguage)) {
+      questionStatisticsByLanguage![questionId] = result;
+      localStorage.setItem(key, JSON.stringify(questionStatisticsByLanguage));
+    }
+
+    const end = performance.now();
+    console.log('It took ' + (end - start) + 'ms.');
+  } catch (e) {
+    console.warn('saveToStorage error', e);
+
+    localStorage.setItem(
+      key,
+      JSON.stringify({
+        [questionId]: result,
+      })
+    );
   }
-
-  localStorage.setItem('answerHistory', JSON.stringify(data));
-  const res = JSON.stringify(localStorage.getItem('answerHistory'));
-  const end = performance.now();
-  console.log('It took ' + (end - start) + 'ms.');
-  // console.log(res);
 };
 
 const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [answerHistory, setAnswerHistory] = useState<AnswerHistoryType>(setEmptyAnswerHistory(questions));
   const [questionIndex, setQuestionIndex] = useState(0);
   const maxIndex = questions.length - 1;
@@ -66,20 +82,20 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true }
     setQuestionIndex(index);
   };
 
-  const handleAnswer = ({ answer, answerIsCurrect }: AnswerEvent) => {
-    saveToStorage();
+  const handleAnswer = ({ answer, answerIsCorrect }: AnswerEvent) => {
+    saveToStorage(currentQuestion.id, answerIsCorrect, i18n.language);
 
     setAnswerHistory((prev) => {
       const newHistory = [...prev];
       newHistory[questionIndex] = {
         questionIndex,
-        status: answerIsCurrect ? QuestionStatus.Currect : QuestionStatus.Wrong,
+        status: answerIsCorrect ? QuestionStatus.Correct : QuestionStatus.Wrong,
         answer,
       };
       return newHistory;
     });
 
-    // if (answerIsCurrect) {
+    // if (answerIsCorrect) {
     // auto move to next question
     setTimeout(() => {
       hanldeNextQuestionClick();

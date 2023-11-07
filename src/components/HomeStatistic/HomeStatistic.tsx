@@ -3,6 +3,7 @@ import Grid from '@mui/material/Grid';
 import { useTranslation } from 'react-i18next';
 import Progress from '../Progress/Progress';
 import s from './HomeStatistic.module.scss';
+import { getQuestionCountFromStorage } from '../../helpers';
 
 type Props = {
   questions: number;
@@ -11,14 +12,15 @@ type Props = {
 };
 
 const HomeStatistic: React.FC<Props> = ({ questions = 0, topics = 0, tickets = 0 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const questionsCount = getQuestionCountFromStorage(i18n.language);
 
   return (
     <Grid container justifyContent='space-between'>
       <Grid item xs={4} display='flex' justifyContent={'flex-start'}>
         <div className={s.item}>
           <span>
-            <span>0</span> / {questions}
+            <span>{questionsCount}</span> / {questions}
           </span>
           <Progress className={s.bar} max={100} value={0} />
           <span>{t('questions')}</span>
