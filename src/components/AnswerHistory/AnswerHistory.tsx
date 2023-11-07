@@ -42,7 +42,6 @@ const AnswerHistory: React.FC<Props> = ({ answerHistory, activeQuestionIndex, on
               className={clsx(
                 {
                   active: item.questionIndex === activeQuestionIndex,
-                  'move-to': item.questionIndex === activeQuestionIndex + 1,
                 },
                 item.status
               )}

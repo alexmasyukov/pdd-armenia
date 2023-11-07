@@ -1,4 +1,4 @@
-import { BaseData } from './types';
+import { BaseData } from './../types';
 
 export const getEmptyBaseData = (): BaseData => ({
   groups: [],

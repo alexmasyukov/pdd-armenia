@@ -31,7 +31,8 @@
   }
 }
 
-.topics {
+.topic {
+  cursor: pointer;
   color: var(--color-gray-dark);
 
   a {
@@ -66,5 +67,4 @@
 
 .hr {
   border-bottom: 1px solid var(--color-gray-soft);
-  margin: 5px 0 20px 0;
 }
