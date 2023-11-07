@@ -1,5 +1,5 @@
 .progress {
-  position: relative;
+  display: flex;
   width: 100%;
   transition: all 0.3s ease-in-out;
   height: 4px;
@@ -7,11 +7,23 @@
   background: var(--color-gray-light);
   overflow: hidden;
 
-  .value {
-    position: absolute;
+  .value,
+  .secondValue {
     height: inherit;
     background: var(--color-blue);
-    left: 0;
-    top: 0;
+  }
+
+  &.variant-secondary {
+    height: 6px;
+    border-radius: 0;
+    background: var(--color-gray-soft);
+
+    .value {
+      background: var(--color-green);
+    }
+
+    .secondValue {
+      background: var(--color-red);
+    }
   }
 }

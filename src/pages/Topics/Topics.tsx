@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Grid from '@mui/material/Grid';
+import Progress from '../../components/Progress/Progress';
 import { getEmptyBaseData, getQuestionStatisticsFromStorage } from '../../helpers';
 import { routes } from '../../router/constants';
 import { BaseData, Group, QuestionStatisticsByLanguage } from '../../types';
@@ -74,6 +75,7 @@ const Topics: React.FC = () => {
       </Grid>
       {data.groups.map((group, index) => {
         const groupStatistics = getStatisticsByGroup(group.id, data, questionStatistics);
+        const questionCount = getQestionCount(group.id, data.questions);
 
         return (
           <React.Fragment key={group.id}>
@@ -95,11 +97,16 @@ const Topics: React.FC = () => {
                     {' '}/{' '}
                     <span>{groupStatistics.wrong}</span>
                   </div>
-                  <div>{getQestionCount(group.id, data.questions)}</div>
+                  <div>{questionCount}</div>
                 </div>
               </Grid>
               <Grid item xs={12}>
-                <div className={s.progress}></div>
+                <Progress
+                  variant='secondary'
+                  max={questionCount}
+                  value={groupStatistics.correct}
+                  secondValue={groupStatistics.wrong}
+                />
               </Grid>
             </Grid>
 

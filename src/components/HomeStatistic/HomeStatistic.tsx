@@ -22,7 +22,7 @@ const HomeStatistic: React.FC<Props> = ({ questions = 0, topics = 0, tickets = 0
           <span>
             <span>{questionsCount}</span> / {questions}
           </span>
-          <Progress className={s.bar} max={100} value={0} />
+          <Progress className={s.bar} max={questions} value={questionsCount} />
           <span>{t('questions')}</span>
         </div>
       </Grid>
