@@ -5,20 +5,39 @@ import s from './Progress.module.scss';
 type Props = {
   max?: number;
   value: number;
+  secondValue?: number;
   className?: string;
+  variant?: 'primary' | 'secondary';
 };
 
-const Progress: React.FC<Props> = ({ max = 100, value = 50, className }) => {
-  const percent = (value / max) * 100;
+const Progress: React.FC<Props> = ({
+  max = 100,
+  value = 0,
+  secondValue = 0,
+  variant = 'primary',
+  className,
+}) => {
+  const percent1 = Math.round((value / max) * 100);
+  const percent2 = Math.round((secondValue / max) * 100);
+
+  console.log('percent2', percent2, secondValue);
 
   return (
-    <div className={clsx(s.progress, className)}>
+    <div className={clsx(s.progress, { [s[`variant-${variant}`]]: variant }, className)}>
       <div
         className={s.value}
         style={{
-          width: `${percent}%`,
+          width: `${percent1}%`,
         }}
       />
+      {percent2 > 0 && (
+        <div
+          className={s.secondValue}
+          style={{
+            width: `${percent2}%`,
+          }}
+        />
+      )}
     </div>
   );
 };
