@@ -15,7 +15,7 @@ export type Question = {
   a4?: AnswerKey;
   a5?: AnswerKey;
   a6?: AnswerKey;
-  currect: AnswerKey;
+  correct: AnswerKey;
   img: string;
 };
 
@@ -31,7 +31,7 @@ export type BaseData = {
 
 export type AnswerEvent = {
   answer: AnswerKey;
-  answerIsCurrect: boolean;
+  answerIsCorrect: boolean;
 };
 
 export type AnswerHistory = {
@@ -41,3 +41,5 @@ export type AnswerHistory = {
 }[];
 
 export type Favorites = QuestionId[];
+
+export type QuestionStatisticsByLanguage = Record<Question['id'], number>;

@@ -37,6 +37,13 @@
 
   a {
     color: var(--color-black);
+    transition: all 0.2s;
+  }
+
+  &:hover {
+    a {
+      color: var(--color-blue);
+    }
   }
 }
 

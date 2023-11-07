@@ -1,5 +1,5 @@
 export enum QuestionStatus {
-  NotAnswered = 'not-answered',
-  Currect = 'currect',
-  Wrong = 'wrong',
+  NotAnswered = 0,
+  Correct = 1,
+  Wrong = -1,
 }

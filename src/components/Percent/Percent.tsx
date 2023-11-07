@@ -7,10 +7,10 @@ interface Props {
 }
 
 const Percent: React.FC<Props> = ({ answerHistory }) => {
-  const { current, wrong, notAnswered } = answerHistory.reduce(
+  const { correct, wrong, notAnswered } = answerHistory.reduce(
     (acc, item) => {
-      if (item.status === QuestionStatus.Currect) {
-        acc.current += 1;
+      if (item.status === QuestionStatus.Correct) {
+        acc.correct += 1;
       }
       if (item.status === QuestionStatus.Wrong) {
         acc.wrong += 1;
@@ -21,18 +21,18 @@ const Percent: React.FC<Props> = ({ answerHistory }) => {
 
       return acc;
     },
-    { current: 0, wrong: 0, notAnswered: 0 }
+    { correct: 0, wrong: 0, notAnswered: 0 }
   );
   const max = answerHistory.length;
   const notAnsweredPercent = Math.round((notAnswered / max) * 100);
-  const currectPercent = Math.round((current / max) * 100);
+  const correctPercent = Math.round((correct / max) * 100);
   const wrongPercent = Math.round((wrong / max) * 100);
 
   return (
     <div className='percent'>
       <div className='values'>
-        {currectPercent > 0 && <div style={{ width: currectPercent + '%' }}>{currectPercent}%</div>}
-        <div style={{ width: notAnsweredPercent + '%' }}>{!wrongPercent && !currectPercent && '0%'}</div>
+        {correctPercent > 0 && <div style={{ width: correctPercent + '%' }}>{correctPercent}%</div>}
+        <div style={{ width: notAnsweredPercent + '%' }}>{!wrongPercent && !correctPercent && '0%'}</div>
         {wrongPercent > 0 && (
           <div className='wrong' style={{ width: wrongPercent + '%' }}>
             {wrongPercent}%
@@ -40,7 +40,7 @@ const Percent: React.FC<Props> = ({ answerHistory }) => {
         )}
       </div>
       <div className='scale'>
-        <div className='currect' style={{ width: currectPercent + '%' }} />
+        <div className='correct' style={{ width: correctPercent + '%' }} />
         <div className='not-answered' style={{ width: notAnsweredPercent + '%' }} />
         <div className='wrong' style={{ width: wrongPercent + '%' }} />
       </div>

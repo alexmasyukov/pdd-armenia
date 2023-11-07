@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import clsx from 'clsx';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { AnswerHistory as AnswerHistoryType, QuestionIndex } from '../../types';
+import { QuestionStatus } from '../../enums';
 
 interface Props {
   answerHistory: AnswerHistoryType;
@@ -43,7 +44,9 @@ const AnswerHistory: React.FC<Props> = ({ answerHistory, activeQuestionIndex, on
                 {
                   active: item.questionIndex === activeQuestionIndex,
                 },
-                item.status
+                { correct: item.status === QuestionStatus.Correct },
+                { wrong: item.status === QuestionStatus.Wrong },
+                { 'not-answered': item.status === QuestionStatus.NotAnswered }
               )}
               onClick={onSelectQuestion(index)}
             >
