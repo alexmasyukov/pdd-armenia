@@ -14,6 +14,33 @@ import { routes } from '../../router/constants';
 import { BaseData } from '../../types';
 import { getEmptyBaseData } from '../../helpers';
 
+const storage = () => {
+  let data = {};
+  for (let i = 0; i < 2000; i++) {
+    // @ts-ignore
+    data[i] = i;
+  }
+
+  localStorage.setItem('test', JSON.stringify(data));
+  const my = JSON.parse(localStorage.getItem('test') ?? '{}');
+
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+      }}
+    >
+      {Object.keys(my).map((key) => (
+        <div key={key}>
+          {' '}
+          {key} - {my[key]} |{' '}
+        </div>
+      ))}
+    </div>
+  );
+};
+
 const Home: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -99,6 +126,8 @@ const Home: React.FC = () => {
           </Grid>
         </div>
       </Grid>
+
+      {storage()}
     </>
   );
 };
