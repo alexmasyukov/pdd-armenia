@@ -4,7 +4,13 @@ import { useTranslation } from 'react-i18next';
 import Progress from '../Progress/Progress';
 import s from './HomeStatistic.module.scss';
 
-const HomeStatistic: React.FC = () => {
+type Props = {
+  questions: number;
+  topics: number;
+  tickets: number;
+};
+
+const HomeStatistic: React.FC<Props> = ({ questions = 0, topics = 0, tickets = 0 }) => {
   const { t } = useTranslation();
 
   return (
@@ -12,7 +18,7 @@ const HomeStatistic: React.FC = () => {
       <Grid item xs={4} display='flex' justifyContent={'flex-start'}>
         <div className={s.item}>
           <span>
-            <span>5</span> / 1000
+            <span>0</span> / {questions}
           </span>
           <Progress className={s.bar} max={100} value={0} />
           <span>{t('questions')}</span>
@@ -21,7 +27,7 @@ const HomeStatistic: React.FC = () => {
       <Grid item xs={4}>
         <div className={s.item}>
           <span>
-            <span>0</span> / 40
+            <span>0</span> / {tickets}
           </span>
           <Progress className={s.bar} max={100} value={0} />
           <span>{t('tickets')}</span>
@@ -30,7 +36,7 @@ const HomeStatistic: React.FC = () => {
       <Grid item xs={4} display='flex' justifyContent={'flex-end'}>
         <div className={s.item}>
           <span>
-            <span>0</span> / 27
+            <span>0</span> / {topics}
           </span>
           <Progress className={s.bar} max={100} value={0} />
           <span>{t('topics')}</span>

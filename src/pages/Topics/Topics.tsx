@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Grid from '@mui/material/Grid';
 import { getEmptyBaseData } from '../../helpers';
@@ -12,7 +12,8 @@ const getQestionCount = (groupId: Group['id'], allQestions: BaseData['questions'
 };
 
 const Topics: React.FC = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
+  const navigate = useNavigate();
   const [data, setData] = useState<BaseData>(getEmptyBaseData());
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -22,6 +23,10 @@ const Topics: React.FC = () => {
       setLoading(false);
     });
   }, []);
+
+  const handleNavigateToTopic = (groupId: Group['id']) => () => {
+    navigate(routes.topics.topicById.view(groupId));
+  };
 
   return loading ? (
     <>Loaing</>
@@ -40,7 +45,14 @@ const Topics: React.FC = () => {
       </Grid>
       {data.groups.map((group, index) => (
         <React.Fragment key={group.id}>
-          <Grid container spacing={1} className={s.topics}>
+          <Grid
+            container
+            spacing={1}
+            mb={2}
+            mt={index === 0 ? 2 : 0}
+            onClick={handleNavigateToTopic(group.id)}
+            className={s.topic}
+          >
             <Grid item xs={9} sm={10} md={11}>
               <Link to={routes.topics.topicById.view(group.id)}>{group.name}</Link>
             </Grid>
@@ -57,6 +69,9 @@ const Topics: React.FC = () => {
             <Grid item xs={12}>
               <div className={s.progress}></div>
             </Grid>
+          </Grid>
+
+          <Grid container mb={1}>
             {index !== data.groups.length - 1 && (
               <Grid item xs={12}>
                 <div className={s.hr} />
