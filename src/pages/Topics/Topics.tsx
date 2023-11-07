@@ -39,7 +39,7 @@ const Topics: React.FC = () => {
         </Grid>
       </Grid>
       {data.groups.map((group, index) => (
-        <>
+        <React.Fragment key={group.id}>
           <Grid container spacing={1} className={s.topics}>
             <Grid item xs={9} sm={10} md={11}>
               <Link to={routes.topics.topicById.view(group.id)}>{group.name}</Link>
@@ -63,7 +63,7 @@ const Topics: React.FC = () => {
               </Grid>
             )}
           </Grid>
-        </>
+        </React.Fragment>
       ))}
     </>
   );
