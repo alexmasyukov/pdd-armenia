@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Question from '../Question/Question';
-import {
-  AnswerEvent,
-  AnswerHistory as AnswerHistoryType,
-  Question as QuestionType,
-  QuestionStatisticsByLanguage,
-} from '../../types';
-import { QuestionStatus } from '../../enums';
+import { AnswerEvent, AnswerHistory as AnswerHistoryType, Question as QuestionType } from '../../types';
+import { QuestionStatus, Language } from '../../enums';
 import AnswerHistory from '../AnswerHistory/AnswerHistory';
 import FavoriteButton from '../FavoriteButton/FavoriteButton';
 import Percent from '../Percent/Percent';
 import { PiCaretLeftBold, PiWarningLight } from 'react-icons/pi';
 import { useTranslation } from 'react-i18next';
-import { isObject } from '../../helpers';
+import { StatisticsStore } from '../../services/StatisticsStore';
 
 interface Props {
   questions: QuestionType[];
@@ -27,34 +22,8 @@ const setEmptyAnswerHistory = (questions: QuestionType[]) => {
   }));
 };
 
-const saveToStorage = (questionId: QuestionType['id'], answerIsCorrect: boolean, lang: string) => {
-  const key = `questionStatistics-${lang}`;
-  const result = (answerIsCorrect ? QuestionStatus.Correct : QuestionStatus.Wrong) as unknown as number;
-
-  try {
-    const start = performance.now();
-
-    const questionStatisticsByLanguage = JSON.parse(
-      localStorage.getItem(key)!
-    ) as QuestionStatisticsByLanguage | null;
-
-    if (isObject(questionStatisticsByLanguage)) {
-      questionStatisticsByLanguage![questionId] = result;
-      localStorage.setItem(key, JSON.stringify(questionStatisticsByLanguage));
-    }
-
-    const end = performance.now();
-    console.log('It took ' + (end - start) + 'ms.');
-  } catch (e) {
-    console.warn('saveToStorage error', e);
-
-    localStorage.setItem(
-      key,
-      JSON.stringify({
-        [questionId]: result,
-      })
-    );
-  }
+const saveToStorage = (questionId: QuestionType['id'], answerIsCorrect: boolean, lang: Language) => {
+  StatisticsStore.setQuestionStatistics(questionId, lang, answerIsCorrect);
 };
 
 const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true }) => {
@@ -83,7 +52,7 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true }
   };
 
   const handleAnswer = ({ answer, answerIsCorrect }: AnswerEvent) => {
-    saveToStorage(currentQuestion.id, answerIsCorrect, i18n.language);
+    saveToStorage(currentQuestion.id, answerIsCorrect, i18n.language as Language);
 
     setAnswerHistory((prev) => {
       const newHistory = [...prev];

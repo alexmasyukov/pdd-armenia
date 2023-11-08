@@ -3,3 +3,8 @@ export enum QuestionStatus {
   Correct = 1,
   Wrong = -1,
 }
+
+export enum Language {
+  English = 'en',
+  Russian = 'ru',
+}
