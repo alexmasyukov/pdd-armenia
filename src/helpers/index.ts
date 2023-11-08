@@ -1,4 +1,5 @@
-import { BaseData, Question, QuestionStatisticsByLanguage } from './../types';
+import { StatisticsStore } from '../services/StatisticsStore';
+import { BaseData, Group, QuestionsStatistics } from './../types';
 
 export const getEmptyBaseData = (): BaseData => ({
   groups: [],
@@ -9,43 +10,37 @@ export const isObject = (value: unknown) => {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 };
 
-// TODO: set it to Questions component and other
-export const getQuestionStatisticsFromStorage = (lang: string) => {
-  const key = `questionStatistics-${lang}`;
-  let questionStatistics: QuestionStatisticsByLanguage = {};
+export const getStatisticsByGroup = (
+  groupId: Group['id'],
+  questionsStatistics: QuestionsStatistics,
+  data: BaseData
+) => {
+  const questionIds = data.questions.filter(({ gid }) => gid === groupId).map(({ id }) => id);
 
-  try {
-    const questionStatisticsByLanguage = JSON.parse(
-      localStorage.getItem(key)!
-    ) as QuestionStatisticsByLanguage | null;
+  const result = questionIds.reduce(
+    (acc, id) => {
+      const questionStatistics = questionsStatistics[id];
 
-    if (isObject(questionStatisticsByLanguage)) {
-      questionStatistics = questionStatisticsByLanguage!;
+      if (!Array.isArray(questionStatistics)) {
+        return acc;
+      }
+
+      if (StatisticsStore.isCorrectQuestionAnswersMoreThanWrong(questionStatistics)) {
+        acc.correct += 1;
+      } else {
+        acc.wrong += 1;
+      }
+
+      return acc;
+    },
+    {
+      correct: 0,
+      wrong: 0,
     }
-  } catch (error) {
-    console.warn('getQuestionsFromStorage error: ', error);
-  }
+  );
 
-  return questionStatistics;
-};
-
-export const getQuestionCountFromStorage = (lang: string) => {
-  const key = `questionStatistics-${lang}`;
-  let count = 0;
-
-  try {
-    const questionStatisticsByLanguage = JSON.parse(
-      localStorage.getItem(key)!
-    ) as QuestionStatisticsByLanguage | null;
-
-    if (isObject(questionStatisticsByLanguage)) {
-      count = Object.keys(questionStatisticsByLanguage!).length;
-    } else {
-      throw new Error('questionStatisticsByLanguage is not an object');
-    }
-  } catch (error) {
-    console.warn('getQuestionCountFromStorage error: ', error);
-  }
-
-  return count;
+  return {
+    ...result,
+    questionsCount: questionIds.length,
+  };
 };

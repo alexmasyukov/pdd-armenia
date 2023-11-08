@@ -20,8 +20,6 @@ const Progress: React.FC<Props> = ({
   const percent1 = Math.round((value / max) * 100);
   const percent2 = Math.round((secondValue / max) * 100);
 
-  console.log('percent2', percent2, secondValue);
-
   return (
     <div className={clsx(s.progress, { [s[`variant-${variant}`]]: variant }, className)}>
       <div

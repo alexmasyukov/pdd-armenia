@@ -3,49 +3,19 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Grid from '@mui/material/Grid';
 import Progress from '../../components/Progress/Progress';
-import { getEmptyBaseData, getQuestionStatisticsFromStorage } from '../../helpers';
+import { getEmptyBaseData, getStatisticsByGroup } from '../../helpers';
 import { routes } from '../../router/constants';
-import { BaseData, Group, QuestionStatisticsByLanguage } from '../../types';
+import { BaseData, Group } from '../../types';
 import s from './Topics.module.scss';
-import { QuestionStatus } from '../../enums';
-
-const getQestionCount = (groupId: Group['id'], allQestions: BaseData['questions']) => {
-  return allQestions.filter(({ gid }) => gid === groupId).length;
-};
-
-const getStatisticsByGroup = (
-  groupId: Group['id'],
-  data: BaseData,
-  questionStatistics: QuestionStatisticsByLanguage
-) => {
-  const questionIds = data.questions.filter(({ gid }) => gid === groupId).map(({ id }) => id);
-  const result = questionIds.reduce(
-    (acc, id) => {
-      if (questionStatistics[id] === QuestionStatus.Correct) {
-        acc.correct += 1;
-      }
-
-      if (questionStatistics[id] === QuestionStatus.Wrong) {
-        acc.wrong += 1;
-      }
-
-      return acc;
-    },
-    {
-      correct: 0,
-      wrong: 0,
-    }
-  );
-
-  return result;
-};
+import { Language } from '../../enums';
+import { StatisticsStore } from '../../services/StatisticsStore';
 
 const Topics: React.FC = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [data, setData] = useState<BaseData>(getEmptyBaseData());
   const [loading, setLoading] = useState<boolean>(true);
-  const questionStatistics = getQuestionStatisticsFromStorage(i18n.language);
+  const questionsStatistics = StatisticsStore.getAllQuestionsStatistics(i18n.language as Language);
 
   useEffect(() => {
     import('././../../data/ru.json').then((data) => {
@@ -74,8 +44,7 @@ const Topics: React.FC = () => {
         </Grid>
       </Grid>
       {data.groups.map((group, index) => {
-        const groupStatistics = getStatisticsByGroup(group.id, data, questionStatistics);
-        const questionCount = getQestionCount(group.id, data.questions);
+        const statistics = getStatisticsByGroup(group.id, questionsStatistics, data);
 
         return (
           <React.Fragment key={group.id}>
@@ -93,19 +62,19 @@ const Topics: React.FC = () => {
               <Grid item xs={3} sm={2} md={1} textAlign={'right'}>
                 <div className={s.count}>
                   <div>
-                    <span>{groupStatistics.correct}</span>
+                    <span>{statistics.correct}</span>
                     {' '}/{' '}
-                    <span>{groupStatistics.wrong}</span>
+                    <span>{statistics.wrong}</span>
                   </div>
-                  <div>{questionCount}</div>
+                  <div>{statistics.questionsCount}</div>
                 </div>
               </Grid>
               <Grid item xs={12}>
                 <Progress
                   variant='secondary'
-                  max={questionCount}
-                  value={groupStatistics.correct}
-                  secondValue={groupStatistics.wrong}
+                  max={statistics.questionsCount}
+                  value={statistics.correct}
+                  secondValue={statistics.wrong}
                 />
               </Grid>
             </Grid>

@@ -1,3 +1,5 @@
+import { Language } from './enums';
+
 export type AnswerKey = string;
 
 export type QuestionId = number;
@@ -42,4 +44,14 @@ export type AnswerHistory = {
 
 export type Favorites = QuestionId[];
 
-export type QuestionStatisticsByLanguage = Record<Question['id'], number>;
+type CorrectAnswerCount = number;
+type WrongAnswerCount = number;
+
+export type LocalStorageQuestionKeyWithoutQestionId = `q-${Language}`;
+export type LocalStorageQuestionKey = `${LocalStorageQuestionKeyWithoutQestionId}-${Question['id']}`;
+
+export type QuestionStatistics = [CorrectAnswerCount, WrongAnswerCount];
+
+export type QuestionsStatistics = Record<QuestionId, QuestionStatistics>;
+
+export type QuestionsStatisticsByLanguage = Record<LocalStorageQuestionKey, QuestionStatistics>;

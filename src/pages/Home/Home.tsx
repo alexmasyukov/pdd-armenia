@@ -14,41 +14,41 @@ import { routes } from '../../router/constants';
 import { BaseData } from '../../types';
 import { getEmptyBaseData } from '../../helpers';
 
-const storage = () => {
-  const start = performance.now();
+// const storage = () => {
+//   const start = performance.now();
 
-  let data = {};
-  for (let i = 0; i < 4000; i++) {
-    // @ts-ignore
-    data[i] = i;
-  }
+//   let data = {};
+//   for (let i = 0; i < 4000; i++) {
+//     // @ts-ignore
+//     data[i] = i;
+//   }
 
-  localStorage.setItem('test', JSON.stringify(data));
-  const my = JSON.parse(localStorage.getItem('test') ?? '{}');
+//   localStorage.setItem('test', JSON.stringify(data));
+//   const my = JSON.parse(localStorage.getItem('test') ?? '{}');
 
-  const end = performance.now();
-  console.log('It took ' + (end - start) + 'ms.');
+//   const end = performance.now();
+//   console.log('It took ' + (end - start) + 'ms.');
 
-  return (
-    <>
-      <p>{end - start} ms.</p>
-      <br />
-      <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-        }}
-      >
-        {Object.keys(my).map((key) => (
-          <div key={key}>
-            {' '}
-            {key} - {my[key]} |{' '}
-          </div>
-        ))}
-      </div>
-    </>
-  );
-};
+//   return (
+//     <>
+//       <p>{end - start} ms.</p>
+//       <br />
+//       <div
+//         style={{
+//           display: 'flex',
+//           flexWrap: 'wrap',
+//         }}
+//       >
+//         {Object.keys(my).map((key) => (
+//           <div key={key}>
+//             {' '}
+//             {key} - {my[key]} |{' '}
+//           </div>
+//         ))}
+//       </div>
+//     </>
+//   );
+// };
 
 const Home: React.FC = () => {
   const { t } = useTranslation();
@@ -136,7 +136,7 @@ const Home: React.FC = () => {
         </div>
       </Grid>
 
-      {storage()}
+      {/* {storage()} */}
     </>
   );
 };
