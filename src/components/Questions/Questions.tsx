@@ -93,34 +93,39 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true }
         onSelectQuestion={handleSelectQuestionClick}
       />
 
-      <Container maxWidth={'333'}>
-        {/* <div className={s['question-container']}> */}
-        <Question
-          item={currentQuestion}
-          answerFromHistory={answerFromHistory.answer}
-          enabled={answerFromHistory.status === QuestionStatus.NotAnswered}
-          onAnswer={handleAnswer}
-        />
-        {/* </div> */}
+      <Container
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        <div className={s['question-container']}>
+          <Question
+            item={currentQuestion}
+            answerFromHistory={answerFromHistory.answer}
+            enabled={answerFromHistory.status === QuestionStatus.NotAnswered}
+            onAnswer={handleAnswer}
+          />
+          {/* </div> */}
 
-        {/* <div className={s['question-container']}> */}
-        <div className={s.buttons}>
-          <div>
-            <FavoriteButton questionId={currentQuestion.id} addButton={favoriteAddButton} />
+          {/* <div className={s['question-container']}> */}
+          <div className={s.buttons}>
+            <div>
+              <FavoriteButton questionId={currentQuestion.id} addButton={favoriteAddButton} />
 
-            <div className='favorite-btn report-btn'>
-              <PiWarningLight size={16} /> {t('report')}
+              <div className='favorite-btn report-btn'>
+                <PiWarningLight size={16} /> {t('report')}
+              </div>
             </div>
-          </div>
 
-          {answerFromHistory.status === QuestionStatus.Wrong && !isLastQuestion && (
-            <button className='next-question-btn' onClick={hanldeNextQuestionClick}>
-              {t('nextQuestion')}
-            </button>
-          )}
+            {answerFromHistory.status === QuestionStatus.Wrong && !isLastQuestion && (
+              <button className={s['next-question-btn']} onClick={hanldeNextQuestionClick}>
+                {t('nextQuestion')}
+              </button>
+            )}
+          </div>
         </div>
       </Container>
-      {/* </div> */}
     </div>
   );
 };
