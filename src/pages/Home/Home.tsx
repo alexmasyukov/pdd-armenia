@@ -1,60 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import Grid from '@mui/material/Grid';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { PiStarFill } from 'react-icons/pi';
 import { PiWarningFill } from 'react-icons/pi';
 import { PiBookBookmarkFill } from 'react-icons/pi';
 import { PiClockCountdownFill } from 'react-icons/pi';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 import { FavoriteStore } from '../../services/FavoriteStore';
 import Button from '../../components/Button/Button';
 import HomeStatistic from '../../components/HomeStatistic/HomeStatistic';
-import Paper from '@mui/material/Paper';
 import { routes } from '../../router/constants';
 import { BaseData } from '../../types';
 import { getEmptyBaseData } from '../../helpers';
-
-// const storage = () => {
-//   const start = performance.now();
-
-//   let data = {};
-//   for (let i = 0; i < 4000; i++) {
-//     // @ts-ignore
-//     data[i] = i;
-//   }
-
-//   localStorage.setItem('test', JSON.stringify(data));
-//   const my = JSON.parse(localStorage.getItem('test') ?? '{}');
-
-//   const end = performance.now();
-//   console.log('It took ' + (end - start) + 'ms.');
-
-//   return (
-//     <>
-//       <p>{end - start} ms.</p>
-//       <br />
-//       <div
-//         style={{
-//           display: 'flex',
-//           flexWrap: 'wrap',
-//         }}
-//       >
-//         {Object.keys(my).map((key) => (
-//           <div key={key}>
-//             {' '}
-//             {key} - {my[key]} |{' '}
-//           </div>
-//         ))}
-//       </div>
-//     </>
-//   );
-// };
+import CleanAllStatistics from '../../components/CleanButtons/CleanAllStatistics';
+import CleanFavorites from '../../components/CleanButtons/CleanFavorites';
+import { useCleaned } from '../../hooks/s';
 
 const Home: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-
   const [data, setData] = useState<BaseData>(getEmptyBaseData());
+  const { onCleaned } = useCleaned();
   const tickets = 40;
   const questions = data.questions.length;
   const topics = data.groups.length;
@@ -133,10 +100,15 @@ const Home: React.FC = () => {
               </Link>
             </Grid>
           </Grid>
+
+          <Grid container mt={3}>
+            <Grid item xs={12}>
+              <CleanAllStatistics onCleaned={onCleaned} />
+              <CleanFavorites onCleaned={onCleaned} />
+            </Grid>
+          </Grid>
         </div>
       </Grid>
-
-      {/* {storage()} */}
     </>
   );
 };

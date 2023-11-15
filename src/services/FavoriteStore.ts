@@ -18,6 +18,10 @@ export class FavoriteStore {
     }
   };
 
+  static cleanFavorites = () => {
+    localStorage.removeItem(FavoriteStore.favoritesKey);
+  };
+
   static hasQuestionIdInFavorites(questionId: QuestionId): boolean {
     const favorites = FavoriteStore.getFavorites();
 

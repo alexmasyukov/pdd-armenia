@@ -30,7 +30,7 @@ const Question: React.FC<Props> = ({
   };
 
   return (
-    <div className='question'>
+    <div className={s.question}>
       {img && <img src={`${process.env.PUBLIC_URL}/images/questions/${gid}/${img}.jpg`} alt='' />}
       {!img && (
         <div className={s.withoutImg}>
@@ -41,7 +41,7 @@ const Question: React.FC<Props> = ({
 
       <p>{q}</p>
 
-      <ul className='answers'>
+      <ul className={s.answers}>
         {a1 && (
           <Answer
             onClick={handleAnswerClick('a1')}

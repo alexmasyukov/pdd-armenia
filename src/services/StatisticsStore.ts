@@ -60,8 +60,8 @@ export class StatisticsStore {
     }
   };
 
-  static getAllQuestionsStatistics = (lang: Language) => {
-    let statistics: QuestionsStatistics = {};
+  static getLocalStorage = (): QuestionsStatisticsByLanguage => {
+    let result = {} as QuestionsStatisticsByLanguage;
 
     try {
       const questionsStatisticsByLanguage = localStorage as QuestionsStatisticsByLanguage | null;
@@ -70,10 +70,38 @@ export class StatisticsStore {
         throw new Error('questionsStatisticsByLanguage is not an object');
       }
 
+      result = questionsStatisticsByLanguage as QuestionsStatisticsByLanguage;
+    } catch (error) {
+      console.warn('getLocalStorage error: ', error);
+    }
+
+    return result;
+  };
+
+  static getAllQuestionsKeys = (
+    lang: Language,
+    questionsStatisticsByLanguage: QuestionsStatisticsByLanguage
+  ): LocalStorageQuestionKey[] => {
+    let questionKeys: LocalStorageQuestionKey[] = [];
+
+    try {
       // get only questions keys from questionsStatisticsByLanguage
-      const questionKeys = Object.keys(questionsStatisticsByLanguage!).filter((key) =>
+      questionKeys = Object.keys(questionsStatisticsByLanguage!).filter((key) =>
         key.startsWith(StatisticsStore.getLocalstorageQuestionKeyWithoutQuestionId(lang))
       ) as LocalStorageQuestionKey[];
+    } catch (error) {
+      console.warn('getAllQuestionsKeys error: ', error);
+    }
+
+    return questionKeys;
+  };
+
+  static getAllQuestionsStatistics = (lang: Language) => {
+    let statistics: QuestionsStatistics = {};
+
+    try {
+      const questionsStatisticsByLanguage = StatisticsStore.getLocalStorage();
+      const questionKeys = StatisticsStore.getAllQuestionsKeys(lang, questionsStatisticsByLanguage);
 
       // get parsed values from questionsStatisticsByLanguage
       statistics = questionKeys.reduce((acc, key) => {
@@ -91,6 +119,18 @@ export class StatisticsStore {
     }
 
     return statistics;
+  };
+
+  static cleanAllStatistics = (lang: Language): void => {
+    try {
+      const keys = StatisticsStore.getAllQuestionsKeys(lang, StatisticsStore.getLocalStorage());
+
+      keys.forEach((key) => {
+        localStorage.removeItem(key);
+      });
+    } catch (error) {
+      console.warn('cleanAllStatistics error:', error);
+    }
   };
 
   static isCorrectQuestionAnswersMoreThanWrong = (questionStatistics: QuestionStatistics): boolean => {

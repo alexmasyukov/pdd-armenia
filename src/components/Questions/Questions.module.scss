@@ -1,0 +1,14 @@
+.question-container {
+  // display: flex;
+  // flex-direction: column;
+  // align-items: flex-start;
+  max-width: 664px;
+  // display: flex;
+  // justify-content: flex-start;
+
+  .buttons {
+    justify-content: flex-start;
+    justify-self: flex-start;
+    align-self: flex-start;
+  }
+}

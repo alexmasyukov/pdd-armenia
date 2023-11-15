@@ -9,12 +9,15 @@ import { BaseData, Group } from '../../types';
 import s from './Topics.module.scss';
 import { Language } from '../../enums';
 import { StatisticsStore } from '../../services/StatisticsStore';
+import CleanAllStatistics from '../../components/CleanButtons/CleanAllStatistics';
+import { useCleaned } from '../../hooks/s';
 
 const Topics: React.FC = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [data, setData] = useState<BaseData>(getEmptyBaseData());
   const [loading, setLoading] = useState<boolean>(true);
+  const { onCleaned } = useCleaned();
   const questionsStatistics = StatisticsStore.getAllQuestionsStatistics(i18n.language as Language);
 
   useEffect(() => {
@@ -89,6 +92,10 @@ const Topics: React.FC = () => {
           </React.Fragment>
         );
       })}
+
+      <Grid container mb={1} justifyContent='flex-end'>
+        <CleanAllStatistics onCleaned={onCleaned} />
+      </Grid>
     </>
   );
 };

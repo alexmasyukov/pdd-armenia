@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { PiCaretLeftBold, PiWarningLight } from 'react-icons/pi';
 import Question from '../Question/Question';
 import { AnswerEvent, AnswerHistory as AnswerHistoryType, Question as QuestionType } from '../../types';
-import { QuestionStatus, Language } from '../../enums';
 import AnswerHistory from '../AnswerHistory/AnswerHistory';
 import FavoriteButton from '../FavoriteButton/FavoriteButton';
 import Percent from '../Percent/Percent';
-import { PiCaretLeftBold, PiWarningLight } from 'react-icons/pi';
-import { useTranslation } from 'react-i18next';
 import { StatisticsStore } from '../../services/StatisticsStore';
+import { QuestionStatus, Language } from '../../enums';
+import s from './Questions.module.scss';
+import { Container, Grid } from '@mui/material';
 
 interface Props {
   questions: QuestionType[];
@@ -64,12 +66,12 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true }
       return newHistory;
     });
 
-    // if (answerIsCorrect) {
-    // auto move to next question
-    setTimeout(() => {
-      hanldeNextQuestionClick();
-    }, 200);
-    // }
+    if (answerIsCorrect) {
+      // auto move to next question
+      setTimeout(() => {
+        hanldeNextQuestionClick();
+      }, 200);
+    }
   };
 
   if (!currentQuestion || !answerFromHistory) {
@@ -91,28 +93,34 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true }
         onSelectQuestion={handleSelectQuestionClick}
       />
 
-      <Question
-        item={currentQuestion}
-        answerFromHistory={answerFromHistory.answer}
-        enabled={answerFromHistory.status === QuestionStatus.NotAnswered}
-        onAnswer={handleAnswer}
-      />
+      <Container maxWidth={'333'}>
+        {/* <div className={s['question-container']}> */}
+        <Question
+          item={currentQuestion}
+          answerFromHistory={answerFromHistory.answer}
+          enabled={answerFromHistory.status === QuestionStatus.NotAnswered}
+          onAnswer={handleAnswer}
+        />
+        {/* </div> */}
 
-      <div className='buttons'>
-        <div>
-          <FavoriteButton questionId={currentQuestion.id} addButton={favoriteAddButton} />
+        {/* <div className={s['question-container']}> */}
+        <div className={s.buttons}>
+          <div>
+            <FavoriteButton questionId={currentQuestion.id} addButton={favoriteAddButton} />
 
-          <div className='favorite-btn report-btn'>
-            <PiWarningLight size={16} /> {t('report')}
+            <div className='favorite-btn report-btn'>
+              <PiWarningLight size={16} /> {t('report')}
+            </div>
           </div>
-        </div>
 
-        {answerFromHistory.status === QuestionStatus.Wrong && !isLastQuestion && (
-          <button className='next-question-btn' onClick={hanldeNextQuestionClick}>
-            {t('nextQuestion')}
-          </button>
-        )}
-      </div>
+          {answerFromHistory.status === QuestionStatus.Wrong && !isLastQuestion && (
+            <button className='next-question-btn' onClick={hanldeNextQuestionClick}>
+              {t('nextQuestion')}
+            </button>
+          )}
+        </div>
+      </Container>
+      {/* </div> */}
     </div>
   );
 };
