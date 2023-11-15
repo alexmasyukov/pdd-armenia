@@ -39,5 +39,11 @@
   "reset": "Сбросить",
   "resetProgress": "Сбросить прогресс",
   "save": "Сохранить",
-  "questionWithoutImg": "Вопрос без изображения"
+  "questionWithoutImg": "Вопрос без изображения",
+  "clean-all-statistics": "Очистить статистику",
+  "clean-all-statistics-confirm": "Вы уверены, что хотите полностью очистить статистику?",
+  "clean-all-statistics-success": "Статистика очищена.",
+  "clean-favorites": "Очистить избранное",
+  "clean-favorites-confirm": "Вы уверены, что хотите очистить избранное?",
+  "clean-favorites-success": "Избранное очищено."
 }

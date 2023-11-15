@@ -25,6 +25,7 @@ const FavoriteQuestions: React.FC<Props> = ({ questions }) => {
     return () => {
       window.removeEventListener('storage', onStorageEvent, false);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return <Questions questions={favoriteQuestions} favoriteAddButton={false} />;
