@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import React from 'react';
+import s from './Question.module.scss';
 
 interface Props {
   text: string;
@@ -11,7 +12,7 @@ interface Props {
 
 const Answer: React.FC<Props> = ({ isCorrect, isWrong, text, onClick }) => {
   return (
-    <li onClick={onClick} className={clsx({ correct: isCorrect }, { wrong: isWrong })}>
+    <li onClick={onClick} className={clsx({ [s.correct]: isCorrect }, { [s.wrong]: isWrong })}>
       {text}
     </li>
   );
