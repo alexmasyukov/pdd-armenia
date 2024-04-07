@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { PiCaretLeftBold, PiWarningLight } from 'react-icons/pi';
+import { PiCaretLeftBold, PiWarningLight, PiEyeLight, PiEyeSlashLight } from 'react-icons/pi';
 import Question from '../Question/Question';
 import { AnswerEvent, AnswerHistory as AnswerHistoryType, Question as QuestionType } from '../../types';
 import AnswerHistory from '../AnswerHistory/AnswerHistory';
@@ -9,7 +9,6 @@ import Percent from '../Percent/Percent';
 import { StatisticsStore } from '../../services/StatisticsStore';
 import { QuestionStatus, Language } from '../../enums';
 import s from './Questions.module.scss';
-import { Container, Grid } from '@mui/material';
 
 interface Props {
   questions: QuestionType[];
@@ -32,6 +31,8 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true }
   const { t, i18n } = useTranslation();
   const [answerHistory, setAnswerHistory] = useState<AnswerHistoryType>(setEmptyAnswerHistory(questions));
   const [questionIndex, setQuestionIndex] = useState(0);
+  const [showRightAnswer, setShowRightAnswer] = useState(localStorage.getItem('showRightAnswer') === 'true');
+
   const maxIndex = questions.length - 1;
   const currentQuestion = questions[questionIndex];
   const answerFromHistory = answerHistory[questionIndex];
@@ -105,6 +106,7 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true }
           answerFromHistory={answerFromHistory.answer}
           enabled={answerFromHistory.status === QuestionStatus.NotAnswered}
           onAnswer={handleAnswer}
+          showRightAnswer={showRightAnswer}
         />
         {/* </div> */}
 
@@ -112,6 +114,26 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true }
         <div className={s.buttons}>
           <div>
             <FavoriteButton questionId={currentQuestion.id} addButton={favoriteAddButton} />
+
+            <div
+              className='favorite-btn report-btn'
+              onClick={() => {
+                setShowRightAnswer((prev) => {
+                  localStorage.setItem('showRightAnswer', (!prev).toString());
+                  return !prev;
+                });
+              }}
+            >
+              {showRightAnswer ? (
+                <>
+                  <PiEyeSlashLight size={16} /> Не отображать правильные ответы
+                </>
+              ) : (
+                <>
+                  <PiEyeLight size={16} /> Отображать правильные ответы
+                </>
+              )}
+            </div>
 
             <div className='favorite-btn report-btn'>
               <PiWarningLight size={16} /> {t('report')}

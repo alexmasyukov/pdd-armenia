@@ -12,7 +12,7 @@ export type Question = {
   tid: string;
   q: string;
   a1: AnswerKey;
-  a2: AnswerKey;
+  a2?: AnswerKey;
   a3?: AnswerKey;
   a4?: AnswerKey;
   a5?: AnswerKey;

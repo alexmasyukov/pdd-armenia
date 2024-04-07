@@ -9,12 +9,14 @@ interface Props {
   enabled: boolean;
   answerFromHistory: AnswerKey;
   onAnswer: (event: AnswerEvent) => void;
+  showRightAnswer?: boolean;
 }
 
 const Question: React.FC<Props> = ({
   onAnswer,
   enabled,
   answerFromHistory,
+  showRightAnswer,
   item: { q, a1, a2, a3, a4, a5, a6, correct, img, gid },
 }) => {
   const { t } = useTranslation();
@@ -29,6 +31,15 @@ const Question: React.FC<Props> = ({
     }
   };
 
+  const answers = [
+    { key: 'a1', value: a1 },
+    { key: 'a2', value: a2 },
+    { key: 'a3', value: a3 },
+    { key: 'a4', value: a4 },
+    { key: 'a5', value: a5 },
+    { key: 'a6', value: a6 },
+  ];
+
   return (
     <div className={s.question}>
       {img && <img src={`${process.env.PUBLIC_URL}/images/questions/${gid}/${img}.jpg`} alt='' />}
@@ -42,54 +53,18 @@ const Question: React.FC<Props> = ({
       <p>{q}</p>
 
       <ul className={s.answers}>
-        {a1 && (
-          <Answer
-            onClick={handleAnswerClick('a1')}
-            text={a1}
-            isCorrect={!!answered && correct === 'a1'}
-            isWrong={answered === 'a1' && correct !== 'a1'}
-          />
-        )}
-        {a2 && (
-          <Answer
-            onClick={handleAnswerClick('a2')}
-            text={a2}
-            isCorrect={!!answered && correct === 'a2'}
-            isWrong={answered === 'a2' && correct !== 'a2'}
-          />
-        )}
-        {a3 && (
-          <Answer
-            onClick={handleAnswerClick('a3')}
-            text={a3}
-            isCorrect={!!answered && correct === 'a3'}
-            isWrong={answered === 'a3' && correct !== 'a3'}
-          />
-        )}
-        {a4 && (
-          <Answer
-            onClick={handleAnswerClick('a4')}
-            text={a4}
-            isCorrect={!!answered && correct === 'a4'}
-            isWrong={answered === 'a4' && correct !== 'a4'}
-          />
-        )}
-        {a5 && (
-          <Answer
-            onClick={handleAnswerClick('a5')}
-            text={a5}
-            isCorrect={!!answered && correct === 'a5'}
-            isWrong={answered === 'a5' && correct !== 'a5'}
-          />
-        )}
-        {a6 && (
-          <Answer
-            onClick={handleAnswerClick('a6')}
-            text={a6}
-            isCorrect={!!answered && correct === 'a6'}
-            isWrong={answered === 'a6' && correct !== 'a6'}
-          />
-        )}
+        {answers
+          .filter((answer) => !!answer.value && answer.value !== undefined)
+          .map((answer) => (
+            <Answer
+              onClick={handleAnswerClick(answer.key)}
+              text={answer.value!}
+              answered={!!answered}
+              isCorrect={correct === answer.key}
+              isWrong={answered === answer.key && correct !== answer.key}
+              showRightAnswer={showRightAnswer}
+            />
+          ))}
       </ul>
     </div>
   );
