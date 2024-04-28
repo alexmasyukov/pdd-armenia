@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 100%;
 
   & > span {
     font-size: 14px;
@@ -21,6 +22,6 @@
   }
 
   .bar {
-    width: 56px;
+    width: 100%;
   }
 }

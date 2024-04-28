@@ -18,8 +18,8 @@ const HomeStatistic: React.FC<Props> = ({ questions = 0, topics = 0, tickets = 0
   const questionsCount = Object.keys(questionsStatistics).length;
 
   return (
-    <Grid container justifyContent='space-between'>
-      <Grid item xs={4} display='flex' justifyContent={'flex-start'}>
+    <Grid container spacing={3} justifyContent='space-between'>
+      <Grid item xs={6} display='flex' justifyContent={'flex-start'}>
         <div className={s.item}>
           <span>
             <span>{questionsCount}</span> / {questions}
@@ -28,7 +28,7 @@ const HomeStatistic: React.FC<Props> = ({ questions = 0, topics = 0, tickets = 0
           <span>{t('questions')}</span>
         </div>
       </Grid>
-      <Grid item xs={4}>
+      {/* <Grid item xs={4}>
         <div className={s.item}>
           <span>
             <span>0</span> / {tickets}
@@ -36,8 +36,8 @@ const HomeStatistic: React.FC<Props> = ({ questions = 0, topics = 0, tickets = 0
           <Progress className={s.bar} max={100} value={0} />
           <span>{t('tickets')}</span>
         </div>
-      </Grid>
-      <Grid item xs={4} display='flex' justifyContent={'flex-end'}>
+      </Grid> */}
+      <Grid item xs={6} display='flex' justifyContent={'flex-end'}>
         <div className={s.item}>
           <span>
             <span>0</span> / {topics}

@@ -1,9 +1,11 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { Group } from '../../types';
 import { getShowRightAnswersLocalStorageFlag, setShowRightAnswersLocalStorageFlag } from './utils';
 
 export interface Settings {
   showRightAnswers: boolean;
   changeShowRightAnswersFlag: () => void;
+  groups: Group[];
 }
 
 export const SettingsContext = createContext({} as Settings);
@@ -30,6 +32,7 @@ const SettingsProvider = ({ children }: ProviderProps) => {
       value={{
         showRightAnswers,
         changeShowRightAnswersFlag,
+        groups: [],
       }}
     >
       {children}
