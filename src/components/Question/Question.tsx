@@ -57,6 +57,7 @@ const Question: React.FC<Props> = ({
           .filter((answer) => !!answer.value && answer.value !== undefined)
           .map((answer) => (
             <Answer
+              key={answer.key}
               onClick={handleAnswerClick(answer.key)}
               text={answer.value!}
               answered={!!answered}

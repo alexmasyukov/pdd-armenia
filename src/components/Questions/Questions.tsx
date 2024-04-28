@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { PiCaretLeftBold, PiWarningLight } from 'react-icons/pi';
+import { PiCaretLeftBold } from 'react-icons/pi';
 import Question from '../Question/Question';
 import { AnswerEvent, AnswerHistory as AnswerHistoryType, Question as QuestionType } from '../../types';
 import AnswerHistory from '../AnswerHistory/AnswerHistory';
 import FavoriteButton from '../FavoriteButton/FavoriteButton';
 import Percent from '../Percent/Percent';
+import { useSettings } from '../../contexts/SettingsContext/SettingsContext';
 import { StatisticsStore } from '../../services/StatisticsStore';
 import { QuestionStatus, Language } from '../../enums';
-import s from './Questions.module.scss';
 import ShowRightAnswersBtn from '../ShowRightAnswersBtn/ShowRightAnswersBtn';
-import { useSettings } from '../../contexts/SettingsContext/SettingsContext';
+import ReportBtn from '../ReportBtn/ReportBtn';
+import s from './Questions.module.scss';
 
 interface Props {
   questions: QuestionType[];
@@ -92,7 +93,7 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true, 
   }
 
   return (
-    <div className='questions'>
+    <>
       <div className='statistic'>
         <div className='btn-prev-page' onClick={handlePrevLinkClick}>
           <PiCaretLeftBold /> {title}
@@ -106,12 +107,6 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true, 
         onSelectQuestion={handleSelectQuestionClick}
       />
 
-      {/* <Container
-      // sx={{
-      //   display: 'flex',
-      //   justifyContent: 'center',
-      // }}
-      > */}
       <div className={s['question-container']}>
         <Question
           item={currentQuestion}
@@ -120,29 +115,26 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true, 
           onAnswer={handleAnswer}
           showRightAnswer={showRightAnswers}
         />
-        {/* </div> */}
 
-        {/* <div className={s['question-container']}> */}
-        <div className={s.buttons}>
-          <div>
-            <FavoriteButton questionId={currentQuestion.id} addButton={favoriteAddButton} />
+        <div className={s['question-container']}>
+          <div className={s.buttons}>
+            <div>
+              <FavoriteButton questionId={currentQuestion.id} addButton={favoriteAddButton} />
 
-            <ShowRightAnswersBtn />
+              <ShowRightAnswersBtn />
 
-            <div className='favorite-btn report-btn'>
-              <PiWarningLight size={16} /> {t('report')}
+              <ReportBtn questionId={currentQuestion.id} group={title} />
             </div>
-          </div>
 
-          {answerFromHistory.status === QuestionStatus.Wrong && !isLastQuestion && (
-            <button className={s['next-question-btn']} onClick={hanldeNextQuestionClick}>
-              {t('nextQuestion')}
-            </button>
-          )}
+            {answerFromHistory.status === QuestionStatus.Wrong && !isLastQuestion && (
+              <button className={s['next-question-btn']} onClick={hanldeNextQuestionClick}>
+                {t('nextQuestion')}
+              </button>
+            )}
+          </div>
         </div>
       </div>
-      {/* </Container> */}
-    </div>
+    </>
   );
 };
 

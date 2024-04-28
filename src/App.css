@@ -4,6 +4,7 @@
   --color-red: #db001b;
   --color-sky: #e8eff9;
   --color-blue: #3973c5;
+  --color-blue-dark: #183964;
   --color-black: #181818;
   --color-black-light: #191919;
   --color-gray: #a2a2a2;
@@ -153,6 +154,7 @@ body {
   color: var(--color-blue);
   font-size: 14px;
   margin-top: 10px;
+  user-select: none;
 }
 
 .favorite-btn svg {
@@ -171,6 +173,11 @@ body {
   margin-top: 10px;
   color: var(--color-gray-dark);
   font-size: 12px;
+}
+
+.report-btn.active {
+  color: var(--color-red);
+  font-weight: 500;
 }
 
 .next-question-btn {
@@ -368,4 +375,39 @@ a {
 h4 {
   margin-bottom: 0;
   color: var(#333);
+}
+
+.report {
+  margin-top: 15px;
+  background: var(--color-violet-soft);
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 50px;
+}
+
+.report a {
+  text-decoration: underline;
+  color: var(--color-blue)
+}
+
+.report .title {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.report button {
+  background: var(--color-blue);
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.report button:hover {
+  background: var(--color-blue-dark);
 }
