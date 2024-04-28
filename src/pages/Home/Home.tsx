@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { PiStarFill } from 'react-icons/pi';
 import { PiWarningFill } from 'react-icons/pi';
 import { PiBookBookmarkFill } from 'react-icons/pi';
-import { PiClockCountdownFill } from 'react-icons/pi';
+// import { PiClockCountdownFill } from 'react-icons/pi';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { FavoriteStore } from '../../services/FavoriteStore';
@@ -15,7 +15,8 @@ import { BaseData } from '../../types';
 import { getEmptyBaseData } from '../../helpers';
 import CleanAllStatistics from '../../components/CleanButtons/CleanAllStatistics';
 import CleanFavorites from '../../components/CleanButtons/CleanFavorites';
-import { useCleaned } from '../../hooks/s';
+import { useCleaned } from '../../hooks/useCleaned';
+import SettingsPanel from '../../components/SettingsPanel/SettingPanel';
 
 const Home: React.FC = () => {
   const { t } = useTranslation();
@@ -37,7 +38,7 @@ const Home: React.FC = () => {
       <Grid container justifyContent='center'>
         <div className='home-page-container'>
           <Paper
-            onClick={() => navigate(routes.topics.path)}
+            onClick={() => navigate(routes.topics.path, { replace: true })}
             sx={{
               padding: '25px',
               pt: 2,
@@ -52,11 +53,43 @@ const Home: React.FC = () => {
             <HomeStatistic questions={questions} topics={topics} tickets={tickets} />
           </Paper>
           <Grid container spacing={1}>
-            <Grid item xs={6}>
+            {/* <Grid item xs={6}>
               <Link to={''}>
                 <Button blue largeFont>
                   {t('tickets')}
                   <div>{t('inDevelop')}</div>
+                </Button>
+              </Link>
+            </Grid> */}
+
+            <Grid item xs={6}>
+              <Link to={routes.topics.path}>
+                <Button>
+                  <PiBookBookmarkFill size={22} /> {t('topics')}
+                </Button>
+              </Link>
+            </Grid>
+            <Grid item xs={6}>
+              <Link to={routes.favorite.path}>
+                <Button counter={FavoriteStore.getFavorites().length}>
+                  <PiStarFill size={22} />
+                  {t('favorite')}
+                </Button>
+              </Link>
+            </Grid>
+            {/* <Grid item xs={6}>
+              <Link to=''>
+                <Button>
+                  <PiClockCountdownFill size={22} />
+                  {t('marathon')} <div>{t('inDevelop')}</div>
+                </Button>
+              </Link>
+            </Grid> */}
+            <Grid item xs={6}>
+              <Link to={routes.errors.path}>
+                <Button>
+                  <PiWarningFill size={22} />
+                  {t('errors')}
                 </Button>
               </Link>
             </Grid>
@@ -68,36 +101,8 @@ const Home: React.FC = () => {
                 </Button>
               </Link>
             </Grid>
-            <Grid item xs={6}>
-              <Link to={routes.topics.path}>
-                <Button>
-                  <PiBookBookmarkFill size={22} /> {t('topics')}
-                </Button>
-              </Link>
-            </Grid>
-            <Grid item xs={6}>
-              <Link to=''>
-                <Button>
-                  <PiClockCountdownFill size={22} />
-                  {t('marathon')} <div>{t('inDevelop')}</div>
-                </Button>
-              </Link>
-            </Grid>
-            <Grid item xs={6}>
-              <Link to={routes.errors.path}>
-                <Button>
-                  <PiWarningFill size={22} />
-                  {t('errors')}
-                </Button>
-              </Link>
-            </Grid>
-            <Grid item xs={6}>
-              <Link to={routes.favorite.path}>
-                <Button counter={FavoriteStore.getFavorites().length}>
-                  <PiStarFill size={22} />
-                  {t('favorite')}
-                </Button>
-              </Link>
+            <Grid item xs={12}>
+              <SettingsPanel />
             </Grid>
           </Grid>
 

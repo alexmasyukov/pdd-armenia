@@ -1,3 +1,4 @@
+import { FavoriteStore } from '../services/FavoriteStore';
 import { StatisticsStore } from '../services/StatisticsStore';
 import { BaseData, Group, QuestionsStatistics } from './../types';
 
@@ -21,6 +22,10 @@ export const getStatisticsByGroup = (
     (acc, id) => {
       const questionStatistics = questionsStatistics[id];
 
+      if (FavoriteStore.hasQuestionIdInFavorites(id)) {
+        acc.inFavotite += 1;
+      }
+
       if (!Array.isArray(questionStatistics)) {
         return acc;
       }
@@ -34,6 +39,7 @@ export const getStatisticsByGroup = (
       return acc;
     },
     {
+      inFavotite: 0,
       correct: 0,
       wrong: 0,
     }

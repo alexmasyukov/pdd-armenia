@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Grid from '@mui/material/Grid';
 import Progress from '../../components/Progress/Progress';
 import { getEmptyBaseData, getStatisticsByGroup } from '../../helpers';
 import { routes } from '../../router/constants';
-import { BaseData, Group } from '../../types';
+import { BaseData } from '../../types';
 import s from './Topics.module.scss';
 import { Language } from '../../enums';
 import { StatisticsStore } from '../../services/StatisticsStore';
 import CleanAllStatistics from '../../components/CleanButtons/CleanAllStatistics';
-import { useCleaned } from '../../hooks/s';
+import { useCleaned } from '../../hooks/useCleaned';
+import InFavoriteLink from '../../components/InFavoriteLink/InFavoriteLink';
 
 const Topics: React.FC = () => {
   const { t, i18n } = useTranslation();
-  const navigate = useNavigate();
   const [data, setData] = useState<BaseData>(getEmptyBaseData());
   const [loading, setLoading] = useState<boolean>(true);
   const { onCleaned } = useCleaned();
@@ -27,20 +27,17 @@ const Topics: React.FC = () => {
     });
   }, []);
 
-  const handleNavigateToTopic = (groupId: Group['id']) => () => {
-    navigate(routes.topics.topicById.view(groupId));
-  };
-
   return loading ? (
     <>Loaing</>
   ) : (
     <>
       <Grid container className={s.topicsTitle}>
-        <Grid item xs={9} sm={10} md={11}>
+        <Grid item xs={9} sm={10} md={9}>
           {t('topic')}
         </Grid>
-        <Grid item xs={3} sm={2} md={1} textAlign={'right'}>
+        <Grid item xs={3} sm={2} md={3} textAlign={'right'}>
           <div className={s.count}>
+            <div>{t('inFavorite')}</div>
             <div>{t('solved')}</div>
             <div>{t('total')}</div>
           </div>
@@ -51,19 +48,19 @@ const Topics: React.FC = () => {
 
         return (
           <React.Fragment key={group.id}>
-            <Grid
-              container
-              spacing={1}
-              mb={2}
-              mt={index === 0 ? 2 : 0}
-              onClick={handleNavigateToTopic(group.id)}
-              className={s.topic}
-            >
-              <Grid item xs={9} sm={10} md={11}>
+            <Grid container spacing={1} mb={2} mt={index === 0 ? 2 : 0} className={s.topic}>
+              <Grid item xs={9} sm={10} md={9}>
                 <Link to={routes.topics.topicById.view(group.id)}>{group.name}</Link>
               </Grid>
-              <Grid item xs={3} sm={2} md={1} textAlign={'right'}>
+              <Grid item xs={3} sm={2} md={3} textAlign={'right'}>
                 <div className={s.count}>
+                  <div>
+                    {statistics.inFavotite ? (
+                      <InFavoriteLink count={statistics.inFavotite} topicId={group.id} />
+                    ) : (
+                      <></>
+                    )}
+                  </div>
                   <div>
                     <span>{statistics.correct}</span>
                     {' '}/{' '}

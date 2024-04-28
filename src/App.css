@@ -159,6 +159,14 @@ body {
   margin-right: 5px;
 }
 
+.in-favorite-btn {
+  color: var(--color-red);
+}
+
+.in-favorite-btn:hover {
+    color: var(--color-blue);
+}
+
 .report-btn {
   margin-top: 10px;
   color: var(--color-gray-dark);
@@ -219,6 +227,7 @@ body {
 .home-page-container {
   max-width: 450px;
   margin-bottom: 50px;
+  min-width: 420px;
 }
 
 .page-container {
@@ -285,9 +294,18 @@ body {
   color: #fff;
 }
 
+.btn.btn-gray {
+  background: var(--color-gray-light);
+}
+
 .btn.btn-large-font {
   font-weight: 500;
   font-size: 19px;
+}
+
+.btn.btn-small-font {
+  font-weight: 400;
+  font-size: 13px;
 }
 
 a {
@@ -329,14 +347,25 @@ a {
 
 .btn-prev-page {
   display: flex;
-  font-weight: 600;
-  color: var(--color-blue);
+  font-weight: 500;
   font-size: 14px;
   align-items: center;
   cursor: pointer;
 }
 .btn-prev-page svg {
-
   margin-right: 2px;
+  color: var(--color-blue);
+}
+.btn-prev-page:hover {
+  color: var(--color-blue);
+}
 
+
+.mt0 {
+  margin-top: 0 !important;
+}
+
+h4 {
+  margin-bottom: 0;
+  color: var(#333);
 }

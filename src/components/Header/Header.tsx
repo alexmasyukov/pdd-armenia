@@ -38,7 +38,7 @@ const Header: FC = () => {
         </div> */}
 
         <h1>
-          <span>{t('pdd')}</span> 2023
+          <span>{t('pdd')}</span> 2024
         </h1>
       </div>
 

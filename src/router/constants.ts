@@ -14,6 +14,10 @@ export const routes = {
   favorite: {
     path: '/favorite',
     titleI18nKey: 'favorite',
+    favoritesByTopicId: {
+      path: '/favorite/:id',
+      view: (id: string) => `/favorite/${id}`,
+    },
   },
   errors: {
     path: '/errors',

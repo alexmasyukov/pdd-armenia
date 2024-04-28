@@ -1,0 +1,30 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+// import { FavoriteStore } from '../../services/FavoriteStore';
+// import { QuestionId } from '../../types';
+
+// import { PiStarFill } from 'react-icons/pi';
+import { PiStarLight } from 'react-icons/pi';
+import { routes } from '../../router/constants';
+
+interface Props {
+  count: number;
+  topicId: string;
+}
+
+const InFavoriteLink: React.FC<Props> = ({ count = 0, topicId }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(routes.favorite.favoritesByTopicId.view(topicId), { replace: true });
+  };
+
+  return (
+    <button className='favorite-btn in-favorite-btn mt0' onClick={handleClick}>
+      <PiStarLight size={14} /> {count}
+    </button>
+  );
+};
+
+export default InFavoriteLink;

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Questions from '../../components/Questions/Questions';
 import { getEmptyBaseData } from '../../helpers';
+import { routes } from '../../router/constants';
 import { BaseData } from '../../types';
 
 const Topic: React.FC = () => {
@@ -9,6 +10,7 @@ const Topic: React.FC = () => {
   const [data, setData] = useState<BaseData>(getEmptyBaseData());
   const [loading, setLoading] = useState<boolean>(true);
   const topicQuestions = data.questions.filter((question) => question.gid === topicId);
+  const groupName = data.groups.find((group) => group.id === topicId)?.name;
 
   useEffect(() => {
     import('././../../data/ru.json').then((data) => {
@@ -21,7 +23,7 @@ const Topic: React.FC = () => {
     <>Loaing</>
   ) : (
     <>
-      <Questions questions={topicQuestions} />
+      <Questions questions={topicQuestions} title={groupName} prevLink={routes.topics.path} />
     </>
   );
 };

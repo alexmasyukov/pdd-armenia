@@ -5,6 +5,8 @@ import Questions from '../Questions/Questions';
 
 interface Props {
   questions: Question[];
+  title?: string;
+  prevLink?: string;
 }
 
 const getFavotiteQuestions = (questions: Question[]) => {
@@ -12,7 +14,7 @@ const getFavotiteQuestions = (questions: Question[]) => {
   return questions.filter((question) => favoriteQuestionIds.includes(question.id));
 };
 
-const FavoriteQuestions: React.FC<Props> = ({ questions }) => {
+const FavoriteQuestions: React.FC<Props> = ({ questions, title = '', prevLink = '' }) => {
   const [favoriteQuestions, setFavoriteQuestions] = useState(getFavotiteQuestions(questions));
 
   useEffect(() => {
@@ -28,7 +30,9 @@ const FavoriteQuestions: React.FC<Props> = ({ questions }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <Questions questions={favoriteQuestions} favoriteAddButton={false} />;
+  return (
+    <Questions questions={favoriteQuestions} favoriteAddButton={false} title={title} prevLink={prevLink} />
+  );
 };
 
 export default FavoriteQuestions;

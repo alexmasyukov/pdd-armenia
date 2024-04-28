@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { PiCaretLeftBold, PiWarningLight, PiEyeLight, PiEyeSlashLight } from 'react-icons/pi';
+import { useNavigate } from 'react-router-dom';
+import { PiCaretLeftBold, PiWarningLight } from 'react-icons/pi';
 import Question from '../Question/Question';
 import { AnswerEvent, AnswerHistory as AnswerHistoryType, Question as QuestionType } from '../../types';
 import AnswerHistory from '../AnswerHistory/AnswerHistory';
@@ -9,10 +10,14 @@ import Percent from '../Percent/Percent';
 import { StatisticsStore } from '../../services/StatisticsStore';
 import { QuestionStatus, Language } from '../../enums';
 import s from './Questions.module.scss';
+import ShowRightAnswersBtn from '../ShowRightAnswersBtn/ShowRightAnswersBtn';
+import { useSettings } from '../../contexts/SettingsContext/SettingsContext';
 
 interface Props {
   questions: QuestionType[];
   favoriteAddButton?: boolean;
+  title?: string;
+  prevLink?: string;
 }
 
 const setEmptyAnswerHistory = (questions: QuestionType[]) => {
@@ -27,11 +32,12 @@ const saveToStorage = (questionId: QuestionType['id'], answerIsCorrect: boolean,
   StatisticsStore.setQuestionStatistics(questionId, lang, answerIsCorrect);
 };
 
-const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true }) => {
+const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true, title, prevLink }) => {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const { showRightAnswers } = useSettings();
   const [answerHistory, setAnswerHistory] = useState<AnswerHistoryType>(setEmptyAnswerHistory(questions));
   const [questionIndex, setQuestionIndex] = useState(0);
-  const [showRightAnswer, setShowRightAnswer] = useState(localStorage.getItem('showRightAnswer') === 'true');
 
   const maxIndex = questions.length - 1;
   const currentQuestion = questions[questionIndex];
@@ -52,6 +58,12 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true }
 
   const handleSelectQuestionClick = (index: number) => () => {
     setQuestionIndex(index);
+  };
+
+  const handlePrevLinkClick = () => {
+    if (prevLink) {
+      navigate(prevLink, { replace: true });
+    }
   };
 
   const handleAnswer = ({ answer, answerIsCorrect }: AnswerEvent) => {
@@ -82,8 +94,8 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true }
   return (
     <div className='questions'>
       <div className='statistic'>
-        <div className='btn-prev-page'>
-          <PiCaretLeftBold />
+        <div className='btn-prev-page' onClick={handlePrevLinkClick}>
+          <PiCaretLeftBold /> {title}
         </div>
         <Percent answerHistory={answerHistory} />
       </div>
@@ -106,7 +118,7 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true }
           answerFromHistory={answerFromHistory.answer}
           enabled={answerFromHistory.status === QuestionStatus.NotAnswered}
           onAnswer={handleAnswer}
-          showRightAnswer={showRightAnswer}
+          showRightAnswer={showRightAnswers}
         />
         {/* </div> */}
 
@@ -115,25 +127,7 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true }
           <div>
             <FavoriteButton questionId={currentQuestion.id} addButton={favoriteAddButton} />
 
-            <div
-              className='favorite-btn report-btn'
-              onClick={() => {
-                setShowRightAnswer((prev) => {
-                  localStorage.setItem('showRightAnswer', (!prev).toString());
-                  return !prev;
-                });
-              }}
-            >
-              {showRightAnswer ? (
-                <>
-                  <PiEyeSlashLight size={16} /> Не отображать правильные ответы
-                </>
-              ) : (
-                <>
-                  <PiEyeLight size={16} /> Отображать правильные ответы
-                </>
-              )}
-            </div>
+            <ShowRightAnswersBtn />
 
             <div className='favorite-btn report-btn'>
               <PiWarningLight size={16} /> {t('report')}

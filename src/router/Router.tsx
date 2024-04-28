@@ -23,6 +23,7 @@ const Router = () => {
             </Suspense>
           }
         />
+
         <Route
           path={routes.topics.path}
           element={
@@ -39,6 +40,7 @@ const Router = () => {
             </Suspense>
           }
         />
+
         <Route
           path={routes.favorite.path}
           element={
@@ -47,6 +49,15 @@ const Router = () => {
             </Suspense>
           }
         />
+        <Route
+          path={routes.favorite.favoritesByTopicId.path}
+          element={
+            <Suspense fallback={<HomeSkeleton />}>
+              <Favorite />
+            </Suspense>
+          }
+        />
+
         <Route
           path={routes.errors.path}
           element={
