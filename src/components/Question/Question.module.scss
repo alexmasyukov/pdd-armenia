@@ -36,6 +36,7 @@
 
       &.shouldShowRightAnswer {
         position: relative;
+        background: var(--color-status-show-right-answer);
 
         &::before {
           position: absolute;

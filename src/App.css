@@ -1,6 +1,7 @@
 :root {
   --color-status-correct:  rgb(140, 228, 140);
   --color-status-wrong: rgb(255, 135, 135);
+  --color-status-show-right-answer: rgb(218 245 218);
   --color-red: #db001b;
   --color-sky: #e8eff9;
   --color-blue: #3973c5;
@@ -178,6 +179,11 @@ body {
 .report-btn.active {
   color: var(--color-red);
   font-weight: 500;
+}
+
+.show-right-answer-btn.active {
+  color: var(--color-blue);
+  font-weight: 400;
 }
 
 .next-question-btn {
