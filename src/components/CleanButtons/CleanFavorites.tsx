@@ -6,9 +6,11 @@ import TextButton from '../TextButton/TextButton';
 
 type Props = {
   onCleaned?: () => void;
+  red?: boolean;
+  smallIcon?: boolean;
 };
 
-const CleanFavorites: React.FC<Props> = ({ onCleaned }) => {
+const CleanFavorites: React.FC<Props> = ({ onCleaned, red, smallIcon }) => {
   const { t } = useTranslation();
 
   const handleCleanFavorites = () => {
@@ -21,7 +23,15 @@ const CleanFavorites: React.FC<Props> = ({ onCleaned }) => {
   };
 
   return (
-    <TextButton color='gray' variant='small' icon={PiStarHalfThin} onClick={handleCleanFavorites}>
+    <TextButton
+      color={red ? 'red' : 'gray'}
+      variant='small'
+      icon={PiStarHalfThin}
+      iconProps={{
+        size: smallIcon ? 17 : 20,
+      }}
+      onClick={handleCleanFavorites}
+    >
       {t('clean-favorites')}
     </TextButton>
   );

@@ -65,8 +65,8 @@ const Favorite: React.FC = () => {
       )}
 
       <Grid container spacing={1}>
-        <Grid item xs={12} display='flex' justifyContent='flex-end'>
-          <CleanFavorites onCleaned={onCleaned} />
+        <Grid item xs={12} mt={1.1}>
+          <CleanFavorites red smallIcon onCleaned={onCleaned} />
         </Grid>
       </Grid>
     </>

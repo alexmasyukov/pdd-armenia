@@ -99,9 +99,11 @@ const Home: React.FC = () => {
             </Grid>
           </Grid>
 
-          <Grid container mt={3}>
+          <Grid container mt={3} spacing={0.5}>
             <Grid item xs={12}>
               <CleanAllStatistics onCleaned={onCleaned} />
+            </Grid>
+            <Grid item xs={12}>
               <CleanFavorites onCleaned={onCleaned} />
             </Grid>
           </Grid>
