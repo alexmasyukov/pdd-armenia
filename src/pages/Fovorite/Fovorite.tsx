@@ -4,9 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import CleanFavorites from '../../components/CleanButtons/CleanFavorites';
 import FavoriteQuestions from '../../components/FavoriteQuestions/FavoriteQuestions';
+import { useAppState } from '../../contexts/AppStateContext/AppStateContext';
 import { useCleaned } from '../../hooks/useCleaned';
 import { routes } from '../../router/constants';
-import { BaseData, Group, Question } from '../../types';
+import { Group, Question } from '../../types';
 
 const getQuestionsByGroupId = (questions: Question[], groupId: string) => {
   return questions.filter((question) => question.gid === groupId);
@@ -15,6 +16,9 @@ const getQuestionsByGroupId = (questions: Question[], groupId: string) => {
 const Favorite: React.FC = () => {
   const { t } = useTranslation();
   const { id: topicId } = useParams<'id'>();
+  const { content } = useAppState();
+  const { onCleaned } = useCleaned();
+
   const [state, setState] = useState<{
     questions: Question[];
     groupName: Group['name'];
@@ -22,43 +26,37 @@ const Favorite: React.FC = () => {
     questions: [],
     groupName: '',
   });
-  const [loading, setLoading] = useState<boolean>(true);
-  const { onCleaned } = useCleaned();
 
   useEffect(() => {
-    import('././../../data/ru.json')
-      .then((data) => {
-        if (topicId) {
-          const questions = getQuestionsByGroupId(data.questions, topicId);
-          const groupName = data.groups.find((group) => group.id === topicId)?.name;
+    if (!content.loading && content.groups.length > 0 && content.questions.length > 0) {
+      if (topicId) {
+        const questions = getQuestionsByGroupId(content.questions, topicId);
+        const groupName = content.groups.find((group) => group.id === topicId)?.name;
 
-          if (groupName) {
-            setState({
-              questions,
-              groupName,
-            });
-          }
-        } else {
+        if (groupName) {
           setState({
-            questions: data.questions,
-            groupName: '',
+            questions,
+            groupName,
           });
         }
-
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error(error);
-        setLoading(false);
-      });
-  }, [topicId]);
+      } else {
+        setState({
+          questions: content.questions,
+          groupName: '',
+        });
+      }
+    }
+  }, [content.loading, topicId, content]);
 
   const title = topicId ? `${t('favorite')}: ${state.groupName}` : t('favorite');
   const prevLink = topicId ? routes.topics.path : routes.home.path;
 
-  return loading ? (
-    <>loading</>
-  ) : (
+  // TODO: add loading placeholder
+  if (content.loading) {
+    return <>loading</>;
+  }
+
+  return (
     <>
       {state.questions.length > 0 ? (
         <FavoriteQuestions questions={state.questions} title={title} prevLink={prevLink} />

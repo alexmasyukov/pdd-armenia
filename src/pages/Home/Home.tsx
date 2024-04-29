@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { PiStarFill } from 'react-icons/pi';
@@ -11,27 +11,22 @@ import { FavoriteStore } from '../../services/FavoriteStore';
 import Button from '../../components/Button/Button';
 import HomeStatistic from '../../components/HomeStatistic/HomeStatistic';
 import { routes } from '../../router/constants';
-import { BaseData } from '../../types';
-import { getEmptyBaseData } from '../../helpers';
 import CleanAllStatistics from '../../components/CleanButtons/CleanAllStatistics';
 import CleanFavorites from '../../components/CleanButtons/CleanFavorites';
 import { useCleaned } from '../../hooks/useCleaned';
+import { useAppState } from '../../contexts/AppStateContext/AppStateContext';
 import SettingsPanel from '../../components/SettingsPanel/SettingPanel';
+import HomePlaceholder from '../../placeholders/HomePlaceholder';
 
 const Home: React.FC = () => {
   const { t } = useTranslation();
+  const { content } = useAppState();
   const navigate = useNavigate();
-  const [data, setData] = useState<BaseData>(getEmptyBaseData());
   const { onCleaned } = useCleaned();
-  const tickets = 40;
-  const questions = data.questions.length;
-  const topics = data.groups.length;
 
-  useEffect(() => {
-    import('././../../data/ru.json').then((data) => {
-      setData(data as BaseData);
-    });
-  }, []);
+  if (content.loading) {
+    return <HomePlaceholder />;
+  }
 
   return (
     <>
@@ -50,7 +45,7 @@ const Home: React.FC = () => {
               cursor: 'pointer',
             }}
           >
-            <HomeStatistic questions={questions} topics={topics} tickets={tickets} />
+            <HomeStatistic />
           </Paper>
           <Grid container spacing={1}>
             {/* <Grid item xs={6}>

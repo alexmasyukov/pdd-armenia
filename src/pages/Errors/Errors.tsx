@@ -1,24 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 import FavoriteQuestions from '../../components/FavoriteQuestions/FavoriteQuestions';
-import { Question } from '../../types';
+import { useAppState } from '../../contexts/AppStateContext/AppStateContext';
+import { routes } from '../../router/constants';
 
 const Errors: React.FC = () => {
-  const [questions, setQuestions] = useState<Question[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const { t } = useTranslation();
+  const { content } = useAppState();
 
-  useEffect(() => {
-    import('././../../data/ru.json').then((data) => {
-      setQuestions(data.questions as Question[]);
-      setLoading(false);
-    });
-  }, []);
+  // TODO: add loading placeholder
+  if (content.loading) {
+    return <>loading</>;
+  }
 
-  return loading ? (
-    <>loading</>
-  ) : (
+  return (
     <>
-      <h1>Errors</h1>
-      {questions.length > 0 ? <FavoriteQuestions questions={questions} /> : <p>В избранном нет вопросов</p>}
+      {content.questions.length > 0 ? (
+        <FavoriteQuestions questions={content.questions} title={t('errors')} prevLink={routes.home.path} />
+      ) : (
+        <p>Нет вопросов с неверными ответами</p>
+      )}
     </>
   );
 };

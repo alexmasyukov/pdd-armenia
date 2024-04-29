@@ -7,7 +7,7 @@ import { AnswerEvent, AnswerHistory as AnswerHistoryType, Question as QuestionTy
 import AnswerHistory from '../AnswerHistory/AnswerHistory';
 import FavoriteButton from '../FavoriteButton/FavoriteButton';
 import Percent from '../Percent/Percent';
-import { useSettings } from '../../contexts/SettingsContext/SettingsContext';
+import { useAppState } from '../../contexts/AppStateContext/AppStateContext';
 import { StatisticsStore } from '../../services/StatisticsStore';
 import { QuestionStatus, Language } from '../../enums';
 import ShowRightAnswersBtn from '../ShowRightAnswersBtn/ShowRightAnswersBtn';
@@ -36,7 +36,7 @@ const saveToStorage = (questionId: QuestionType['id'], answerIsCorrect: boolean,
 const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true, title, prevLink }) => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
-  const { showRightAnswers } = useSettings();
+  const { showRightAnswers } = useAppState();
   const [answerHistory, setAnswerHistory] = useState<AnswerHistoryType>(setEmptyAnswerHistory(questions));
   const [questionIndex, setQuestionIndex] = useState(0);
 

@@ -1,5 +1,5 @@
 import Router from './router/Router';
-import SettingsProvider from './contexts/SettingsContext/SettingsContext';
+import AppStateProvider from './contexts/AppStateContext/AppStateContext';
 // import logo from './logo.svg';
 import './App.css';
 import '@fontsource/roboto/300.css';
@@ -9,9 +9,9 @@ import '@fontsource/roboto/700.css';
 
 function App() {
   return (
-    <SettingsProvider>
+    <AppStateProvider>
       <Router />
-    </SettingsProvider>
+    </AppStateProvider>
   );
 }
 

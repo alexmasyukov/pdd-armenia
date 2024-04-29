@@ -1,8 +1,8 @@
 import { PiEyeLight, PiEyeSlashLight } from 'react-icons/pi';
-import { useSettings } from '../../contexts/SettingsContext/SettingsContext';
+import { useAppState } from '../../contexts/AppStateContext/AppStateContext';
 
 const ShowRightAnswersBtn = () => {
-  const { showRightAnswers, changeShowRightAnswersFlag } = useSettings();
+  const { showRightAnswers, changeShowRightAnswersFlag } = useAppState();
 
   return (
     <div

@@ -1,31 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import Questions from '../../components/Questions/Questions';
-import { getEmptyBaseData } from '../../helpers';
+import { useAppState } from '../../contexts/AppStateContext/AppStateContext';
 import { routes } from '../../router/constants';
-import { BaseData } from '../../types';
 
-const Topic: React.FC = () => {
+const Topic = () => {
   const { id: topicId } = useParams<'id'>();
-  const [data, setData] = useState<BaseData>(getEmptyBaseData());
-  const [loading, setLoading] = useState<boolean>(true);
-  const topicQuestions = data.questions.filter((question) => question.gid === topicId);
-  const groupName = data.groups.find((group) => group.id === topicId)?.name;
+  const { content } = useAppState();
 
-  useEffect(() => {
-    import('././../../data/ru.json').then((data) => {
-      setData(data as BaseData);
-      setLoading(false);
-    });
-  }, []);
+  const topicQuestions = content.questions.filter((question) => question.gid === topicId);
+  const groupName = content.groups.find((group) => group.id === topicId)?.name;
 
-  return loading ? (
-    <>Loaing</>
-  ) : (
-    <>
-      <Questions questions={topicQuestions} title={groupName} prevLink={routes.topics.path} />
-    </>
-  );
+  // TODO: add loading placeholder
+  if (content.loading) {
+    return <>loading</>;
+  }
+
+  return <Questions questions={topicQuestions} title={groupName} prevLink={routes.topics.path} />;
 };
 
 export default Topic;

@@ -1,30 +1,29 @@
-import React from 'react';
-import Grid from '@mui/material/Grid';
 import { useTranslation } from 'react-i18next';
+import Grid from '@mui/material/Grid';
 import Progress from '../Progress/Progress';
-import s from './HomeStatistic.module.scss';
 import { StatisticsStore } from '../../services/StatisticsStore';
+import { useAppState } from '../../contexts/AppStateContext/AppStateContext';
 import { Language } from '../../enums';
+import s from './HomeStatistic.module.scss';
 
-type Props = {
-  questions: number;
-  topics: number;
-  tickets: number;
-};
-
-const HomeStatistic: React.FC<Props> = ({ questions = 0, topics = 0, tickets = 0 }) => {
+const HomeStatistic = () => {
   const { t, i18n } = useTranslation();
+  const { content } = useAppState();
+
   const questionsStatistics = StatisticsStore.getAllQuestionsStatistics(i18n.language as Language);
   const questionsCount = Object.keys(questionsStatistics).length;
+
+  const allQuestionsCount = content.questions.length;
+  const allTopicsCount = content.groups.length;
 
   return (
     <Grid container spacing={3} justifyContent='space-between'>
       <Grid item xs={6} display='flex' justifyContent={'flex-start'}>
         <div className={s.item}>
           <span>
-            <span>{questionsCount}</span> / {questions}
+            <span>{questionsCount}</span> / {allQuestionsCount}
           </span>
-          <Progress className={s.bar} max={questions} value={questionsCount} />
+          <Progress className={s.bar} max={allQuestionsCount} value={questionsCount} />
           <span>{t('questions')}</span>
         </div>
       </Grid>
@@ -40,7 +39,7 @@ const HomeStatistic: React.FC<Props> = ({ questions = 0, topics = 0, tickets = 0
       <Grid item xs={6} display='flex' justifyContent={'flex-end'}>
         <div className={s.item}>
           <span>
-            <span>0</span> / {topics}
+            <span>0</span> / {allTopicsCount}
           </span>
           <Progress className={s.bar} max={100} value={0} />
           <span>{t('topics')}</span>

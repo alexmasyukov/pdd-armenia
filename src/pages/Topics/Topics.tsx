@@ -1,35 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Grid from '@mui/material/Grid';
 import Progress from '../../components/Progress/Progress';
-import { getEmptyBaseData, getStatisticsByGroup } from '../../helpers';
+import { getStatisticsByGroup } from '../../helpers';
 import { routes } from '../../router/constants';
-import { BaseData } from '../../types';
-import s from './Topics.module.scss';
 import { Language } from '../../enums';
 import { StatisticsStore } from '../../services/StatisticsStore';
 import CleanAllStatistics from '../../components/CleanButtons/CleanAllStatistics';
 import { useCleaned } from '../../hooks/useCleaned';
 import InFavoriteLink from '../../components/InFavoriteLink/InFavoriteLink';
+import { useAppState } from '../../contexts/AppStateContext/AppStateContext';
+import s from './Topics.module.scss';
 
 const Topics: React.FC = () => {
   const { t, i18n } = useTranslation();
-  const [data, setData] = useState<BaseData>(getEmptyBaseData());
-  const [loading, setLoading] = useState<boolean>(true);
   const { onCleaned } = useCleaned();
+  const { content } = useAppState();
+
   const questionsStatistics = StatisticsStore.getAllQuestionsStatistics(i18n.language as Language);
 
-  useEffect(() => {
-    import('././../../data/ru.json').then((data) => {
-      setData(data as BaseData);
-      setLoading(false);
-    });
-  }, []);
+  // TODO: add loading placeholder
+  if (content.loading) {
+    return <>loading</>;
+  }
 
-  return loading ? (
-    <>Loaing</>
-  ) : (
+  return (
     <>
       <Grid container className={s.topicsTitle}>
         <Grid item xs={9} sm={10} md={9}>
@@ -43,8 +39,11 @@ const Topics: React.FC = () => {
           </div>
         </Grid>
       </Grid>
-      {data.groups.map((group, index) => {
-        const statistics = getStatisticsByGroup(group.id, questionsStatistics, data);
+      {content.groups.map((group, index) => {
+        const statistics = getStatisticsByGroup(group.id, questionsStatistics, {
+          groups: content.groups,
+          questions: content.questions,
+        });
 
         return (
           <React.Fragment key={group.id}>
@@ -80,7 +79,7 @@ const Topics: React.FC = () => {
             </Grid>
 
             <Grid container mb={1}>
-              {index !== data.groups.length - 1 && (
+              {index !== content.groups.length - 1 && (
                 <Grid item xs={12}>
                   <div className={s.hr} />
                 </Grid>
