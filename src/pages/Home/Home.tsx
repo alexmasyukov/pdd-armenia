@@ -28,7 +28,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <Grid container justifyContent='center'>
+      <Grid container>
         <div className='home-page-container'>
           <Paper
             onClick={() => navigate(routes.topics.path, { replace: true })}

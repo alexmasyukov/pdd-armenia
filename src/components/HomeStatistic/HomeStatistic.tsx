@@ -18,7 +18,7 @@ const HomeStatistic = () => {
 
   return (
     <Grid container spacing={3} justifyContent='space-between'>
-      <Grid item xs={6} display='flex' justifyContent={'flex-start'}>
+      <Grid item xs={6}>
         <div className={s.item}>
           <span>
             <span>{questionsCount}</span> / {allQuestionsCount}
@@ -36,7 +36,7 @@ const HomeStatistic = () => {
           <span>{t('tickets')}</span>
         </div>
       </Grid> */}
-      <Grid item xs={6} display='flex' justifyContent={'flex-end'}>
+      <Grid item xs={6}>
         <div className={s.item}>
           <span>
             <span>0</span> / {allTopicsCount}

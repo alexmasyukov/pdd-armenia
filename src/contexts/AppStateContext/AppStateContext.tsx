@@ -49,7 +49,7 @@ const AppStateProvider = ({ children }: ProviderProps) => {
           questions: data.questions as BaseData['questions'],
         });
       });
-    }, 0);
+    }, 1000);
   }, []);
 
   return (
