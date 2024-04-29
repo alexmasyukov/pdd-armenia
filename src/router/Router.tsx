@@ -5,6 +5,7 @@ import Page404 from './../pages/404/404';
 import Favorite from './../pages/Fovorite/Fovorite';
 import HomeSkeleton from './../components/Skeleton/HomeSkeleton';
 import { routes } from './constants';
+import HomePlaceholder from '../placeholders/HomePlaceholder';
 
 const Home = React.lazy(() => import('./../pages/Home/Home'));
 const Topics = React.lazy(() => import('./../pages/Topics/Topics'));
@@ -18,7 +19,7 @@ const Router = () => {
         <Route
           index
           element={
-            <Suspense fallback={<HomeSkeleton />}>
+            <Suspense fallback={<HomePlaceholder />}>
               <Home />
             </Suspense>
           }
