@@ -1,9 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
-import { PiStarFill } from 'react-icons/pi';
-import { PiWarningFill } from 'react-icons/pi';
-import { PiBookBookmarkFill } from 'react-icons/pi';
+import { PiStarFill, PiWarningFill, PiBookBookmarkFill } from 'react-icons/pi';
 // import { PiClockCountdownFill } from 'react-icons/pi';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';

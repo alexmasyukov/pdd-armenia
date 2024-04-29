@@ -28,10 +28,10 @@ const Topics: React.FC = () => {
   return (
     <>
       <Grid container className={s.topicsTitle}>
-        <Grid item xs={9} sm={10} md={9}>
+        <Grid item xs={7} sm={10} md={9}>
           {t('topic')}
         </Grid>
-        <Grid item xs={3} sm={2} md={3} textAlign={'right'}>
+        <Grid item xs={5} sm={2} md={3} textAlign={'right'}>
           <div className={s.count}>
             <div>{t('inFavorite')}</div>
             <div>{t('solved')}</div>
@@ -48,10 +48,10 @@ const Topics: React.FC = () => {
         return (
           <React.Fragment key={group.id}>
             <Grid container spacing={1} mb={2} mt={index === 0 ? 2 : 0} className={s.topic}>
-              <Grid item xs={9} sm={10} md={9}>
+              <Grid item xs={7} sm={10} md={9}>
                 <Link to={routes.topics.topicById.view(group.id)}>{group.name}</Link>
               </Grid>
-              <Grid item xs={3} sm={2} md={3} textAlign={'right'}>
+              <Grid item xs={5} sm={2} md={3} textAlign={'right'}>
                 <div className={s.count}>
                   <div>
                     {statistics.inFavotite ? (

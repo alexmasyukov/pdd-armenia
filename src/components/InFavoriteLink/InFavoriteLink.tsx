@@ -1,10 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
-// import { FavoriteStore } from '../../services/FavoriteStore';
-// import { QuestionId } from '../../types';
-
-// import { PiStarFill } from 'react-icons/pi';
 import { PiStarLight } from 'react-icons/pi';
 import { routes } from '../../router/constants';
 
