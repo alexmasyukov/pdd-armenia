@@ -1,12 +1,17 @@
 import { PiEyeLight, PiEyeSlashLight } from 'react-icons/pi';
 import { useAppState } from '../../contexts/AppStateContext/AppStateContext';
 
-const ShowRightAnswersBtn = () => {
+type Props = {
+  style?: React.CSSProperties;
+};
+
+const ShowRightAnswersBtn = ({ style }: Props) => {
   const { showRightAnswers, changeShowRightAnswersFlag } = useAppState();
 
   return (
     <div
       className={`favorite-btn report-btn show-right-answer-btn ${showRightAnswers && 'active'}`}
+      style={style}
       onClick={changeShowRightAnswersFlag}
     >
       {showRightAnswers ? (

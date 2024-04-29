@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import MenuList from '@mui/material/MenuList';
-// import Divider from '@mui/material/Divider';
+import Divider from '@mui/material/Divider';
 import MenuItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -19,6 +19,7 @@ import { styled } from '@mui/system';
 import { routes } from '../../router/constants';
 import { Badge } from '@mui/material';
 import { FavoriteStore } from '../../services/FavoriteStore';
+import ShowRightAnswersBtn from '../ShowRightAnswersBtn/ShowRightAnswersBtn';
 
 const Icon = styled(ListItemIcon)({
   minWidth: '36px',
@@ -91,7 +92,16 @@ const Menu = ({ open, toggleMenu }: Props) => {
           </ListItemButton>
         </MenuItem>
 
-        {/* <Divider /> */}
+        <Divider />
+
+        <MenuItem disablePadding>
+          <ShowRightAnswersBtn
+            style={{
+              margin: '15px 10px',
+              paddingLeft: '8px',
+            }}
+          />
+        </MenuItem>
       </MenuList>
     </Box>
   );
