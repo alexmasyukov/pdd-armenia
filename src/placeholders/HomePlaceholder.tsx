@@ -9,7 +9,7 @@ const HomePlaceholder = () => {
   return (
     <Grid container justifyContent='center'>
       <div className='home-page-container'>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} mt={0}>
           <Grid item xs={12}>
             {phstat}
           </Grid>
