@@ -12,6 +12,7 @@ import { useCleaned } from '../../hooks/useCleaned';
 import InFavoriteLink from '../../components/InFavoriteLink/InFavoriteLink';
 import { useAppState } from '../../contexts/AppStateContext/AppStateContext';
 import s from './Topics.module.scss';
+import TopicsPlaceholder from '../../placeholders/TopicsPlaceholder';
 
 const Topics: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -20,9 +21,8 @@ const Topics: React.FC = () => {
 
   const questionsStatistics = StatisticsStore.getAllQuestionsStatistics(i18n.language as Language);
 
-  // TODO: add loading placeholder
   if (content.loading) {
-    return <>loading</>;
+    return <TopicsPlaceholder />;
   }
 
   return (

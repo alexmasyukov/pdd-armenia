@@ -6,6 +6,7 @@ import Favorite from './../pages/Fovorite/Fovorite';
 import HomeSkeleton from './../components/Skeleton/HomeSkeleton';
 import { routes } from './constants';
 import HomePlaceholder from '../placeholders/HomePlaceholder';
+import TopicsPlaceholder from '../placeholders/TopicsPlaceholder';
 
 const Home = React.lazy(() => import('./../pages/Home/Home'));
 const Topics = React.lazy(() => import('./../pages/Topics/Topics'));
@@ -28,7 +29,7 @@ const Router = () => {
         <Route
           path={routes.topics.path}
           element={
-            <Suspense fallback={<HomeSkeleton />}>
+            <Suspense fallback={<TopicsPlaceholder />}>
               <Topics />
             </Suspense>
           }
