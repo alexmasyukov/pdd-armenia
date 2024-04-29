@@ -9,7 +9,7 @@ const SettingsPanel = () => {
 
   return (
     <Button gray smallFont>
-      <Switch checked={showRightAnswers} size='small' color='warning' onChange={changeShowRightAnswersFlag} />
+      <Switch checked={showRightAnswers} size='small' color='info' onChange={changeShowRightAnswersFlag} />
       {t('showRightAnswers')}
     </Button>
   );

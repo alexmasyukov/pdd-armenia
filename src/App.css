@@ -294,7 +294,7 @@ body {
   width: 22px;
   line-height: 22px;
   opacity: 1;
-  box-shadow: 0 0 0px 2px #fff;
+  box-shadow: 0 0 0px 1px #fff;
 }
 
 .btn.btn-blue {

@@ -1,7 +1,6 @@
-import clsx from 'clsx';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { PiListLight } from 'react-icons/pi';
+import { PiList } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
 import Menu from '../Menu/Menu';
 import s from './Header.module.scss';
@@ -39,7 +38,7 @@ const Header: FC = () => {
         </div>
 
         <div className={s.right}>
-          <span
+          {/* <span
             onClick={() => changeLanguage('ru')}
             className={clsx(s['lang-btn'], clsx({ [s.active]: i18n.language === 'ru' }))}
           >
@@ -50,10 +49,10 @@ const Header: FC = () => {
             className={clsx(s['lang-btn'], { [s.active]: i18n.language === 'am' })}
           >
             Հայ
-          </span>
+          </span> */}
 
-          <div onClick={handleMenuClick}>
-            <PiListLight size={22} className={s['menu-btn']} />
+          <div className={s['menu-btn']} onClick={handleMenuClick}>
+            <PiList size={22} />
           </div>
         </div>
       </header>
