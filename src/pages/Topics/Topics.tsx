@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
 import Progress from '../../components/Progress/Progress';
 import { getStatisticsByGroup } from '../../helpers';
 import { routes } from '../../router/constants';
@@ -11,8 +12,8 @@ import CleanAllStatistics from '../../components/CleanButtons/CleanAllStatistics
 import { useCleaned } from '../../hooks/useCleaned';
 import InFavoriteLink from '../../components/InFavoriteLink/InFavoriteLink';
 import { useAppState } from '../../contexts/AppStateContext/AppStateContext';
-import s from './Topics.module.scss';
 import TopicsPlaceholder from '../../placeholders/TopicsPlaceholder';
+import s from './Topics.module.scss';
 
 const Topics: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -27,71 +28,80 @@ const Topics: React.FC = () => {
 
   return (
     <>
-      <Grid container className={s.topicsTitle}>
-        <Grid item xs={7} sm={10} md={9}>
-          {t('topic')}
+      <Container>
+        <Grid container className={s.topicsTitle} mt={3} mb={1}>
+          <Grid item xs={7} sm={10} md={9}>
+            {t('topic')}
+          </Grid>
+          <Grid item xs={5} sm={2} md={3} textAlign={'right'}>
+            <div className={s.count}>
+              <div>{t('inFavorite')}</div>
+              <div>{t('solved')}</div>
+              <div>{t('total')}</div>
+            </div>
+          </Grid>
         </Grid>
-        <Grid item xs={5} sm={2} md={3} textAlign={'right'}>
-          <div className={s.count}>
-            <div>{t('inFavorite')}</div>
-            <div>{t('solved')}</div>
-            <div>{t('total')}</div>
-          </div>
-        </Grid>
+      </Container>
+
+      <Grid container>
+        <div className={s.line} />
       </Grid>
-      {content.groups.map((group, index) => {
-        const statistics = getStatisticsByGroup(group.id, questionsStatistics, {
-          groups: content.groups,
-          questions: content.questions,
-        });
 
-        return (
-          <React.Fragment key={group.id}>
-            <Grid container spacing={1} mb={2} mt={index === 0 ? 2 : 0} className={s.topic}>
-              <Grid item xs={7} sm={10} md={9}>
-                <Link to={routes.topics.topicById.view(group.id)}>{group.name}</Link>
-              </Grid>
-              <Grid item xs={5} sm={2} md={3} textAlign={'right'}>
-                <div className={s.count}>
-                  <div>
-                    {statistics.inFavotite ? (
-                      <InFavoriteLink count={statistics.inFavotite} topicId={group.id} />
-                    ) : (
-                      <></>
-                    )}
-                  </div>
-                  <div>
-                    <span>{statistics.correct}</span>
-                    {' '}/{' '}
-                    <span>{statistics.wrong}</span>
-                  </div>
-                  <div>{statistics.questionsCount}</div>
-                </div>
-              </Grid>
-              <Grid item xs={12}>
-                <Progress
-                  variant='secondary'
-                  max={statistics.questionsCount}
-                  value={statistics.correct}
-                  secondValue={statistics.wrong}
-                />
-              </Grid>
-            </Grid>
+      <Container>
+        {content.groups.map((group, index) => {
+          const statistics = getStatisticsByGroup(group.id, questionsStatistics, {
+            groups: content.groups,
+            questions: content.questions,
+          });
 
-            <Grid container mb={1}>
-              {index !== content.groups.length - 1 && (
-                <Grid item xs={12}>
-                  <div className={s.hr} />
+          return (
+            <React.Fragment key={group.id}>
+              <Grid container spacing={1} mb={2} mt={index === 0 ? 2 : 0} className={s.topic}>
+                <Grid item xs={7} sm={10} md={9}>
+                  <Link to={routes.topics.topicById.view(group.id)}>{group.name}</Link>
                 </Grid>
-              )}
-            </Grid>
-          </React.Fragment>
-        );
-      })}
+                <Grid item xs={5} sm={2} md={3} textAlign={'right'}>
+                  <div className={s.count}>
+                    <div>
+                      {statistics.inFavotite ? (
+                        <InFavoriteLink count={statistics.inFavotite} topicId={group.id} />
+                      ) : (
+                        <></>
+                      )}
+                    </div>
+                    <div>
+                      <span>{statistics.correct}</span>
+                      {' '}/{' '}
+                      <span>{statistics.wrong}</span>
+                    </div>
+                    <div>{statistics.questionsCount}</div>
+                  </div>
+                </Grid>
+                <Grid item xs={12}>
+                  <Progress
+                    variant='secondary'
+                    max={statistics.questionsCount}
+                    value={statistics.correct}
+                    secondValue={statistics.wrong}
+                  />
+                </Grid>
+              </Grid>
 
-      <Grid container mb={1} justifyContent='flex-end'>
-        <CleanAllStatistics onCleaned={onCleaned} />
-      </Grid>
+              <Grid container mb={1}>
+                {index !== content.groups.length - 1 && (
+                  <Grid item xs={12}>
+                    <div className={s.hr} />
+                  </Grid>
+                )}
+              </Grid>
+            </React.Fragment>
+          );
+        })}
+
+        <Grid container mb={1} justifyContent='flex-end'>
+          <CleanAllStatistics onCleaned={onCleaned} />
+        </Grid>
+      </Container>
     </>
   );
 };

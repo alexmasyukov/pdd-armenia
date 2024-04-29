@@ -17,6 +17,8 @@ import {
 } from 'react-icons/pi';
 import { styled } from '@mui/system';
 import { routes } from '../../router/constants';
+import { Badge } from '@mui/material';
+import { FavoriteStore } from '../../services/FavoriteStore';
 
 const Icon = styled(ListItemIcon)({
   minWidth: '36px',
@@ -59,7 +61,15 @@ const Menu = ({ open, toggleMenu }: Props) => {
             <Icon>
               <PiStarLight size={20} />
             </Icon>
-            <ListItemText>{t('favorite')}</ListItemText>
+            <ListItemText>
+              {t('favorite')}
+              <Badge
+                badgeContent={FavoriteStore.getFavorites().length}
+                color='warning'
+                sx={{ ml: 3 }}
+                max={10000}
+              />
+            </ListItemText>
           </ListItemButton>
         </MenuItem>
 

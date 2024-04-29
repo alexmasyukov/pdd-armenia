@@ -3,38 +3,51 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { Outlet, useLocation } from 'react-router-dom';
 import Header from '../../components/Header/Header';
+import { routes } from '../../router/constants';
 
 type Props = {
   children?: React.ReactNode;
 };
 
-const Layout: React.FC<Props> = ({ children }) => {
+const Layout = ({ children }: Props) => {
   const { pathname } = useLocation();
 
-  const base = (
-    <>
-      <Header />
-      <main>
-        {children}
-        <Outlet />
-      </main>
+  const header = <Header />;
 
-      <footer>{/* Footer content */}</footer>
-    </>
+  const base = (
+    <main>
+      {children}
+      <Outlet />
+    </main>
   );
 
+  if (pathname === '/') {
+    return (
+      <Container>
+        <Grid container justifyContent='center'>
+          <div className='home-page-container'>
+            {header}
+            {base}
+          </div>
+        </Grid>
+      </Container>
+    );
+  }
+
+  if (pathname === routes.topics.path) {
+    return (
+      <>
+        <Container>{header}</Container>
+        {base}
+      </>
+    );
+  }
+
   return (
-    <>
-      {pathname === '/' ? (
-        <Container>
-          <Grid container justifyContent='center'>
-            <div className='home-page-container'>{base}</div>
-          </Grid>
-        </Container>
-      ) : (
-        <Container>{base}</Container>
-      )}
-    </>
+    <Container>
+      {header}
+      {base}
+    </Container>
   );
 };
 

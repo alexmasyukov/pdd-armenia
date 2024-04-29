@@ -26,6 +26,7 @@ const Header: FC = () => {
   return (
     <>
       <Menu open={open} toggleMenu={toggleMenu} />
+
       <header className={s.header}>
         <div className={s.left}>
           <Link to='/'>
