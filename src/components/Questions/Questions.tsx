@@ -13,6 +13,7 @@ import { QuestionStatus, Language } from '../../enums';
 import ShowRightAnswersBtn from '../ShowRightAnswersBtn/ShowRightAnswersBtn';
 import ReportBtn from '../ReportBtn/ReportBtn';
 import s from './Questions.module.scss';
+import ShowRightAnswerBtn from './components/ShowRightAnswerBtn';
 
 interface Props {
   questions: QuestionType[];
@@ -39,6 +40,7 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true, 
   const { showRightAnswers } = useAppState();
   const [answerHistory, setAnswerHistory] = useState<AnswerHistoryType>(setEmptyAnswerHistory(questions));
   const [questionIndex, setQuestionIndex] = useState(0);
+  const [hasNextQuestionBtn, setHasNextQuestionBtn] = useState(false);
 
   const maxIndex = questions.length - 1;
   const currentQuestion = questions[questionIndex];
@@ -50,6 +52,10 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true, 
     setAnswerHistory(setEmptyAnswerHistory(questions));
     setQuestionIndex(0);
   }, [questions]);
+
+  useEffect(() => {
+    setHasNextQuestionBtn(false);
+  }, [questionIndex]);
 
   const hanldeNextQuestionClick = () => {
     if (!isLastQuestion) {
@@ -67,7 +73,7 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true, 
     }
   };
 
-  const handleAnswer = ({ answer, answerIsCorrect }: AnswerEvent) => {
+  const handleAnswer = ({ answer, answerIsCorrect, autoNextQuestion = true }: AnswerEvent) => {
     saveToStorage(currentQuestion.id, answerIsCorrect, i18n.language as Language);
 
     setAnswerHistory((prev) => {
@@ -81,16 +87,36 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true, 
     });
 
     if (answerIsCorrect) {
-      // auto move to next question
-      setTimeout(() => {
-        hanldeNextQuestionClick();
-      }, 200);
+      if (autoNextQuestion) {
+        // auto move to next question
+        setTimeout(() => {
+          hanldeNextQuestionClick();
+        }, 200);
+      } else {
+        setHasNextQuestionBtn(true);
+      }
     }
+  };
+
+  const handleShowCorrectAnswerClick = () => {
+    handleAnswer({
+      answer: currentQuestion.correct,
+      answerIsCorrect: true,
+      autoNextQuestion: false,
+    });
   };
 
   if (!currentQuestion || !answerFromHistory) {
     return null;
   }
+
+  const showShowCorrectAnswerBtn =
+    hasNextQuestionBtn === false &&
+    showRightAnswers === false &&
+    answerFromHistory.status !== QuestionStatus.Wrong;
+
+  const showNextQuestionBtn =
+    isLastQuestion === false && (answerFromHistory.status === QuestionStatus.Wrong || hasNextQuestionBtn);
 
   return (
     <>
@@ -126,11 +152,15 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true, 
               <ReportBtn questionId={currentQuestion.id} group={title} />
             </div>
 
-            {answerFromHistory.status === QuestionStatus.Wrong && !isLastQuestion && (
-              <button className={s['next-question-btn']} onClick={hanldeNextQuestionClick}>
-                {t('nextQuestion')}
-              </button>
-            )}
+            <div className={s.rightBtns}>
+              {showShowCorrectAnswerBtn && <ShowRightAnswerBtn onClick={handleShowCorrectAnswerClick} />}
+
+              {showNextQuestionBtn && (
+                <button className={s['next-question-btn']} onClick={hanldeNextQuestionClick}>
+                  {t('nextQuestion')}
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>

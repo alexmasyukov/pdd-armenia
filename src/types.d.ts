@@ -34,6 +34,7 @@ export type BaseData = {
 export type AnswerEvent = {
   answer: AnswerKey;
   answerIsCorrect: boolean;
+  autoNextQuestion?: boolean;
 };
 
 export type AnswerHistory = {
