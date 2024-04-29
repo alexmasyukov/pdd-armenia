@@ -1,11 +1,12 @@
-import { Grid } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
+import { Grid } from '@mui/material';
 import CleanFavorites from '../../components/CleanButtons/CleanFavorites';
 import FavoriteQuestions from '../../components/FavoriteQuestions/FavoriteQuestions';
 import { useAppState } from '../../contexts/AppStateContext/AppStateContext';
 import { useCleaned } from '../../hooks/useCleaned';
+import TopicPlaceholder from '../../placeholders/TopicPlaceholder';
 import { routes } from '../../router/constants';
 import { Group, Question } from '../../types';
 
@@ -51,9 +52,8 @@ const Favorite: React.FC = () => {
   const title = topicId ? `${t('favorite')}: ${state.groupName}` : t('favorite');
   const prevLink = topicId ? routes.topics.path : routes.home.path;
 
-  // TODO: add loading placeholder
   if (content.loading) {
-    return <>loading</>;
+    return <TopicPlaceholder />;
   }
 
   return (

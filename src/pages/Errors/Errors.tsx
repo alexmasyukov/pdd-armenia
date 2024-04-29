@@ -2,15 +2,15 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import FavoriteQuestions from '../../components/FavoriteQuestions/FavoriteQuestions';
 import { useAppState } from '../../contexts/AppStateContext/AppStateContext';
+import TopicPlaceholder from '../../placeholders/TopicPlaceholder';
 import { routes } from '../../router/constants';
 
 const Errors: React.FC = () => {
   const { t } = useTranslation();
   const { content } = useAppState();
 
-  // TODO: add loading placeholder
   if (content.loading) {
-    return <>loading</>;
+    return <TopicPlaceholder />;
   }
 
   return (

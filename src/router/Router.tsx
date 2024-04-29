@@ -3,10 +3,10 @@ import { Routes, Route } from 'react-router-dom';
 import Layout from './../layouts/Layout/Layout';
 import Page404 from './../pages/404/404';
 import Favorite from './../pages/Fovorite/Fovorite';
-import HomeSkeleton from './../components/Skeleton/HomeSkeleton';
-import { routes } from './constants';
 import HomePlaceholder from '../placeholders/HomePlaceholder';
 import TopicsPlaceholder from '../placeholders/TopicsPlaceholder';
+import TopicPlaceholder from '../placeholders/TopicPlaceholder';
+import { routes } from './constants';
 
 const Home = React.lazy(() => import('./../pages/Home/Home'));
 const Topics = React.lazy(() => import('./../pages/Topics/Topics'));
@@ -37,7 +37,7 @@ const Router = () => {
         <Route
           path={routes.topics.topicById.path}
           element={
-            <Suspense fallback={<HomeSkeleton />}>
+            <Suspense fallback={<TopicPlaceholder />}>
               <Topic />
             </Suspense>
           }
@@ -46,7 +46,7 @@ const Router = () => {
         <Route
           path={routes.favorite.path}
           element={
-            <Suspense fallback={<HomeSkeleton />}>
+            <Suspense fallback={<TopicPlaceholder />}>
               <Favorite />
             </Suspense>
           }
@@ -54,7 +54,7 @@ const Router = () => {
         <Route
           path={routes.favorite.favoritesByTopicId.path}
           element={
-            <Suspense fallback={<HomeSkeleton />}>
+            <Suspense fallback={<TopicPlaceholder />}>
               <Favorite />
             </Suspense>
           }
@@ -63,7 +63,7 @@ const Router = () => {
         <Route
           path={routes.errors.path}
           element={
-            <Suspense fallback={<HomeSkeleton />}>
+            <Suspense fallback={<TopicPlaceholder />}>
               <Errors />
             </Suspense>
           }
