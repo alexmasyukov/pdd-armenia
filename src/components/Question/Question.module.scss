@@ -19,19 +19,21 @@
 
     li {
       cursor: pointer;
-      background: var(--color-gray-light);
       margin-bottom: 5px;
       border-radius: 3px;
       padding: 12px 15px;
+      background: var(--answer-bg);
+      border: 1px solid;
+      border-color: var(--answer-bdc);
 
       &.correct {
-        background: var(--color-answer-correct) !important;
-        color: #fff !important;
+        background: var(--answer-correct-bg) !important;
+        color: var(--answer-correct) !important;
       }
 
       &.wrong {
-        background: var(--color-answer-wrong);
-        color: #fff;
+        background: var(--answer-wrong-bg);
+        color: var(--answer-wrong);
       }
 
       &.shouldShowRightAnswer {

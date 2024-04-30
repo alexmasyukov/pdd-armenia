@@ -38,14 +38,14 @@
 
     h1 {
       font-size: 14px;
-      font-weight: 500;
+      font-weight: 400;
       color: var(--color-red);
       line-height: 24px;
       margin: 0;
       padding: 0;
 
       span {
-        color: var(--color-black);
+        color: var(--txt);
         // font-weight: 400;
       }
     }
@@ -61,6 +61,8 @@
       margin: 0px;
       line-height: 16px;
       border-radius: 3px;
+      display: flex;
+      align-items: center;
 
       &:hover {
         color: var(--color-blue);

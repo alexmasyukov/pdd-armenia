@@ -49,5 +49,7 @@
   "clean-favorites": "Очистить избранное",
   "clean-favorites-confirm": "Вы уверены, что хотите очистить избранное?",
   "clean-favorites-success": "Избранное очищено.",
-  "copy-message": "Копировать сообщение"
+  "copy-message": "Копировать сообщение",
+  "darkTheme": "Темная тема",
+  "lightTheme": "Светлая тема"
 }

@@ -1,12 +1,22 @@
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { PiList } from 'react-icons/pi';
+import { useTheme } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
+import { PiList } from 'react-icons/pi';
+import { CiDark } from 'react-icons/ci';
+import { WiMoonAltThirdQuarter } from 'react-icons/wi';
+import { MdOutlineWbSunny } from 'react-icons/md';
+import { MdWbSunny } from 'react-icons/md';
+import { IoSunnySharp } from 'react-icons/io5';
+// import { MdOutlineLightMode } from 'react-icons/md';
+// import { MdOutlineModeNight } from 'react-icons/md';
 import Menu from '../Menu/Menu';
+import { useAppSettings } from '../../contexts/AppSettingsContext/AppSettingsContext';
 import s from './Header.module.scss';
 
 const Header: FC = () => {
   const { t, i18n } = useTranslation();
+  const { theme, toggleTheme } = useAppSettings();
   const [open, setOpen] = useState(false);
 
   const toggleMenu = (newOpen: boolean) => () => {
@@ -50,6 +60,18 @@ const Header: FC = () => {
           >
             Հայ
           </span> */}
+
+          <div className='theme-btn' onClick={toggleTheme}>
+            {theme === 'dark' ? (
+              <>
+                <MdOutlineWbSunny size={14} /> {t('lightTheme')}
+              </>
+            ) : (
+              <>
+                <MdOutlineWbSunny size={14} /> {t('darkTheme')}
+              </>
+            )}
+          </div>
 
           <div className={s['menu-btn']} onClick={handleMenuClick}>
             <PiList size={22} />

@@ -16,14 +16,14 @@
   &.variant-secondary {
     height: 6px;
     border-radius: 0;
-    background: var(--color-gray-soft);
+    background: var(--progress-bg);
 
     .value {
-      background: var(--color-green);
+      background: var(--progress-positive);
     }
 
     .secondValue {
-      background: var(--color-red);
+      background: var(--progress-negative);
     }
   }
 }
