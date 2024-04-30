@@ -1,132 +1,185 @@
-:root {
+/* --color-sky: #e8eff9; */
+/* --color-black: #181818; */
+/* --color-black-light: #191919; */
+/* --color-gray: #a2a2a2; */
+/* --color-gray-soft: #e8e8e8; */
+/* --color-gray-night: #e1e1e1; */
+/* --color-gray-night2: #c1c1c1; */
+/* --color-gray-night3: #c6c6c6; */
+/* --color-wrong: #bf3328; */
+/* --color-violet-light: #c461fe; */
+/* --color-violet-dark: #7f33fb; */
+/* --color-violet-soft: #f1eef9; */
+/* 
+--bg: #fff;
+
+--txt: #181818;
+--txt-black: #181818;
+--txt-dark: #8b8b8b;
+--txt-500: #8b8b8b;
+--txt-600: #191919;
+
+--answer-bg: #202020;
+--answer-wrong-bg: #811625;
+--answer-correct-bg: #34682f;
+--answer-correct: #fff;
+--answer-wrong: #fff;
+
+--color-status-correct: #8ce48c;
+--color-status-wrong: rgb(255, 135, 135);
+--color-status-show-right-answer: rgb(218 245 218);
+--color-red: #da001c;
+--color-sky: #e8f0fb;
+--color-blue: #3973c5;
+--color-blue-dark: #183964;
+--color-black: #181818;
+--color-black-light: #191919;
+--color-gray: #a2a2a2;
+--color-gray-light: #f5f5f5;
+--color-gray-dark: #8b8b8b;
+--color-gray-soft: #e8e8e8;
+--color-gray-night: #e1e1e1;
+--color-gray-night2: #c1c1c1;
+--color-gray-night3: #c6c6c6;
+--color-green: #85b73e;
+--color-wrong: #bf3328;
+--color-violet-light: #c461fe;
+--color-violet-dark: #7f33fb;
+--color-violet-soft: #f1eef9;
+--color-yellow: #ffda00;
+--color-answer-wrong: #c82a29;
+--color-answer-correct: #8bb050;
+
+--c-gray-500: #e8eff9;
+
+--progress-positive: var(--answer-correct-bg);
+--progress-negative: var(--answer-wrong-bg);
+--progress-bg: #f5f5f5;
+
+--home-btn: #181818;
+--home-btn-bg: #e8f0fb;
+--home-btn-icon: #1a75cc;
+
+--counter: var(--txt-black);
+--counter-bg: #ffda00;
+--counter-br: var(--bg);
+
+--settings-bg: #f5f5f5;
+
+* ----- old ------ * */
+
+.light-theme {
+  --color-red: #f11b35;
+  --color-blue: #1a75cc;
+  --color-blue-dark: #183964;
+  --color-gray-light: #f5f5f5;
+  --color-gray-dark: #8b8b8b;
+  --color-green: #85b73e;
+  --color-yellow: #ffda00;
+
   --bg: #fff;
 
-  --txt: #181818;
+  --txt: #171717;
   --txt-black: #181818;
+  --txt-dark-gray: #2e2e2e;
   --txt-dark: #8b8b8b;
-  --txt-500: #8b8b8b;
-  --txt-600: #191919;
+  --txt-500: var(--color-gray-dark);
+  --txt-600: var(--txt-black);
 
-  --answer-bg: #202020;
-  --answer-bdc: #1d2126;
-  --answer-wrong-bg: #811625;
-  --answer-correct-bg: #34682f;
+  --answer: var(--txt);
+  --answer-bg: #f5f5f5;
+  --answer-wrong-bg: #bf3328;
+  --answer-correct-bg: #84b63d;
   --answer-correct: #fff;
   --answer-wrong: #fff;
 
-  --color-status-correct: #8ce48c;
-  --color-status-wrong: rgb(255, 135, 135);
-  --color-status-show-right-answer: rgb(218 245 218);
-  --color-red: #da001c;
-  --color-sky: #e8f0fb;
-  --color-blue: #3973c5;
-  --color-blue-dark: #183964;
-  --color-black: #181818;
-  --color-black-light: #191919;
-  --color-gray: #a2a2a2;
-  --color-gray-light: #f5f5f5;
-  --color-gray-dark: #8b8b8b;
-  --color-gray-soft: #e8e8e8;
-  --color-gray-night: #e1e1e1;
-  --color-gray-night2: #c1c1c1;
-  --color-gray-night3: #c6c6c6;
-  --color-green: #85b73e;
-  --color-wrong: #bf3328;
-  --color-violet-light: #c461fe;
-  --color-violet-dark: #7f33fb;
-  --color-violet-soft: #f1eef9;
-  --color-yellow: #ffda00;
-  --color-answer-wrong: #c82a29;
-  --color-answer-correct: #8bb050;
+  --question-number: var(--txt);
+  --question-number-bg: #f5f5f5;
+  --question-number-correct-bg: var(--answer-correct-bg);
+  --question-number-wrong-bg: var(--answer-wrong-bg);
+  --question-number-correct: #fff;
+  --question-number-wrong: #fff;
+  --question-number-active-bg: #e8e8e8;
 
-  --c-gray-500: #e8eff9;
+  --color-status-correct: var(--answer-correct-bg);
+  --color-status-show-right-answer: #e8f7d2;
 
-  --progress-positive: var(--answer-correct-bg);
-  --progress-negative: var(--answer-wrong-bg);
-  --progress-bg: #f5f5f5;
+  --progress-positive: #84b63d;
+  --progress-negative: #da001c;
+  --progress-bg: #e8e8e8;
+  --progress-light-bg: #f5f5f5;
 
-  --home-btn: #181818;
+  --hr: #dedede;
+
+  --home-btn: var(--txt);
   --home-btn-bg: #e8f0fb;
-  --home-btn-icon: #1a75cc;
+  --home-btn-icon: var(--color-blue);
 
-  --counter: var(--txt-black);
-  --counter-bg: #ffda00;
+  --counter: var(--txt);
+  --counter-bg: var(--color-yellow);
   --counter-br: var(--bg);
 
   --settings-bg: #f5f5f5;
+  --report-bg: #fff1f6;
+
+  --theme-btn-bg: var(--home-btn-bg);
 }
 
 .dark-theme {
+  --color-red: #f11c32;
+  --color-blue: #4789ca;
+  --color-blue-dark: #183964;
+  --color-gray-light: #f5f5f5;
+  --color-gray-dark: #8b8b8b;
+  --color-green: #57be51;
+  --color-yellow: #ffda00;
+
   --bg: #121212;
 
   --txt: #e0e0e0;
   --txt-black: #181818;
+  --txt-dark-gray: #2e2e2e;
   --txt-dark: #8b8b8b;
   --txt-500: #a5a5a5;
   --txt-600: #e3e3e3;
 
   --answer: #e2e2e2;
   --answer-bg: #202020;
-  --answer-bdc: #1d2126;
   --answer-wrong-bg: #811625;
   --answer-correct-bg: #34682f;
   --answer-correct: #e2e2e2;
   --answer-wrong: #e2e2e2;
 
-  /* --question-number-bg: #0f171f; 
-    --question-number-bdc: #1d2126;  */
   --question-number: #000;
   --question-number-bg: #202020;
-  --question-number-bdc: #202020;
-  --question-number-correct-bg: var(--answer-correct-bg);
-  --question-number-wrong-bg: var(--answer-wrong-bg);
+  --question-number-correct-bg: #376b35;
+  --question-number-wrong-bg: #841824;
   --question-number-correct: #fff;
   --question-number-wrong: #fff;
-  /* #ddd; */
   --question-number-active-bg: #3f3f3f;
-
-  --progress-positive: var(--answer-correct-bg);
-  --progress-negative: var(--answer-wrong-bg);
-  --progress-bg: #353535;
-
-  /* #c1c1c1; */
-  /* color-gray-night2 */
-  --hr: rgb(255 255 255 / 12%);
-
-  --c-gray-500: #2e2e2e;
-
-  --home-btn: #e1e3e5;
-  --home-btn-bg: #1d2a37;
-  --home-btn-icon: #488acb;
-
-  --counter: var(--txt-black);
-  --counter-bg: #ffda00;
-  --counter-br: var(--bg);
-
-  --settings-bg: #202020;
 
   --color-status-correct: #2f6c2f;
   --color-status-show-right-answer: #31492f;
 
-  --color-red: #f11b35;
-  --color-sky: #e8eff9;
-  --color-blue: #488acb;
-  --color-blue-dark: #183964;
-  --color-black: #181818;
-  --color-black-light: #191919;
-  --color-gray: #a2a2a2;
-  --color-gray-light: #f5f5f5;
-  --color-gray-dark: #8b8b8b;
-  --color-gray-soft: #e8e8e8;
-  --color-gray-night: #e1e1e1;
-  --color-gray-night2: #c1c1c1;
-  --color-gray-night3: #c6c6c6;
-  --color-green: #85b73e;
-  --color-wrong: #bf3328;
-  --color-violet-light: #c461fe;
-  --color-violet-dark: #7f33fb;
-  --color-violet-soft: #f1eef9;
-  --color-yellow: #ffda00;
+  --progress-positive: #467941;
+  --progress-negative: #932735;
+  --progress-bg: #353535;
+  --progress-light-bg: #353535;
+
+  --hr: #353535;
+
+  --home-btn: #e1e3e5;
+  --home-btn-bg: #1d2a37;
+  --home-btn-icon: var(--color-blue);
+
+  --counter: var(--txt-black);
+  --counter-bg: var(--color-yellow);
+  --counter-br: var(--bg);
+
+  --settings-bg: #202020;
+  --report-bg: #ffd8e5;
+
+  --theme-btn-bg: var(--txt-dark-gray);
 }
 
 /* 
@@ -268,12 +321,12 @@ body {
 }
 
 .percent .scale .correct {
-  background: var(--question-number-correct-bg);
+  background: var(--color-green);
   transition: all 0.3s ease-in-out;
 }
 
 .percent .scale .wrong {
-  background: var(--question-number-wrong-bg);
+  background: var(--color-red);
   transition: all 0.3s ease-in-out;
 }
 
@@ -420,7 +473,8 @@ h4 {
 
 .report {
   margin-top: 15px;
-  background: var(--color-violet-soft);
+  color: var(--txt-black);
+  background: var(--report-bg);
   padding: 15px;
   border-radius: 5px;
   margin-bottom: 50px;
@@ -462,7 +516,7 @@ h4 {
   cursor: pointer;
   margin-right: 20px;
 
-  background: var(--c-gray-500);
+  background: var(--theme-btn-bg);
   padding: 2px 6px 2px 3px;
   border-radius: 18px;
   transition: all 0.1s ease-in-out;
