@@ -27,7 +27,6 @@ const AppSettingsProvider = ({ children }: ProviderProps) => {
   });
 
   useEffect(() => {
-    console.log('theme:', theme);
     setThemeToLocalStorage(theme);
     changeThemeBodyClass(theme);
   }, [theme]);

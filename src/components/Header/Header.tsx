@@ -40,11 +40,11 @@ const Header: FC = () => {
         <div className={s.left}>
           <Link to='/'>
             <img src={`${process.env.PUBLIC_URL}/images/flag.png`} alt='' />
-          </Link>
 
-          <h1>
-            <span>{t('pdd')}</span> 2024
-          </h1>
+            <h1>
+              <span>{t('pdd')}</span> 2024
+            </h1>
+          </Link>
         </div>
 
         <div className={s.right}>

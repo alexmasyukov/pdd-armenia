@@ -1,11 +1,24 @@
 :root {
-  --txt: #181818;
   --bg: #fff;
-  --color-status-correct:  #8ce48c;
+
+  --txt: #181818;
+  --txt-black: #181818;
+  --txt-dark: #8b8b8b;
+  --txt-500: #8b8b8b;
+  --txt-600: #191919;
+
+  --answer-bg: #202020;
+  --answer-bdc: #1d2126;
+  --answer-wrong-bg: #811625;
+  --answer-correct-bg: #34682f;
+  --answer-correct: #fff;
+  --answer-wrong: #fff;
+
+  --color-status-correct: #8ce48c;
   --color-status-wrong: rgb(255, 135, 135);
   --color-status-show-right-answer: rgb(218 245 218);
-  --color-red: #db001b;
-  --color-sky: #e8eff9;
+  --color-red: #da001c;
+  --color-sky: #e8f0fb;
   --color-blue: #3973c5;
   --color-blue-dark: #183964;
   --color-black: #181818;
@@ -27,89 +40,94 @@
   --color-answer-correct: #8bb050;
 
   --c-gray-500: #e8eff9;
+
+  --progress-positive: var(--answer-correct-bg);
+  --progress-negative: var(--answer-wrong-bg);
+  --progress-bg: #f5f5f5;
+
+  --home-btn: #181818;
+  --home-btn-bg: #e8f0fb;
+  --home-btn-icon: #1a75cc;
+
+  --counter: var(--txt-black);
+  --counter-bg: #ffda00;
+  --counter-br: var(--bg);
+
+  --settings-bg: #f5f5f5;
 }
 
 .dark-theme {
-    --txt: #b6bec9;
-    /* gray-dark */
-    --txt-dark: #8b8b8b;
-    --bg: #0f1214;
-    
-    --answer-bg: rgb(87 99 117 / 15%); 
-    --answer-bdc: #1d2126;
-    --answer-wrong-bg: #db001b;
-    --answer-correct-bg: #8bb050;
-    --answer-correct: #000;
-    --answer-wrong: #fff;
+  --bg: #121212;
 
-    /* --question-number-bg: #0f171f; 
+  --txt: #e0e0e0;
+  --txt-black: #181818;
+  --txt-dark: #8b8b8b;
+  --txt-500: #a5a5a5;
+  --txt-600: #e3e3e3;
+
+  --answer: #e2e2e2;
+  --answer-bg: #202020;
+  --answer-bdc: #1d2126;
+  --answer-wrong-bg: #811625;
+  --answer-correct-bg: #34682f;
+  --answer-correct: #e2e2e2;
+  --answer-wrong: #e2e2e2;
+
+  /* --question-number-bg: #0f171f; 
     --question-number-bdc: #1d2126;  */
-    --question-number: #000;
-    --question-number-bg: rgb(87 99 117 / 15%); 
-    --question-number-bdc: #1d2126; 
-    --question-number-correct-bg: #85b73e;
-    --question-number-wrong-bg: #db001b;
-    --question-number-correct: #000;
-    --question-number-wrong: #fff;
-    /* #ddd; */
-    --question-number-active-bg: #3f3f3f; 
-   
-    --progress-positive: var(--answer-correct-bg);
-    --progress-negative: var(--answer-wrong-bg);
-    --progress-bg: #292929;
+  --question-number: #000;
+  --question-number-bg: #202020;
+  --question-number-bdc: #202020;
+  --question-number-correct-bg: var(--answer-correct-bg);
+  --question-number-wrong-bg: var(--answer-wrong-bg);
+  --question-number-correct: #fff;
+  --question-number-wrong: #fff;
+  /* #ddd; */
+  --question-number-active-bg: #3f3f3f;
 
-    /* #c1c1c1; */
-    /* color-gray-night2 */
-    --hr: rgb(255 255 255 / 12%);
+  --progress-positive: var(--answer-correct-bg);
+  --progress-negative: var(--answer-wrong-bg);
+  --progress-bg: #353535;
 
-    --c-gray-500: #2e2e2e;
+  /* #c1c1c1; */
+  /* color-gray-night2 */
+  --hr: rgb(255 255 255 / 12%);
 
-    /* background: var(--color-green)!important;
-  color: #fff;
-.question-numbers li.wrong {
-  background: var(--color-red) !important; */
+  --c-gray-500: #2e2e2e;
 
-    --color-status-correct:  rgb(140, 228, 140);
-    --color-status-wrong: rgb(255, 135, 135);
-    --color-status-show-right-answer: rgb(218 245 218);
+  --home-btn: #e1e3e5;
+  --home-btn-bg: #1d2a37;
+  --home-btn-icon: #488acb;
 
-    --color-red: #db001b;
-    --color-sky: #e8eff9;
-    --color-blue: #579dff;
-    --color-blue-dark: #183964;
-    --color-black: #181818;
-    --color-black-light: #191919;
-    --color-gray: #a2a2a2;
-    --color-gray-light: #f5f5f5;
-    --color-gray-dark: #8b8b8b;
-    --color-gray-soft: #e8e8e8;
-    --color-gray-night: #e1e1e1;
-    --color-gray-night2: #c1c1c1;
-    --color-gray-night3: #c6c6c6;
-    --color-green: #85b73e;
-    --color-wrong: #bf3328;
-    --color-violet-light: #c461fe;
-    --color-violet-dark: #7f33fb;
-    --color-violet-soft: #f1eef9;
-    --color-yellow: #ffda00;
-   
-  
-    /**
-    img
-    #cf4b41
-    #520e27
-    #f5be97
-    #000
-    sky #eee
-    #ac2a3e
-    #dc817a
-    #b8c0d0
-    **/
+  --counter: var(--txt-black);
+  --counter-bg: #ffda00;
+  --counter-br: var(--bg);
+
+  --settings-bg: #202020;
+
+  --color-status-correct: #2f6c2f;
+  --color-status-show-right-answer: #31492f;
+
+  --color-red: #f11b35;
+  --color-sky: #e8eff9;
+  --color-blue: #488acb;
+  --color-blue-dark: #183964;
+  --color-black: #181818;
+  --color-black-light: #191919;
+  --color-gray: #a2a2a2;
+  --color-gray-light: #f5f5f5;
+  --color-gray-dark: #8b8b8b;
+  --color-gray-soft: #e8e8e8;
+  --color-gray-night: #e1e1e1;
+  --color-gray-night2: #c1c1c1;
+  --color-gray-night3: #c6c6c6;
+  --color-green: #85b73e;
+  --color-wrong: #bf3328;
+  --color-violet-light: #c461fe;
+  --color-violet-dark: #7f33fb;
+  --color-violet-soft: #f1eef9;
+  --color-yellow: #ffda00;
 }
-
-
-
-
 
 /* 
 @keyframes App-logo-spin {
@@ -120,8 +138,6 @@
     transform: rotate(360deg);
   }
 } */
-
-
 
 body {
   color: var(--txt);
@@ -138,15 +154,12 @@ body {
   margin-top: 20px;
 }
 
-
-
 .question-numbers {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   align-items: center;
-  
 }
 
 .question-numbers li {
@@ -154,8 +167,6 @@ body {
   width: 36px;
   height: 36px;
   background: var(--question-number-bg);
-  /* border: 1px solid;
-  border-color: var(--question-number-bdc); */
   text-align: center;
   line-height: 36px;
   margin-right: 4px;
@@ -165,7 +176,7 @@ body {
 }
 
 .question-numbers li.correct {
-  background: var(--question-number-correct-bg)!important;
+  background: var(--question-number-correct-bg) !important;
   color: var(--question-number-correct);
 }
 
@@ -175,7 +186,7 @@ body {
 }
 
 .question-numbers li.active {
-  background:  var(--question-number-active-bg);
+  background: var(--question-number-active-bg);
 
   &:after {
     content: '';
@@ -185,10 +196,9 @@ body {
     transform: translateX(-50%);
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
-    border-bottom: 4px solid #fff;
+    border-bottom: 4px solid var(--bg);
   }
 }
-
 
 .favorite-btn {
   background: none;
@@ -212,7 +222,7 @@ body {
 }
 
 .in-favorite-btn:hover {
-    color: var(--color-blue);
+  color: var(--color-blue);
 }
 
 .report-btn {
@@ -259,17 +269,17 @@ body {
 
 .percent .scale .correct {
   background: var(--question-number-correct-bg);
-  transition: all 0.3s ease-in-out; 
+  transition: all 0.3s ease-in-out;
 }
 
 .percent .scale .wrong {
   background: var(--question-number-wrong-bg);
-  transition: all 0.3s ease-in-out; 
+  transition: all 0.3s ease-in-out;
 }
 
 .percent .scale .not-answered {
   background: var(--progress-bg);
-  transition: all 0.3s ease-in-out; 
+  transition: all 0.3s ease-in-out;
 }
 
 .percent .values {
@@ -300,7 +310,8 @@ body {
 .btn {
   position: relative;
   height: 54px;
-  background: var(--color-sky);
+  color: var(--home-btn);
+  background: var(--home-btn-bg);
   border-radius: 4px;
   text-align: center;
   text-decoration: none !important;
@@ -308,13 +319,13 @@ body {
   align-items: center;
   justify-content: center;
   font-weight: 400;
-
-  &:hover {
-    opacity: 0.9;
-  }
 }
 
-.btn>div {
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn > div {
   position: absolute;
   right: 4px;
   top: 4px;
@@ -323,9 +334,9 @@ body {
   opacity: 0.8;
 }
 
-.btn>svg {
+.btn > svg {
   margin-right: 6px;
-  color: var(--color-blue);
+  color: var(--home-btn-icon);
 }
 
 .btn .counter {
@@ -335,15 +346,15 @@ body {
   font-size: 10px;
   line-height: 8px;
   border-radius: 100%;
-  background: var(--color-yellow);
-  /* background: var(--color-red); */
-  /* color: #fff; */
+  color: var(--counter);
+  background: var(--counter-bg);
   font-weight: 600;
   height: 22px;
   width: 22px;
   line-height: 22px;
   opacity: 1;
-  box-shadow: 0 0 0px 1px #fff;
+  border: 1px solid;
+  border-color: var(--counter-br);
 }
 
 .btn.btn-blue {
@@ -372,9 +383,8 @@ body {
 
 a {
   text-decoration: none;
-  color: var(--txt)
+  color: var(--txt);
 }
-
 
 .answer-history {
   position: relative;
@@ -382,7 +392,7 @@ a {
   border-bottom: 1px solid;
   border-color: var(--hr);
   padding-bottom: 7px;
-} 
+}
 
 .btn-prev-page {
   display: flex;
@@ -398,7 +408,6 @@ a {
 .btn-prev-page:hover {
   color: var(--color-blue);
 }
-
 
 .mt0 {
   margin-top: 0 !important;
@@ -419,7 +428,7 @@ h4 {
 
 .report a {
   text-decoration: underline;
-  color: var(--color-blue)
+  color: var(--color-blue);
 }
 
 .report .title {
@@ -456,6 +465,7 @@ h4 {
   background: var(--c-gray-500);
   padding: 2px 6px 2px 3px;
   border-radius: 18px;
+  transition: all 0.1s ease-in-out;
 
   svg {
     margin-right: 3px;
@@ -465,4 +475,11 @@ h4 {
 .theme-btn:hover {
   background: var(--color-red);
   color: #fff;
+}
+
+.questions-count {
+  font-size: 12px;
+  margin-top: 4px;
+  margin-bottom: 5px;
+  font-weight: 400;
 }

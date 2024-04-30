@@ -4,11 +4,12 @@
   transition: all 0.3s ease-in-out;
   height: 4px;
   border-radius: 10px;
-  background: var(--color-gray-light);
+  background: var(--progress-bg);
   overflow: hidden;
 
   .value,
   .secondValue {
+    transition: all 0.2s ease-in-out;
     height: inherit;
     background: var(--color-blue);
   }
@@ -17,6 +18,7 @@
     height: 6px;
     border-radius: 0;
     background: var(--progress-bg);
+    transition: all 0.2s ease-in-out;
 
     .value {
       background: var(--progress-positive);

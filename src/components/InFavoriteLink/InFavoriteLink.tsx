@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PiStarLight } from 'react-icons/pi';
+// import { PiStarLight } from 'react-icons/pi';
+import { PiStarFill } from 'react-icons/pi';
 import { routes } from '../../router/constants';
 
 interface Props {
@@ -17,7 +18,7 @@ const InFavoriteLink: React.FC<Props> = ({ count = 0, topicId }) => {
 
   return (
     <button className='favorite-btn in-favorite-btn mt0' onClick={handleClick}>
-      <PiStarLight size={14} /> {count}
+      <PiStarFill size={14} /> {count}
     </button>
   );
 };

@@ -8,7 +8,14 @@ const SettingsPanel = () => {
   const { showRightAnswers, changeShowRightAnswersFlag } = useAppState();
 
   return (
-    <Button gray smallFont>
+    <Button
+      smallFont
+      style={{
+        background: 'var(--settings-bg)',
+        justifyContent: 'flex-start',
+        padding: '0 15px',
+      }}
+    >
       <Switch checked={showRightAnswers} size='small' color='info' onChange={changeShowRightAnswersFlag} />
       {t('showRightAnswers')}
     </Button>

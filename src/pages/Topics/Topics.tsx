@@ -14,6 +14,7 @@ import InFavoriteLink from '../../components/InFavoriteLink/InFavoriteLink';
 import { useAppState } from '../../contexts/AppStateContext/AppStateContext';
 import TopicsPlaceholder from '../../placeholders/TopicsPlaceholder';
 import s from './Topics.module.scss';
+import { pluralize } from '../../helpers/text';
 
 const Topics: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -30,14 +31,14 @@ const Topics: React.FC = () => {
     <>
       <Container>
         <Grid container className={s.topicsTitle} mt={3} mb={1}>
-          <Grid item xs={7} sm={10} md={9}>
+          <Grid item xs={7} sm={9} md={10}>
             {t('topic')}
           </Grid>
-          <Grid item xs={5} sm={2} md={3} textAlign={'right'}>
+          <Grid item xs={5} sm={3} md={2} textAlign={'right'}>
             <div className={s.count}>
               <div>{t('inFavorite')}</div>
               <div>{t('solved')}</div>
-              <div>{t('total')}</div>
+              {/* <div>{t('total')}</div> */}
             </div>
           </Grid>
         </Grid>
@@ -57,10 +58,14 @@ const Topics: React.FC = () => {
           return (
             <React.Fragment key={group.id}>
               <Grid container spacing={1} mb={2} mt={index === 0 ? 2 : 0} className={s.topic}>
-                <Grid item xs={7} sm={10} md={9}>
+                <Grid item xs={7} sm={9} md={10}>
                   <Link to={routes.topics.topicById.view(group.id)}>{group.name}</Link>
+                  <div className='questions-count'>
+                    {statistics.questionsCount}{' '}
+                    {pluralize(statistics.questionsCount, 'вопрос', 'вопроса', 'вопросов')}
+                  </div>
                 </Grid>
-                <Grid item xs={5} sm={2} md={3} textAlign={'right'}>
+                <Grid item xs={5} sm={3} md={2} textAlign={'right'}>
                   <div className={s.count}>
                     <div>
                       {statistics.inFavotite ? (
@@ -74,7 +79,7 @@ const Topics: React.FC = () => {
                       {' '}/{' '}
                       <span>{statistics.wrong}</span>
                     </div>
-                    <div>{statistics.questionsCount}</div>
+                    {/* <div>{statistics.questionsCount}</div> */}
                   </div>
                 </Grid>
                 <Grid item xs={12}>

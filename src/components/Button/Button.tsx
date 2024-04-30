@@ -9,9 +9,10 @@ type Props = {
   largeFont?: boolean;
   smallFont?: boolean;
   counter?: number;
+  style?: React.CSSProperties;
 };
 
-const Button: React.FC<Props> = ({ children, blue, red, gray, largeFont, smallFont, counter = 0 }) => {
+const Button: React.FC<Props> = ({ children, blue, red, gray, largeFont, smallFont, counter = 0, style }) => {
   return (
     <div
       className={clsx('btn', {
@@ -21,6 +22,7 @@ const Button: React.FC<Props> = ({ children, blue, red, gray, largeFont, smallFo
         'btn-large-font': largeFont,
         'btn-small-font': smallFont,
       })}
+      style={style}
     >
       {children}
       {!!counter && <div className='counter'>{counter > 99 ? '99+' : counter}</div>}
