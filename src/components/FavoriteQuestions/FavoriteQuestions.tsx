@@ -30,6 +30,10 @@ const FavoriteQuestions: React.FC<Props> = ({ questions, title = '', prevLink = 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  if (!favoriteQuestions.length) {
+    return <p>В избранном нет вопросов</p>;
+  }
+
   return (
     <Questions questions={favoriteQuestions} favoriteAddButton={false} title={title} prevLink={prevLink} />
   );

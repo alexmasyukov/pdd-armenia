@@ -56,6 +56,8 @@ const Favorite: React.FC = () => {
     return <TopicPlaceholder />;
   }
 
+  console.log('state.questions.length', state.questions.length);
+
   return (
     <>
       {state.questions.length > 0 ? (

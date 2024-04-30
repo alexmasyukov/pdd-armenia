@@ -453,6 +453,7 @@ a {
   font-size: 14px;
   align-items: center;
   cursor: pointer;
+  padding: 8px 0;
 }
 .btn-prev-page svg {
   margin-right: 2px;
