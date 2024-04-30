@@ -22,6 +22,10 @@ const TopicsPlaceholder = () => {
       <Grid item xs={1}>
         {phb}
       </Grid>
+      <Grid item xs={1}>
+        {phs}
+      </Grid>
+      <Grid item xs={11}></Grid>
       <Grid item xs={12}>
         <Skeleton animation='pulse' variant='rounded' height={7} />
       </Grid>
@@ -41,7 +45,7 @@ const TopicsPlaceholder = () => {
       </Grid>
 
       {arr.map((_, index) => (
-        <Grid key={index} container spacing={1} mt={2.91}>
+        <Grid key={index} container spacing={1} mt={2.73}>
           {line}
         </Grid>
       ))}
