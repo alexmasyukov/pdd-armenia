@@ -45,7 +45,7 @@ const Topics: React.FC = () => {
       </Container>
 
       <Grid container>
-        <div className={s.line} />
+        <div className='line' />
       </Grid>
 
       <Container>

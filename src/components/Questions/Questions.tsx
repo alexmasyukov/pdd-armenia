@@ -132,6 +132,7 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true, 
         activeQuestionIndex={questionIndex}
         onSelectQuestion={handleSelectQuestionClick}
       />
+      <div className='line' />
 
       <div className={s['question-container']}>
         <Question
