@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { PiCaretLeftBold } from 'react-icons/pi';
+import clsx from 'clsx';
 import Question from '../Question/Question';
 import { AnswerEvent, AnswerHistory as AnswerHistoryType, Question as QuestionType } from '../../types';
 import AnswerHistory from '../AnswerHistory/AnswerHistory';
@@ -12,8 +13,12 @@ import { StatisticsStore } from '../../services/StatisticsStore';
 import { QuestionStatus, Language } from '../../enums';
 import ShowRightAnswersBtn from '../ShowRightAnswersBtn/ShowRightAnswersBtn';
 import ReportBtn from '../ReportBtn/ReportBtn';
-import s from './Questions.module.scss';
 import ShowRightAnswerBtn from './components/ShowRightAnswerBtn';
+import Help from '../Help/Help';
+import HelpBtn from '../Help/HelpBtn';
+import s from './Questions.module.scss';
+import Grid from '@mui/material/Grid';
+import AddQuestion from '../Firebase/AddQuestion';
 
 interface Props {
   questions: QuestionType[];
@@ -37,10 +42,11 @@ const saveToStorage = (questionId: QuestionType['id'], answerIsCorrect: boolean,
 const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true, title, prevLink }) => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
-  const { showRightAnswers } = useAppState();
+  const { showRightAnswers, isLocalApp } = useAppState();
   const [answerHistory, setAnswerHistory] = useState<AnswerHistoryType>(setEmptyAnswerHistory(questions));
   const [questionIndex, setQuestionIndex] = useState(0);
   const [hasNextQuestionBtn, setHasNextQuestionBtn] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
 
   const maxIndex = questions.length - 1;
   const currentQuestion = questions[questionIndex];
@@ -55,6 +61,7 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true, 
 
   useEffect(() => {
     setHasNextQuestionBtn(false);
+    setShowHelp(false);
   }, [questionIndex]);
 
   const hanldeNextQuestionClick = () => {
@@ -134,37 +141,51 @@ const Questions: React.FC<Props> = ({ questions = [], favoriteAddButton = true, 
       />
       <div className='line' />
 
-      <div className={s['question-container']}>
-        <Question
-          item={currentQuestion}
-          answerFromHistory={answerFromHistory.answer}
-          enabled={answerFromHistory.status === QuestionStatus.NotAnswered}
-          onAnswer={handleAnswer}
-          showRightAnswer={showRightAnswers}
-        />
+      <Grid container spacing={2}>
+        <Grid item md={6}>
+          <div className={s['question-container']}>
+            <Question
+              item={currentQuestion}
+              answerFromHistory={answerFromHistory.answer}
+              enabled={answerFromHistory.status === QuestionStatus.NotAnswered}
+              onAnswer={handleAnswer}
+              showRightAnswer={showRightAnswers}
+            />
 
-        <div className={s['question-container']}>
-          <div className={s.buttons}>
-            <div>
-              <FavoriteButton questionId={currentQuestion.id} addButton={favoriteAddButton} />
+            {isLocalApp && showHelp && (
+              <div className={clsx(s['question-container'], s['help-container'])}>
+                <Help questionId={currentQuestion.id} />
+              </div>
+            )}
 
-              <ShowRightAnswersBtn />
+            <div className={s['question-container']}>
+              <div className={s.buttons}>
+                <div>
+                  <FavoriteButton questionId={currentQuestion.id} addButton={favoriteAddButton} />
 
-              <ReportBtn questionId={currentQuestion.id} group={title} />
-            </div>
+                  <ShowRightAnswersBtn />
 
-            <div className={s.rightBtns}>
-              {showShowCorrectAnswerBtn && <ShowRightAnswerBtn onClick={handleShowCorrectAnswerClick} />}
+                  <ReportBtn questionId={currentQuestion.id} group={title} />
+                </div>
 
-              {showNextQuestionBtn && (
-                <button className={s['next-question-btn']} onClick={hanldeNextQuestionClick}>
-                  {t('nextQuestion')}
-                </button>
-              )}
+                <div className={s.rightBtns}>
+                  {showShowCorrectAnswerBtn && <ShowRightAnswerBtn onClick={handleShowCorrectAnswerClick} />}
+                  {isLocalApp && <HelpBtn onClick={() => setShowHelp(true)} />}
+
+                  {showNextQuestionBtn && (
+                    <button className={s['next-question-btn']} onClick={hanldeNextQuestionClick}>
+                      {t('nextQuestion')}
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </Grid>
+        <Grid item md={6} mt={0}>
+          <AddQuestion questionId={String(currentQuestion.id)} />
+        </Grid>
+      </Grid>
     </>
   );
 };

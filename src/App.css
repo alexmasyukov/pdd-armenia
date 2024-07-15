@@ -266,6 +266,10 @@ body {
   user-select: none;
 }
 
+.favorite-btn:hover {
+  color: var(--color-green);
+}
+
 .favorite-btn svg {
   margin-right: 5px;
 }
@@ -304,6 +308,15 @@ body {
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.help-btn {
+  color: var(--color-blue);
+  font-size: 14px;
+}
+
+.help-btn:hover {
+  color: var(--color-green);
 }
 
 .percent {
@@ -542,4 +555,14 @@ h4 {
   width: 100%;
   height: 1px;
   border-bottom: 1px solid var(--hr);
+}
+
+.help-wrapper {
+  border: 1px solid var(--hr);
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.mt-10 {
+  margin-top: 10px;
 }

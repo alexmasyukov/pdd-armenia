@@ -1,40 +1,41 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import React, { createContext, useContext, useEffect, useState } from 'react'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
 // import CssBaseline from '@mui/material/CssBaseline';
-import { changeThemeBodyClass, getThemeFromLocalStorage, setThemeToLocalStorage } from './utils';
+import { changeThemeBodyClass, getThemeFromLocalStorage, setThemeToLocalStorage } from './utils'
 
-export type Theme = 'light' | 'dark';
+export type Theme = 'light' | 'dark'
 
 export interface AppSettings {
-  theme: Theme;
-  toggleTheme: () => void;
+  theme: Theme
+  toggleTheme: () => void
 }
-export const AppSettingsContext = createContext({} as AppSettings);
 
-export const useAppSettings = () => useContext<AppSettings>(AppSettingsContext);
+export const AppSettingsContext = createContext({} as AppSettings)
+
+export const useAppSettings = () => useContext<AppSettings>(AppSettingsContext)
 
 type ProviderProps = {
-  children: React.ReactNode;
-};
+  children: React.ReactNode
+}
 
 const AppSettingsProvider = ({ children }: ProviderProps) => {
-  const [theme, setTheme] = useState<Theme>(getThemeFromLocalStorage());
+  const [theme, setTheme] = useState<Theme>(getThemeFromLocalStorage())
 
   const muiTheme = createTheme({
     palette: {
       mode: theme,
     },
-  });
+  })
 
   useEffect(() => {
-    setThemeToLocalStorage(theme);
-    changeThemeBodyClass(theme);
-  }, [theme]);
+    setThemeToLocalStorage(theme)
+    changeThemeBodyClass(theme)
+  }, [theme])
 
   const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-  };
+    const newTheme = theme === 'light' ? 'dark' : 'light'
+    setTheme(newTheme)
+  }
 
   return (
     <AppSettingsContext.Provider
@@ -48,7 +49,7 @@ const AppSettingsProvider = ({ children }: ProviderProps) => {
         {children}
       </ThemeProvider>
     </AppSettingsContext.Provider>
-  );
-};
+  )
+}
 
-export default AppSettingsProvider;
+export default AppSettingsProvider

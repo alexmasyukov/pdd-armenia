@@ -34,7 +34,7 @@ const Layout = ({ children }: Props) => {
     );
   }
 
-  if (pathname === routes.topics.path) {
+  if (pathname === routes.topics.path || pathname === routes.detailedTopics.path) {
     return (
       <>
         <Container>{header}</Container>

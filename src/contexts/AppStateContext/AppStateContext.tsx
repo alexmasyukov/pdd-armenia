@@ -1,43 +1,45 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import { getShowRightAnswersLocalStorageFlag, setShowRightAnswersLocalStorageFlag } from './utils';
-import { BaseData } from '../../types';
-import { getEmptyBaseData } from '../../helpers';
+import React, { createContext, useContext, useEffect, useState } from 'react'
+import { getShowRightAnswersLocalStorageFlag, setShowRightAnswersLocalStorageFlag } from './utils'
+import { BaseData } from '../../types'
+import { getEmptyBaseData } from '../../helpers'
 
 type Content = {
-  loading: boolean;
-  groups: BaseData['groups'];
-  questions: BaseData['questions'];
-};
-
-export interface AppState {
-  showRightAnswers: boolean;
-  changeShowRightAnswersFlag: () => void;
-  content: Content;
+  loading: boolean
+  groups: BaseData['groups']
+  questions: BaseData['questions']
 }
 
-export const AppStateContext = createContext({} as AppState);
+export interface AppState {
+  showRightAnswers: boolean
+  isLocalApp: boolean
+  changeShowRightAnswersFlag: () => void
+  content: Content
+}
 
-export const useAppState = () => useContext<AppState>(AppStateContext);
+export const AppStateContext = createContext({} as AppState)
+
+export const useAppState = () => useContext<AppState>(AppStateContext)
 
 type ProviderProps = {
-  children: React.ReactNode;
-};
+  children: React.ReactNode
+}
 
 const AppStateProvider = ({ children }: ProviderProps) => {
-  const [showRightAnswers, setShowRightAnswers] = useState(getShowRightAnswersLocalStorageFlag());
+  const [showRightAnswers, setShowRightAnswers] = useState(getShowRightAnswersLocalStorageFlag())
+  const isLocalApp = process.env.NODE_ENV === 'development'
 
   const [content, setContent] = useState({
     loading: true,
     ...getEmptyBaseData(),
-  });
+  })
 
   const changeShowRightAnswersFlag = () => {
-    setShowRightAnswers((prev) => !prev);
-  };
+    setShowRightAnswers((prev) => !prev)
+  }
 
   useEffect(() => {
-    setShowRightAnswersLocalStorageFlag(showRightAnswers);
-  }, [showRightAnswers]);
+    setShowRightAnswersLocalStorageFlag(showRightAnswers)
+  }, [showRightAnswers])
 
   // load content (questions, groups)
   useEffect(() => {
@@ -47,22 +49,23 @@ const AppStateProvider = ({ children }: ProviderProps) => {
           loading: false,
           groups: data.groups as BaseData['groups'],
           questions: data.questions as BaseData['questions'],
-        });
-      });
-    }, 700);
-  }, []);
+        })
+      })
+    }, 700)
+  }, [])
 
   return (
     <AppStateContext.Provider
       value={{
         showRightAnswers,
+        isLocalApp,
         changeShowRightAnswersFlag,
         content,
       }}
     >
       {children}
     </AppStateContext.Provider>
-  );
-};
+  )
+}
 
-export default AppStateProvider;
+export default AppStateProvider

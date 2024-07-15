@@ -56,9 +56,18 @@ const Home: React.FC = () => {
             </Grid> */}
 
             <Grid item xs={6}>
+              <Link to={routes.detailedTopics.path}>
+                <Button red>
+                  {/*<PiBookBookmarkFill size={22} /> */}
+                  Темы
+                </Button>
+              </Link>
+            </Grid>
+            <Grid item xs={6}>
               <Link to={routes.topics.path}>
                 <Button>
-                  <PiBookBookmarkFill size={22} /> {t('topics')}
+                  <PiBookBookmarkFill size={22} /> Стандартные темы
+                  {/*{t('topics')}*/}
                 </Button>
               </Link>
             </Grid>
@@ -86,14 +95,14 @@ const Home: React.FC = () => {
                 </Button>
               </Link>
             </Grid>
-            <Grid item xs={6}>
-              <Link to={''}>
-                <Button red largeFont>
-                  {t('exam')}
-                  <div>{t('inDevelop')}</div>
-                </Button>
-              </Link>
-            </Grid>
+            {/*<Grid item xs={6}>*/}
+            {/*  <Link to={''}>*/}
+            {/*    <Button red largeFont>*/}
+            {/*      {t('exam')}*/}
+            {/*      <div>{t('inDevelop')}</div>*/}
+            {/*    </Button>*/}
+            {/*  </Link>*/}
+            {/*</Grid>*/}
             <Grid item xs={12}>
               <SettingsPanel />
             </Grid>

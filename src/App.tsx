@@ -7,14 +7,17 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import AppSettingsProvider from './contexts/AppSettingsContext/AppSettingsContext';
+import { FirebaseProvider } from './contexts/FirebaseContext';
 
 function App() {
   return (
-    <AppStateProvider>
-      <AppSettingsProvider>
-        <Router />
-      </AppSettingsProvider>
-    </AppStateProvider>
+    <FirebaseProvider>
+      <AppStateProvider>
+        <AppSettingsProvider>
+          <Router />
+        </AppSettingsProvider>
+      </AppStateProvider>
+    </FirebaseProvider>
   );
 }
 

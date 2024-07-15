@@ -9,8 +9,11 @@ import TopicPlaceholder from '../placeholders/TopicPlaceholder';
 import { routes } from './constants';
 
 const Home = React.lazy(() => import('./../pages/Home/Home'));
+const DetailedTopics = React.lazy(() => import('./../pages/DetailedTopics/DetailedTopics'));
+const DetailedTopic = React.lazy(() => import('./../pages/DetailedTopics/DetailedTopic'));
 const Topics = React.lazy(() => import('./../pages/Topics/Topics'));
 const Topic = React.lazy(() => import('./../pages/Topics/Topic'));
+const CheckQuestions = React.lazy(() => import('../pages/CheckQuestions/CheckQuestions'));
 const Errors = React.lazy(() => import('./../pages/Errors/Errors'));
 
 const Router = () => {
@@ -22,6 +25,23 @@ const Router = () => {
           element={
             <Suspense fallback={<HomePlaceholder />}>
               <Home />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path={routes.detailedTopics.path}
+          element={
+            <Suspense fallback={<TopicsPlaceholder />}>
+              <DetailedTopics />
+            </Suspense>
+          }
+        />
+        <Route
+          path={routes.detailedTopics.topicById.path}
+          element={
+            <Suspense fallback={<TopicPlaceholder />}>
+              <DetailedTopic />
             </Suspense>
           }
         />
@@ -56,6 +76,15 @@ const Router = () => {
           element={
             <Suspense fallback={<TopicPlaceholder />}>
               <Favorite />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path={routes.checkQuestions.path}
+          element={
+            <Suspense fallback={<TopicPlaceholder />}>
+              <CheckQuestions />
             </Suspense>
           }
         />
