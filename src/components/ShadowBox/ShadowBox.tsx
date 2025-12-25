@@ -1,12 +1,12 @@
-import React from 'react';
-import s from './ShadowBox.module.scss';
+import React from 'react'
+import s from './ShadowBox.module.scss'
 
 type Props = {
-  children?: React.ReactNode;
-};
+  children?: React.ReactNode
+}
 
 const ShadowBox: React.FC<Props> = ({ children }) => {
-  return <div className={s.box}>{children}</div>;
-};
+  return <div className={s.box}>{children}</div>
+}
 
-export default ShadowBox;
+export default ShadowBox

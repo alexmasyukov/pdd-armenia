@@ -1,9 +1,9 @@
-import Grid from '@mui/material/Grid';
-import Skeleton from '@mui/material/Skeleton';
+import Grid from '@mui/material/Grid'
+import Skeleton from '@mui/material/Skeleton'
 
 const TopicPlaceholder = () => {
-  const phb = <Skeleton animation='pulse' variant='rounded' height={43} />;
-  const phs = <Skeleton animation='pulse' variant='rounded' height={16} />;
+  const phb = <Skeleton animation='pulse' variant='rounded' height={43} />
+  const phs = <Skeleton animation='pulse' variant='rounded' height={16} />
 
   return (
     <>
@@ -61,7 +61,7 @@ const TopicPlaceholder = () => {
         <Grid item sm={9} xs={6} />
       </Grid>
     </>
-  );
-};
+  )
+}
 
-export default TopicPlaceholder;
+export default TopicPlaceholder

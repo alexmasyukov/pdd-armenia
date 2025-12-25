@@ -1,21 +1,21 @@
-import { FC, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
-import { PiList } from 'react-icons/pi';
-import { CiDark } from 'react-icons/ci';
-import { MdOutlineWbSunny } from 'react-icons/md';
-import Menu from '../Menu/Menu';
-import { useAppSettings } from '../../contexts/AppSettingsContext/AppSettingsContext';
-import s from './Header.module.scss';
+import { FC, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
+import { PiList } from 'react-icons/pi'
+import { CiDark } from 'react-icons/ci'
+import { MdOutlineWbSunny } from 'react-icons/md'
+import Menu from '../Menu/Menu'
+import { useAppSettings } from '../../contexts/AppSettingsContext/AppSettingsContext'
+import s from './Header.module.scss'
 
 const Header: FC = () => {
-  const { t } = useTranslation();
-  const { theme, toggleTheme } = useAppSettings();
-  const [open, setOpen] = useState(false);
+  const { t } = useTranslation()
+  const { theme, toggleTheme } = useAppSettings()
+  const [open, setOpen] = useState(false)
 
   const toggleMenu = (newOpen: boolean) => () => {
-    setOpen(newOpen);
-  };
+    setOpen(newOpen)
+  }
 
   // const changeLanguage = (lng: string) => {
   //   localStorage.setItem('lang', lng);
@@ -23,8 +23,8 @@ const Header: FC = () => {
   // };
 
   const handleMenuClick = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   return (
     <>
@@ -73,7 +73,7 @@ const Header: FC = () => {
         </div>
       </header>
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

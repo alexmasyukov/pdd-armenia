@@ -1,29 +1,29 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { Link, useNavigate } from 'react-router-dom';
-import { PiStarFill, PiWarningFill, PiBookBookmarkFill } from 'react-icons/pi';
+import React from 'react'
+import { useTranslation } from 'react-i18next'
+import { Link, useNavigate } from 'react-router-dom'
+import { PiBookBookmarkFill, PiStarFill, PiWarningFill } from 'react-icons/pi'
 // import { PiClockCountdownFill } from 'react-icons/pi';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import { FavoriteStore } from '../../services/FavoriteStore';
-import Button from '../../components/Button/Button';
-import HomeStatistic from '../../components/HomeStatistic/HomeStatistic';
-import { routes } from '../../router/constants';
-import CleanAllStatistics from '../../components/CleanButtons/CleanAllStatistics';
-import CleanFavorites from '../../components/CleanButtons/CleanFavorites';
-import { useCleaned } from '../../hooks/useCleaned';
-import { useAppState } from '../../contexts/AppStateContext/AppStateContext';
-import SettingsPanel from '../../components/SettingsPanel/SettingPanel';
-import HomePlaceholder from '../../placeholders/HomePlaceholder';
+import Grid from '@mui/material/Grid'
+import Paper from '@mui/material/Paper'
+import { FavoriteStore } from '../../services/FavoriteStore'
+import Button from '../../components/Button/Button'
+import HomeStatistic from '../../components/HomeStatistic/HomeStatistic'
+import { routes } from '../../router/constants'
+import CleanAllStatistics from '../../components/CleanButtons/CleanAllStatistics'
+import CleanFavorites from '../../components/CleanButtons/CleanFavorites'
+import { useCleaned } from '../../hooks/useCleaned'
+import { useAppState } from '../../contexts/AppStateContext/AppStateContext'
+import SettingsPanel from '../../components/SettingsPanel/SettingPanel'
+import HomePlaceholder from '../../placeholders/HomePlaceholder'
 
 const Home: React.FC = () => {
-  const { t } = useTranslation();
-  const { content } = useAppState();
-  const navigate = useNavigate();
-  const { onCleaned } = useCleaned();
+  const { t } = useTranslation()
+  const { content } = useAppState()
+  const navigate = useNavigate()
+  const { onCleaned } = useCleaned()
 
   if (content.loading) {
-    return <HomePlaceholder />;
+    return <HomePlaceholder />
   }
 
   return (
@@ -119,7 +119,7 @@ const Home: React.FC = () => {
         </div>
       </Grid>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

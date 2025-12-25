@@ -1,37 +1,37 @@
-import React, { useEffect, useRef } from 'react';
-import clsx from 'clsx';
-import ScrollContainer from 'react-indiana-drag-scroll';
-import { AnswerHistory as AnswerHistoryType, QuestionIndex } from '../../types';
-import { QuestionStatus } from '../../enums';
+import React, { useEffect, useRef } from 'react'
+import clsx from 'clsx'
+import ScrollContainer from 'react-indiana-drag-scroll'
+import { AnswerHistory as AnswerHistoryType, QuestionIndex } from '../../types'
+import { QuestionStatus } from '../../enums'
 
 interface Props {
-  answerHistory: AnswerHistoryType;
-  activeQuestionIndex: QuestionIndex;
-  onSelectQuestion: (questionIndex: QuestionIndex) => () => void;
+  answerHistory: AnswerHistoryType
+  activeQuestionIndex: QuestionIndex
+  onSelectQuestion: (questionIndex: QuestionIndex) => () => void
 }
 
 const AnswerHistory: React.FC<Props> = ({ answerHistory, activeQuestionIndex, onSelectQuestion }) => {
-  const scrollContainer = useRef<HTMLDivElement>(null);
-  const numbersContainer = useRef<HTMLUListElement>(null);
+  const scrollContainer = useRef<HTMLDivElement>(null)
+  const numbersContainer = useRef<HTMLUListElement>(null)
 
   useEffect(() => {
     if (!scrollContainer.current || !numbersContainer.current) {
-      return;
+      return
     }
 
-    const scrollContainerWidth = scrollContainer.current.clientWidth;
-    const center = Math.floor(scrollContainerWidth / 39 / 2);
-    const activeNumber = numbersContainer.current.querySelector(`.active`);
+    const scrollContainerWidth = scrollContainer.current.clientWidth
+    const center = Math.floor(scrollContainerWidth / 39 / 2)
+    const activeNumber = numbersContainer.current.querySelector(`.active`)
 
     if (activeNumber) {
       if (activeQuestionIndex > center) {
         scrollContainer.current?.scrollTo({
           left: (activeQuestionIndex - center) * 39,
           behavior: 'smooth',
-        });
+        })
       }
     }
-  }, [activeQuestionIndex]);
+  }, [activeQuestionIndex])
 
   return (
     <div className='answer-history'>
@@ -56,7 +56,7 @@ const AnswerHistory: React.FC<Props> = ({ answerHistory, activeQuestionIndex, on
         </ul>
       </ScrollContainer>
     </div>
-  );
-};
+  )
+}
 
-export default AnswerHistory;
+export default AnswerHistory

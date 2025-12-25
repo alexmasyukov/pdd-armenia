@@ -1,12 +1,12 @@
-import Grid from '@mui/material/Grid';
-import Skeleton from '@mui/material/Skeleton';
-import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid'
+import Skeleton from '@mui/material/Skeleton'
+import Container from '@mui/material/Container'
 
-const arr = Array.from({ length: 9 });
+const arr = Array.from({ length: 9 })
 
 const TopicsPlaceholder = () => {
-  const phb = <Skeleton animation='pulse' variant='rounded' height={20} />;
-  const phs = <Skeleton animation='pulse' variant='rounded' height={16} />;
+  const phb = <Skeleton animation='pulse' variant='rounded' height={20} />
+  const phs = <Skeleton animation='pulse' variant='rounded' height={16} />
 
   const line = (
     <>
@@ -30,7 +30,7 @@ const TopicsPlaceholder = () => {
         <Skeleton animation='pulse' variant='rounded' height={7} />
       </Grid>
     </>
-  );
+  )
 
   return (
     <Container>
@@ -56,7 +56,7 @@ const TopicsPlaceholder = () => {
         </Grid>
       </Grid>
     </Container>
-  );
-};
+  )
+}
 
-export default TopicsPlaceholder;
+export default TopicsPlaceholder

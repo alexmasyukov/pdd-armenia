@@ -1,14 +1,14 @@
-import React from 'react';
-import clsx from 'clsx';
-import s from './Progress.module.scss';
+import React from 'react'
+import clsx from 'clsx'
+import s from './Progress.module.scss'
 
 type Props = {
-  max?: number;
-  value: number;
-  secondValue?: number;
-  className?: string;
-  variant?: 'primary' | 'secondary';
-};
+  max?: number
+  value: number
+  secondValue?: number
+  className?: string
+  variant?: 'primary' | 'secondary'
+}
 
 const Progress: React.FC<Props> = ({
   max = 100,
@@ -17,8 +17,8 @@ const Progress: React.FC<Props> = ({
   variant = 'primary',
   className,
 }) => {
-  const percent1 = Math.round((value / max) * 100);
-  const percent2 = Math.round((secondValue / max) * 100);
+  const percent1 = Math.round((value / max) * 100)
+  const percent2 = Math.round((secondValue / max) * 100)
 
   return (
     <div className={clsx(s.progress, { [s[`variant-${variant}`]]: variant }, className)}>
@@ -37,7 +37,7 @@ const Progress: React.FC<Props> = ({
         />
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Progress;
+export default Progress

@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
 type Props = {
-  onSave: () => void;
-};
+  onSave: () => void
+}
 
 const HelpForm = ({ onSave }: Props) => {
   return (
@@ -12,7 +12,7 @@ const HelpForm = ({ onSave }: Props) => {
         Save
       </button>
     </>
-  );
-};
+  )
+}
 
-export default HelpForm;
+export default HelpForm

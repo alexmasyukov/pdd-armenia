@@ -1,0 +1,113 @@
+.active {
+  background: #2c3a2c;
+}
+
+.policeAnswer {
+  position: absolute;
+  right: 0;
+  background: #ff0000;
+  width: 20px;
+  height: 100%;
+  bottom: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    padding: 3px 5px;
+    background: #202020;
+    margin-bottom: 3px;
+    position: relative;
+  }
+}
+
+.container {
+  img {
+    width: 70%;
+  }
+}
+
+.row {
+  align-items: stretch;
+}
+
+.questionBlock {
+  padding: 16px;
+  background: #1a1a1a;
+  border-radius: 8px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.questionId {
+  margin-bottom: 8px;
+  color: #888;
+  font-size: 13px;
+}
+
+.questionImage {
+  margin-bottom: 12px;
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.questionText {
+  margin-bottom: 12px;
+}
+
+.questionMeta {
+  margin-top: 12px;
+}
+
+.emptyBlock {
+  padding: 16px;
+  background: #1a1a1a;
+  border-radius: 8px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+}
+
+.downloadBtn {
+  padding: 8px 16px;
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+
+  &:hover {
+    background: #45a049;
+  }
+
+  &:active {
+    background: #3d8b40;
+  }
+}
+
+.oldIdInput {
+  padding: 6px 10px;
+  border: 1px solid #444;
+  border-radius: 4px;
+  background: #2a2a2a;
+  color: #fff;
+  font-size: 14px;
+  width: 80px;
+
+  &:focus {
+    outline: none;
+    border-color: #2196f3;
+  }
+}
+
+

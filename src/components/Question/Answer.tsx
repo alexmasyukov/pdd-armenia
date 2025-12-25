@@ -1,15 +1,15 @@
-import clsx from 'clsx';
-import React from 'react';
-import s from './Question.module.scss';
+import clsx from 'clsx'
+import React from 'react'
+import s from './Question.module.scss'
 
 interface Props {
-  text: string;
-  isCorrect: boolean;
-  isWrong: boolean;
-  onClick: () => void;
-  disabled?: boolean;
-  showRightAnswer?: boolean;
-  answered: boolean;
+  text: string
+  isCorrect: boolean
+  isWrong: boolean
+  onClick: () => void
+  disabled?: boolean
+  showRightAnswer?: boolean
+  answered: boolean
 }
 
 const Answer: React.FC<Props> = ({ isCorrect, isWrong, answered, showRightAnswer, text, onClick }) => {
@@ -24,7 +24,7 @@ const Answer: React.FC<Props> = ({ isCorrect, isWrong, answered, showRightAnswer
     >
       {text}
     </li>
-  );
-};
+  )
+}
 
-export default Answer;
+export default Answer

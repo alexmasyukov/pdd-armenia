@@ -1,10 +1,10 @@
-import Grid from '@mui/material/Grid';
-import Skeleton from '@mui/material/Skeleton';
+import Grid from '@mui/material/Grid'
+import Skeleton from '@mui/material/Skeleton'
 
 const HomePlaceholder = () => {
-  const phstat = <Skeleton animation='pulse' variant='rounded' height={83} />;
-  const phb = <Skeleton animation='pulse' variant='rounded' height={54} />;
-  const phs = <Skeleton animation='pulse' variant='rounded' height={16} />;
+  const phstat = <Skeleton animation='pulse' variant='rounded' height={83} />
+  const phb = <Skeleton animation='pulse' variant='rounded' height={54} />
+  const phs = <Skeleton animation='pulse' variant='rounded' height={16} />
 
   return (
     <Grid container justifyContent='center'>
@@ -44,7 +44,7 @@ const HomePlaceholder = () => {
         </Grid>
       </div>
     </Grid>
-  );
-};
+  )
+}
 
-export default HomePlaceholder;
+export default HomePlaceholder

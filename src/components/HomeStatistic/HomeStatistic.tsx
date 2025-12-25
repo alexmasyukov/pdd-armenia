@@ -1,20 +1,20 @@
-import { useTranslation } from 'react-i18next';
-import Grid from '@mui/material/Grid';
-import Progress from '../Progress/Progress';
-import { StatisticsStore } from '../../services/StatisticsStore';
-import { useAppState } from '../../contexts/AppStateContext/AppStateContext';
-import { Language } from '../../enums';
-import s from './HomeStatistic.module.scss';
+import { useTranslation } from 'react-i18next'
+import Grid from '@mui/material/Grid'
+import Progress from '../Progress/Progress'
+import { StatisticsStore } from '../../services/StatisticsStore'
+import { useAppState } from '../../contexts/AppStateContext/AppStateContext'
+import { Language } from '../../enums'
+import s from './HomeStatistic.module.scss'
 
 const HomeStatistic = () => {
-  const { t, i18n } = useTranslation();
-  const { content } = useAppState();
+  const { t, i18n } = useTranslation()
+  const { content } = useAppState()
 
-  const questionsStatistics = StatisticsStore.getAllQuestionsStatistics(i18n.language as Language);
-  const questionsCount = Object.keys(questionsStatistics).length;
+  const questionsStatistics = StatisticsStore.getAllQuestionsStatistics(i18n.language as Language)
+  const questionsCount = Object.keys(questionsStatistics).length
 
-  const allQuestionsCount = content.questions.length;
-  const allTopicsCount = content.groups.length;
+  const allQuestionsCount = content.questions.length
+  const allTopicsCount = content.groups.length
 
   return (
     <Grid container spacing={3} justifyContent='space-between'>
@@ -46,7 +46,7 @@ const HomeStatistic = () => {
         </div>
       </Grid>
     </Grid>
-  );
-};
+  )
+}
 
-export default HomeStatistic;
+export default HomeStatistic

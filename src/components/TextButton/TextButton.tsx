@@ -1,15 +1,15 @@
-import React from 'react';
-import clsx from 'clsx';
-import { IconType, IconBaseProps } from 'react-icons';
-import s from './TextButton.module.scss';
+import React from 'react'
+import clsx from 'clsx'
+import { IconBaseProps, IconType } from 'react-icons'
+import s from './TextButton.module.scss'
 
 interface Props {
-  icon?: IconType;
-  iconProps?: IconBaseProps;
-  variant?: 'normal' | 'small';
-  color?: 'gray' | 'blue' | 'red';
-  onClick?: () => void;
-  children?: React.ReactNode | string | number;
+  icon?: IconType
+  iconProps?: IconBaseProps
+  variant?: 'normal' | 'small'
+  color?: 'gray' | 'blue' | 'red'
+  onClick?: () => void
+  children?: React.ReactNode | string | number
 }
 
 const TextButton: React.FC<Props> = ({
@@ -20,7 +20,7 @@ const TextButton: React.FC<Props> = ({
   children,
   onClick,
 }) => {
-  const Icon = icon;
+  const Icon = icon
 
   return (
     <button
@@ -33,7 +33,7 @@ const TextButton: React.FC<Props> = ({
       {Icon && ' '}
       {children}
     </button>
-  );
-};
+  )
+}
 
-export default TextButton;
+export default TextButton

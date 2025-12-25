@@ -2,64 +2,106 @@ import { initializeApp } from 'firebase/app'
 import {
   arrayRemove,
   arrayUnion,
-  collection,
+  // collection,
+  deleteDoc,
   doc,
-  DocumentData,
-  getDoc,
-  getDocs,
+  // DocumentData,
+  // getDoc,
+  // getDocs,
   getFirestore,
-  orderBy,
-  query,
-  QuerySnapshot,
+  // orderBy,
+  // query,
+  // QuerySnapshot,
+  setDoc,
   updateDoc,
 } from 'firebase/firestore'
-import { Group } from '../components/Firebase/types'
 import { firebaseConfig } from '../config/firebase'
+import { FirebaseGroup, FirebaseQuestionState, QuestionId } from '../types'
+import { mockGroups } from '../mock/groups'
+import { mockQuestionsState } from '../mock/questionsState'
 
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 
-const fetchGroups = async (): Promise<Group[]> => {
-  const groupsCollection = collection(db, 'groups')
-  const q = query(groupsCollection, orderBy('order'))
-  const groupSnapshot: QuerySnapshot<DocumentData> = await getDocs(q)
-  return groupSnapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-  })) as Group[]
+const fetchGroups = async (): Promise<FirebaseGroup[]> => {
+  // const groupsCollection = collection(db, 'groups')
+  // const q = query(groupsCollection, orderBy('order'))
+  // const groupSnapshot: QuerySnapshot<DocumentData> = await getDocs(q)
+  // return groupSnapshot.docs.map((doc) => ({
+  //   id: doc.id,
+  //   ...doc.data(),
+  // })) as FirebaseGroup[]
+
+  // get all groups from mockGroups
+  return new Promise((resolve) => {
+    const groups = mockGroups.sort((a, b) => a.order - b.order)
+    resolve(groups)
+  })
 }
 
-const fetchGroup = async (id: string): Promise<Group | null> => {
-  const docRef = doc(db, 'groups', id)
-  const docSnap = await getDoc(docRef)
-  return docSnap.exists() ? (docSnap.data() as Group) : null
+const fetchGroup = async (id: string): Promise<FirebaseGroup | null> => {
+  // const docRef = doc(db, 'groups', id)
+  // const docSnap = await getDoc(docRef)
+  // return docSnap.exists() ? (docSnap.data() as FirebaseGroup) : null
+
+  // get group from mockGroups
+  const group = mockGroups.find((group) => group.id === id)
+  return new Promise((resolve) => {
+    resolve(group ?? null)
+  })
 }
 
-const addQuestionToGroup = async (groupId: string, questionId: string): Promise<void> => {
+const addQuestionToGroup = async (groupId: string, questionId: QuestionId): Promise<void> => {
   const groupRef = doc(db, 'groups', groupId)
   await updateDoc(groupRef, {
-    questionIds: arrayUnion(questionId),
+    questionIds: arrayUnion(String(questionId)),
   })
 }
 
-const removeQuestionFromGroup = async (groupId: string, questionId: string): Promise<void> => {
+const removeQuestionFromGroup = async (groupId: string, questionId: QuestionId): Promise<void> => {
   const groupRef = doc(db, 'groups', groupId)
   await updateDoc(groupRef, {
-    questionIds: arrayRemove(questionId),
+    questionIds: arrayRemove(String(questionId)),
   })
 }
 
-const questionGetCheckInApp = async (questionId: string): Promise<boolean> => {
-  const questionRef = doc(db, 'questions', questionId)
-  const questionSnap = await getDoc(questionRef)
-  return questionSnap.data()?.checkInApp
+const getQuestionStateById = async (questionId: QuestionId): Promise<FirebaseQuestionState | null> => {
+  // const questionRef = doc(db, 'questions', String(questionId))
+  // const questionSnap = await getDoc(questionRef)
+  // return questionSnap.exists() ? (questionSnap.data() as FirebaseQuestionState) : null
+
+  // get question from questionsState
+  const questionState = mockQuestionsState.find(
+    (questionState) => questionState.qAppId === String(questionId)
+  )
+  return new Promise((resolve) => {
+    resolve(questionState ?? null)
+  })
 }
 
-const questionSetCheckInApp = async (questionId: string, checkInApp: boolean): Promise<void> => {
-  const questionRef = doc(db, 'questions', questionId)
-  await updateDoc(questionRef, {
-    checkInApp,
+const getQuestionsStates = async (): Promise<FirebaseQuestionState[]> => {
+  // const questionsCollection = collection(db, 'questions')
+  // const q = query(questionsCollection)
+  // const questionSnapshot: QuerySnapshot<DocumentData> = await getDocs(q)
+  // return questionSnapshot.docs.map((doc) => ({
+  //   qAppId: doc.id,
+  //   ...doc.data(),
+  // })) as FirebaseQuestionState[]
+
+  // get all questions from questionsState
+  return new Promise((resolve) => {
+    resolve(mockQuestionsState)
   })
+}
+
+const updateQuestionStateById = async (state: FirebaseQuestionState): Promise<void> => {
+  const questionRef = doc(db, 'questions', state.qAppId)
+  await setDoc(questionRef, state, { merge: true })
+}
+
+const deleteQuestionStateById = async (questionId: QuestionId): Promise<void> => {
+  const questionRef = doc(db, 'questions', String(questionId))
+  await deleteDoc(questionRef)
 }
 
 export {
@@ -68,6 +110,8 @@ export {
   fetchGroup,
   addQuestionToGroup,
   removeQuestionFromGroup,
-  questionGetCheckInApp,
-  questionSetCheckInApp,
+  getQuestionStateById,
+  getQuestionsStates,
+  updateQuestionStateById,
+  deleteQuestionStateById,
 }

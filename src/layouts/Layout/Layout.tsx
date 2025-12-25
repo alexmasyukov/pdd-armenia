@@ -1,25 +1,25 @@
-import React from 'react';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import { Outlet, useLocation } from 'react-router-dom';
-import Header from '../../components/Header/Header';
-import { routes } from '../../router/constants';
+import React from 'react'
+import Container from '@mui/material/Container'
+import Grid from '@mui/material/Grid'
+import { Outlet, useLocation } from 'react-router-dom'
+import Header from '../../components/Header/Header'
+import { routes } from '../../router/constants'
 
 type Props = {
-  children?: React.ReactNode;
-};
+  children?: React.ReactNode
+}
 
 const Layout = ({ children }: Props) => {
-  const { pathname } = useLocation();
+  const { pathname } = useLocation()
 
-  const header = <Header />;
+  const header = <Header />
 
   const base = (
     <main>
       {children}
       <Outlet />
     </main>
-  );
+  )
 
   if (pathname === '/') {
     return (
@@ -31,7 +31,7 @@ const Layout = ({ children }: Props) => {
           </div>
         </Grid>
       </Container>
-    );
+    )
   }
 
   if (pathname === routes.topics.path || pathname === routes.detailedTopics.path) {
@@ -40,7 +40,7 @@ const Layout = ({ children }: Props) => {
         <Container>{header}</Container>
         {base}
       </>
-    );
+    )
   }
 
   return (
@@ -48,7 +48,7 @@ const Layout = ({ children }: Props) => {
       {header}
       {base}
     </Container>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout

@@ -1,12 +1,12 @@
-import { PiEyeLight, PiEyeSlashLight } from 'react-icons/pi';
-import { useAppState } from '../../contexts/AppStateContext/AppStateContext';
+import { PiEyeLight, PiEyeSlashLight } from 'react-icons/pi'
+import { useAppState } from '../../contexts/AppStateContext/AppStateContext'
 
 type Props = {
-  style?: React.CSSProperties;
-};
+  style?: React.CSSProperties
+}
 
 const ShowRightAnswersBtn = ({ style }: Props) => {
-  const { showRightAnswers, changeShowRightAnswersFlag } = useAppState();
+  const { showRightAnswers, changeShowRightAnswersFlag } = useAppState()
 
   return (
     <div
@@ -24,7 +24,7 @@ const ShowRightAnswersBtn = ({ style }: Props) => {
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ShowRightAnswersBtn;
+export default ShowRightAnswersBtn

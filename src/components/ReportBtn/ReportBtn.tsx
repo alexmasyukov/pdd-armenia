@@ -1,30 +1,30 @@
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { PiWarningLight } from 'react-icons/pi';
-import { FaTelegram } from 'react-icons/fa6';
-import { Question } from '../../types';
+import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { PiWarningLight } from 'react-icons/pi'
+import { FaTelegram } from 'react-icons/fa6'
+import { Question } from '../../types'
 
 type Props = {
-  questionId: Question['id'];
-  group: string | undefined;
-};
+  questionId: Question['id']
+  group: string | undefined
+}
 
 async function copyContent({ questionId, group }: Props) {
   try {
-    await navigator.clipboard.writeText(`Вопрос: ${questionId}\nГруппа: ${group}\nОшибка: `);
-    console.log('Content copied to clipboard');
+    await navigator.clipboard.writeText(`Вопрос: ${questionId}\nГруппа: ${group}\nОшибка: `)
+    console.log('Content copied to clipboard')
   } catch (err) {
-    console.error('Failed to copy: ', err);
+    console.error('Failed to copy: ', err)
   }
 }
 
 const ReportBtn = ({ questionId, group }: Props) => {
-  const { t } = useTranslation();
-  const [showMessage, setShowMessage] = useState(true);
+  const { t } = useTranslation()
+  const [showMessage, setShowMessage] = useState(true)
 
   useEffect(() => {
-    setShowMessage(false);
-  }, [questionId, group]);
+    setShowMessage(false)
+  }, [questionId, group])
 
   return (
     <>
@@ -66,7 +66,7 @@ const ReportBtn = ({ questionId, group }: Props) => {
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default ReportBtn;
+export default ReportBtn

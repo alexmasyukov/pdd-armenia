@@ -1,15 +1,15 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import Answer from './Answer';
-import { AnswerEvent, Question as QuestionType, AnswerKey } from '../../types';
-import s from './Question.module.scss';
+import React from 'react'
+import { useTranslation } from 'react-i18next'
+import Answer from './Answer'
+import { AnswerEvent, AnswerKey, Question as QuestionType } from '../../types'
+import s from './Question.module.scss'
 
 interface Props {
-  item: QuestionType;
-  enabled: boolean;
-  answerFromHistory: AnswerKey;
-  onAnswer: (event: AnswerEvent) => void;
-  showRightAnswer?: boolean;
+  item: QuestionType
+  enabled: boolean
+  answerFromHistory: AnswerKey
+  onAnswer: (event: AnswerEvent) => void
+  showRightAnswer?: boolean
 }
 
 const Question: React.FC<Props> = ({
@@ -17,19 +17,19 @@ const Question: React.FC<Props> = ({
   enabled,
   answerFromHistory,
   showRightAnswer,
-  item: { q, a1, a2, a3, a4, a5, a6, correct, img, gid },
+  item: { id: qid, q, a1, a2, a3, a4, a5, a6, correct, img, gid },
 }) => {
-  const { t } = useTranslation();
-  const answered = answerFromHistory;
+  const { t } = useTranslation()
+  const answered = answerFromHistory
 
   const handleAnswerClick = (answerKey: AnswerKey) => () => {
     if (enabled) {
       onAnswer({
         answer: answerKey,
         answerIsCorrect: correct === answerKey,
-      });
+      })
     }
-  };
+  }
 
   const answers = [
     { key: 'a1', value: a1 },
@@ -38,7 +38,7 @@ const Question: React.FC<Props> = ({
     { key: 'a4', value: a4 },
     { key: 'a5', value: a5 },
     { key: 'a6', value: a6 },
-  ];
+  ]
 
   return (
     <div className={s.question}>
@@ -68,7 +68,7 @@ const Question: React.FC<Props> = ({
           ))}
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default Question;
+export default Question

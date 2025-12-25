@@ -1,49 +1,49 @@
-import React, { useEffect, useState } from 'react';
-import HelpForm from './HelpForm';
-import { Question } from '../../types';
+import React, { useEffect, useState } from 'react'
+import HelpForm from './HelpForm'
+import { Question } from '../../types'
 
 const Wrapper = ({ children }: { children: React.ReactNode }) => {
-  return <div className='help-wrapper'>{children}</div>;
-};
+  return <div className='help-wrapper'>{children}</div>
+}
 
 type Props = {
-  questionId: Question['id'];
-};
+  questionId: Question['id']
+}
 
 const Help = ({ questionId }: Props) => {
-  const [isEdit, setIsEdit] = useState(false);
-  const [hint, setHint] = useState('');
+  const [isEdit, setIsEdit] = useState(false)
+  const [hint, setHint] = useState('')
 
   const getQuestionHint = async (questionId: Question['id']) => {
     try {
-      const response = await fetch(`http://localhost:9000/hint?id=${questionId}`);
-      const { data, errors } = await response.json();
+      const response = await fetch(`http://localhost:9000/hint?id=${questionId}`)
+      const { data, errors } = await response.json()
       if (response.ok) {
         if ('hint' in data) {
-          setHint(data.hint);
+          setHint(data.hint)
         }
       } else {
-        console.error(errors);
+        console.error(errors)
       }
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
-  };
+  }
 
   const handleSave = () => {
-    setIsEdit(false);
-  };
+    setIsEdit(false)
+  }
 
   useEffect(() => {
-    getQuestionHint(questionId);
-  }, [questionId]);
+    getQuestionHint(questionId)
+  }, [questionId])
 
   if (isEdit) {
     return (
       <Wrapper>
         <HelpForm onSave={handleSave} />
       </Wrapper>
-    );
+    )
   }
 
   return (
@@ -53,7 +53,7 @@ const Help = ({ questionId }: Props) => {
         Edit
       </button>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default Help;
+export default Help

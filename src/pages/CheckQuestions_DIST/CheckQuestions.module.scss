@@ -1,0 +1,31 @@
+.active {
+  background: #2c3a2c;
+}
+
+.policeAnswer {
+  position: absolute;
+  right: 0;
+  background: #ff0000;
+  width: 20px;
+  height: 100%;
+  bottom: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    padding: 3px 5px;
+    background: #202020;
+    margin-bottom: 3px;
+    position: relative;
+  }
+}
+
+.container {
+  img {
+    width: 70%;
+  }
+}

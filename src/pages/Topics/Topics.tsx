@@ -1,30 +1,30 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
-import Progress from '../../components/Progress/Progress';
-import { getStatisticsByGroup } from '../../helpers';
-import { routes } from '../../router/constants';
-import { Language } from '../../enums';
-import { StatisticsStore } from '../../services/StatisticsStore';
-import CleanAllStatistics from '../../components/CleanButtons/CleanAllStatistics';
-import { useCleaned } from '../../hooks/useCleaned';
-import InFavoriteLink from '../../components/InFavoriteLink/InFavoriteLink';
-import { useAppState } from '../../contexts/AppStateContext/AppStateContext';
-import TopicsPlaceholder from '../../placeholders/TopicsPlaceholder';
-import s from './Topics.module.scss';
-import { pluralize } from '../../helpers/text';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import Grid from '@mui/material/Grid'
+import Container from '@mui/material/Container'
+import Progress from '../../components/Progress/Progress'
+import { getStatisticsByGroup } from '../../helpers'
+import { routes } from '../../router/constants'
+import { Language } from '../../enums'
+import { StatisticsStore } from '../../services/StatisticsStore'
+import CleanAllStatistics from '../../components/CleanButtons/CleanAllStatistics'
+import { useCleaned } from '../../hooks/useCleaned'
+import InFavoriteLink from '../../components/InFavoriteLink/InFavoriteLink'
+import { useAppState } from '../../contexts/AppStateContext/AppStateContext'
+import TopicsPlaceholder from '../../placeholders/TopicsPlaceholder'
+import s from './Topics.module.scss'
+import { pluralize } from '../../helpers/text'
 
 const Topics: React.FC = () => {
-  const { t, i18n } = useTranslation();
-  const { onCleaned } = useCleaned();
-  const { content } = useAppState();
+  const { t, i18n } = useTranslation()
+  const { onCleaned } = useCleaned()
+  const { content } = useAppState()
 
-  const questionsStatistics = StatisticsStore.getAllQuestionsStatistics(i18n.language as Language);
+  const questionsStatistics = StatisticsStore.getAllQuestionsStatistics(i18n.language as Language)
 
   if (content.loading) {
-    return <TopicsPlaceholder />;
+    return <TopicsPlaceholder />
   }
 
   return (
@@ -53,7 +53,7 @@ const Topics: React.FC = () => {
           const statistics = getStatisticsByGroup(group.id, questionsStatistics, {
             groups: content.groups,
             questions: content.questions,
-          });
+          })
 
           return (
             <React.Fragment key={group.id}>
@@ -68,8 +68,8 @@ const Topics: React.FC = () => {
                 <Grid item xs={5} sm={3} md={2} textAlign={'right'}>
                   <div className={s.count}>
                     <div>
-                      {statistics.inFavotite ? (
-                        <InFavoriteLink count={statistics.inFavotite} topicId={group.id} />
+                      {statistics.inFavorite ? (
+                        <InFavoriteLink count={statistics.inFavorite} topicId={group.id} />
                       ) : (
                         <></>
                       )}
@@ -79,7 +79,6 @@ const Topics: React.FC = () => {
                       {' '}/{' '}
                       <span>{statistics.wrong}</span>
                     </div>
-                    {/* <div>{statistics.questionsCount}</div> */}
                   </div>
                 </Grid>
                 <Grid item xs={12}>
@@ -100,7 +99,7 @@ const Topics: React.FC = () => {
                 )}
               </Grid>
             </React.Fragment>
-          );
+          )
         })}
 
         <Grid container mb={1} justifyContent='flex-end'>
@@ -108,7 +107,7 @@ const Topics: React.FC = () => {
         </Grid>
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default Topics;
+export default Topics

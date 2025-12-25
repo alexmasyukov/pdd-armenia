@@ -27,6 +27,14 @@ export const routes = {
       view: (id: string) => `/favorite/${id}`,
     },
   },
+  topicErrors: {
+    path: '/topic-errors',
+    titleI18nKey: 'isErrors',
+    errorsByTopicId: {
+      path: '/topic-errors/:id',
+      view: (id: string) => `/topic-errors/${id}`,
+    },
+  },
   checkQuestions: {
     path: '/check-questions',
     titleI18nKey: 'check-questions',
@@ -35,4 +43,4 @@ export const routes = {
     path: '/errors',
     titleI18nKey: 'errors',
   },
-};
+}
