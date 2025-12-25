@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import clsx from 'clsx'
 import Grid from '@mui/material/Grid'
-import Button from '@mui/material/Button'
-import LoadingButton from '@mui/lab/LoadingButton'
 import { useAppState } from '../../contexts/AppStateContext/AppStateContext'
 import { useFirebase } from '../../contexts/FirebaseContext'
 import { FirebaseGroup, FirebaseQuestionState, Question } from '../../types'
 import QuestionCheckStatusWithInitialValue from '../../components/QuestionCheckStatus/QuestionCheckStatusWithInitialValue'
+import RightQuestionBlock from './RightQuestionBlock'
 import s from './CheckQuestions.module.scss'
 import ru2026Data from '../../data/ru_2026.json'
 
@@ -52,7 +51,6 @@ const CheckQuestions = () => {
   const [questionStates, setQuestionStates] = useState<Record<string, FirebaseQuestionState>>({})
   const [ru2026Questions, setRu2026Questions] = useState<Ru2026Question[]>(ru2026InitialData)
   const [leftQuestions, setLeftQuestions] = useState<LeftQuestion[]>([])
-  const [sendingQuestions, setSendingQuestions] = useState<Record<number, boolean>>({})
 
   // Загрузка данных с облака при старте
   useEffect(() => {
@@ -92,46 +90,6 @@ const CheckQuestions = () => {
       setLeftQuestions(processed)
     }
   }, [content.questions])
-
-  const handleMatchQuestion = async (question: Ru2026Question) => {
-    setSendingQuestions((prev) => ({ ...prev, [question.id]: true }))
-
-    const now = new Date()
-    const dateStr = now.toLocaleDateString('ru-RU')
-    const timeStr = now.toLocaleTimeString('ru-RU')
-    const updatedAt = `Обновлено ${dateStr}, ${timeStr}`
-
-    const questionWithUpdate: Ru2026Question = {
-      ...question,
-      updatedAt,
-    }
-
-    try {
-      const response = await fetch(`https://api.metriki.cc/pdd/${question.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          id: question.id,
-          content: questionWithUpdate,
-        }),
-      })
-
-      if (response.ok) {
-        setRu2026Questions((prev) =>
-          prev.map((q) => (q.id === question.id ? questionWithUpdate : q))
-        )
-      } else {
-        alert(`Ошибка отправки: ${response.status}`)
-      }
-    } catch (error) {
-      console.error(error)
-      alert('Ошибка сети при отправке')
-    } finally {
-      setSendingQuestions((prev) => ({ ...prev, [question.id]: false }))
-    }
-  }
 
   const downloadJson = () => {
     const jsonString = JSON.stringify(ru2026Questions, null, 2)
@@ -322,96 +280,10 @@ const CheckQuestions = () => {
             {/* Правая колонка - вопрос из ru_2026.json */}
             <Grid item xs={6}>
               {rightQuestion ? (
-                <div className={s.questionBlock}>
-                  <div className={s.questionId}>id: {rightQuestion.id}</div>
-
-                  <div className={s.questionImage}>
-                    {rightQuestion.img ? (
-                      <img
-                        src={`${process.env.PUBLIC_URL}/images/questions/${rightQuestion.gid}/${rightQuestion.img}.jpg`}
-                        alt=''
-                      />
-                    ) : (
-                      <div>без изображения</div>
-                    )}
-                  </div>
-
-                  <div className={s.questionText}>
-                    <b>{rightQuestion.q}</b>
-                  </div>
-
-                  <ul className={s.ul}>
-                    {rightQuestion.a1 && (
-                      <li className={clsx({ [s.active]: rightQuestion.correct === 'a1' })}>
-                        1. {rightQuestion.a1}
-                      </li>
-                    )}
-                    {rightQuestion.a2 && (
-                      <li className={clsx({ [s.active]: rightQuestion.correct === 'a2' })}>
-                        2. {rightQuestion.a2}
-                      </li>
-                    )}
-                    {rightQuestion.a3 && (
-                      <li className={clsx({ [s.active]: rightQuestion.correct === 'a3' })}>
-                        3. {rightQuestion.a3}
-                      </li>
-                    )}
-                    {rightQuestion.a4 && (
-                      <li className={clsx({ [s.active]: rightQuestion.correct === 'a4' })}>
-                        4. {rightQuestion.a4}
-                      </li>
-                    )}
-                    {rightQuestion.a5 && (
-                      <li className={clsx({ [s.active]: rightQuestion.correct === 'a5' })}>
-                        5. {rightQuestion.a5}
-                      </li>
-                    )}
-                    {rightQuestion.a6 && (
-                      <li className={clsx({ [s.active]: rightQuestion.correct === 'a6' })}>
-                        6. {rightQuestion.a6}
-                      </li>
-                    )}
-                  </ul>
-
-                  <div style={{ marginTop: '20px', display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <label>old-id:</label>
-                    <input
-                      type="text"
-                      defaultValue={rightQuestion.oldId ?? leftQuestion?.id ?? ''}
-                      id={`oldId-${rightQuestion.id}`}
-                      className={s.oldIdInput}
-                    />
-                    <Button
-                      variant="outlined"
-                      size="small"
-                      onClick={() => {
-                        const input = document.getElementById(`oldId-${rightQuestion.id}`) as HTMLInputElement
-                        if (input) {
-                          setRu2026Questions((prev) =>
-                            prev.map((q) =>
-                              q.id === rightQuestion.id ? { ...q, oldId: input.value } : q
-                            )
-                          )
-                        }
-                      }}
-                    >
-                      Сохранить
-                    </Button>
-                  </div>
-
-                  <div style={{ marginTop: '12px' }}>
-                    <LoadingButton
-                      onClick={() => handleMatchQuestion(rightQuestion)}
-                      loading={sendingQuestions[rightQuestion.id]}
-                      disabled={sendingQuestions[rightQuestion.id]}
-                      variant="outlined"
-                      size="small"
-                      color={rightQuestion.updatedAt ? 'info' : 'secondary'}
-                    >
-                      {rightQuestion.updatedAt || 'Вопросы совпадают'}
-                    </LoadingButton>
-                  </div>
-                </div>
+                <RightQuestionBlock
+                  newQuestion={rightQuestion}
+                  oldQuestion={leftQuestion}
+                />
               ) : (
                 <div className={s.emptyBlock}>—</div>
               )}

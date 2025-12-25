@@ -21,7 +21,6 @@ const CheckStatusBtn = ({ lastCheckedDate, onClick, label, loading, disabled }: 
   ) : (
     <>
       <PiSealWarningLight fontSize={20} />
-      
       {disabled ? '' : '  '} Не проверено {initialLabel}
     </>
   )
