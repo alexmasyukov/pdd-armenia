@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import clsx from 'clsx'
 import LoadingButton from '@mui/lab/LoadingButton'
 import s from './CheckQuestions.module.scss'
+import { LeftQuestion } from './CheckQuestionsLoader'
 
 type Ru2026QuestionRaw = {
   id: number
@@ -22,27 +23,12 @@ type Ru2026Question = Ru2026QuestionRaw & {
   findValue: string
   updatedAt?: string
   oldId?: string
-}
-
-type LeftQuestion = {
-  id: number
-  gid: string
-  tid: string
-  q: string
-  a1?: string
-  a2?: string
-  a3?: string
-  a4?: string
-  a5?: string
-  a6?: string
-  correct: string
-  img: string
-  findValue: string
+  isStrange?: boolean
 }
 
 type Props = {
   newQuestion: Ru2026Question
-  oldQuestion: LeftQuestion | undefined
+  oldQuestion: LeftQuestion
 }
 
 const RightQuestionBlock = ({ newQuestion, oldQuestion }: Props) => {
@@ -66,21 +52,23 @@ const RightQuestionBlock = ({ newQuestion, oldQuestion }: Props) => {
   const handleMatchQuestion = async () => {
     setSending(true)
 
-    // Берём актуальное значение oldId из input
-    const input = document.getElementById(`oldId-${question.id}`) as HTMLInputElement
+    // Берём актуальные значения из input'ов
+    const oldIdInput = document.getElementById(`oldId-${question.id}`) as HTMLInputElement
+    const isStrangeInput = document.getElementById(`isStrange-${question.id}`) as HTMLInputElement
 
     const updatedAt = new Date().toISOString()
 
     const updatedQuestion: Ru2026Question = {
       ...question,
-      oldId: input?.value ?? question.oldId ?? '',
+      oldId: oldIdInput?.value ?? question.oldId ?? '',
       updatedAt,
       tid: oldQuestion?.tid ?? question.tid,
       img: oldQuestion?.img ?? question.img,
+      isStrange: isStrangeInput?.checked ?? false,
     }
 
     try {
-      const response = await fetch(`https://api.metriki.cc/pdd/${question.id}`, {
+      const response = await fetch(`http://localhost:8888/pdd/${question.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -142,7 +130,7 @@ const RightQuestionBlock = ({ newQuestion, oldQuestion }: Props) => {
         />
       </div>
 
-      <div style={{ marginTop: '12px' }}>
+      <div style={{ marginTop: '12px', display: 'flex', alignItems: 'center', gap: '16px' }}>
         <LoadingButton
           onClick={handleMatchQuestion}
           loading={sending}
@@ -155,6 +143,11 @@ const RightQuestionBlock = ({ newQuestion, oldQuestion }: Props) => {
             ? `Обновлено ${new Date(question.updatedAt).toLocaleDateString('ru-RU')}, ${new Date(question.updatedAt).toLocaleTimeString('ru-RU')}`
             : 'Вопросы совпадают'}
         </LoadingButton>
+
+        <label style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}>
+          <input type='checkbox' id={`isStrange-${question.id}`} defaultChecked={question.isStrange} />
+          Это спорный вопрос
+        </label>
       </div>
     </div>
   )
