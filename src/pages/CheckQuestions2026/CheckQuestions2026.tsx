@@ -80,11 +80,11 @@ const CheckQuestions2026 = () => {
                   old-id: {q.oldId}
                 </div>
               )}
-              {q.oldId ? (
-                <AddQuestion questionId={q.oldId} groups={groups} onGroupsChange={handleGroupsChange} />
-              ) : (
-                <span style={{ color: 'red' }}>NONE</span>
-              )}
+              {/*{q.oldId ? (*/}
+              {/*  <AddQuestion questionId={q.oldId} groups={groups} onGroupsChange={handleGroupsChange} />*/}
+              {/*) : (*/}
+              {/*  <span style={{ color: 'red' }}>NONE</span>*/}
+              {/*)}*/}
             </div>
           </Grid>
 
