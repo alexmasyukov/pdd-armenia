@@ -29,9 +29,11 @@ type Ru2026Question = Ru2026QuestionRaw & {
 type Props = {
   newQuestion: Ru2026Question
   oldQuestion: LeftQuestion
+  groupsIds?: string[]
+  getGroupNameById?: (id: string) => React.ReactNode
 }
 
-const RightQuestionBlock = ({ newQuestion, oldQuestion }: Props) => {
+const RightQuestionBlock = ({ newQuestion, oldQuestion, groupsIds, getGroupNameById }: Props) => {
   const [sending, setSending] = useState(false)
 
   if (newQuestion.id === 1) console.log('newQuestion', newQuestion)
@@ -119,6 +121,23 @@ const RightQuestionBlock = ({ newQuestion, oldQuestion }: Props) => {
         {question.a5 && <li className={clsx({ [s.active]: question.correct === 'a5' })}>5. {question.a5}</li>}
         {question.a6 && <li className={clsx({ [s.active]: question.correct === 'a6' })}>6. {question.a6}</li>}
       </ul>
+
+      <div className={s.questionMeta}>
+        {groupsIds && getGroupNameById ? (
+          <ul>
+            <li>
+              <b>{question.oldId}</b>
+            </li>
+            {groupsIds.map((gId) => (
+              <li key={gId}>
+                <b>{getGroupNameById(gId)}</b>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <span style={{ color: 'red' }}>NONE</span>
+        )}
+      </div>
 
       <div style={{ marginTop: '20px', display: 'flex', alignItems: 'center', gap: '12px' }}>
         <label>old-id:</label>

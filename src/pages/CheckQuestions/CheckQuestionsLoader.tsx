@@ -64,7 +64,7 @@ const CheckQuestionsLoader = () => {
     const loadAllData = async () => {
       try {
         // Загружаем все данные параллельно
-        const [groupsResult, statesResult, cloudResult] = await Promise.all([
+        const [groupsResult, statesResult, cloudResult = []] = await Promise.all([
           fetchGroups().catch((err) => {
             console.error('Error fetching groups:', err)
             return [] as FirebaseGroup[]
@@ -73,12 +73,12 @@ const CheckQuestionsLoader = () => {
             console.error('Error fetching question states:', err)
             return [] as FirebaseQuestionState[]
           }),
-          fetch('http://localhost:8888/pdd')
-            .then((res) => (res.ok ? res.json() : []))
-            .catch((err) => {
-              console.error('Error fetching cloud questions:', err)
-              return []
-            }),
+          // fetch('http://localhost:8888/pdd')
+          //   .then((res) => (res.ok ? res.json() : []))
+          //   .catch((err) => {
+          //     console.error('Error fetching cloud questions:', err)
+          //     return []
+          //   }),
         ])
 
         // Устанавливаем группы

@@ -100,6 +100,7 @@ const CheckQuestionsContent = ({ groups, questionStates, ru2026Questions, leftQu
         const leftQuestion = leftQuestions[index]
         const rightQuestion = ru2026Questions[index]
         const groupsIds = leftQuestion ? questionsToGroupIdsHash?.[leftQuestion.id] : null
+        const rightGroupsIds = rightQuestion?.oldId ? questionsToGroupIdsHash?.[rightQuestion.oldId] : undefined
 
         return (
           <Grid container spacing={4} key={index} className={s.row}>
@@ -163,7 +164,7 @@ const CheckQuestionsContent = ({ groups, questionStates, ru2026Questions, leftQu
                     )}
                   </ul>
 
-                  <div style={{ marginTop: '20px' }}>
+                  <div style={{ display: 'none' }}>
                     <QuestionCheckStatusWithInitialValue
                       questionId={leftQuestion.id}
                       initialQuestionState={questionStates?.[leftQuestion.id]}
@@ -195,7 +196,12 @@ const CheckQuestionsContent = ({ groups, questionStates, ru2026Questions, leftQu
             {/* Правая колонка - вопрос из ru_2026.json */}
             <Grid item xs={6}>
               {rightQuestion ? (
-                <RightQuestionBlock newQuestion={rightQuestion} oldQuestion={leftQuestion} />
+                <RightQuestionBlock
+                  newQuestion={rightQuestion}
+                  oldQuestion={leftQuestion}
+                  groupsIds={rightGroupsIds}
+                  getGroupNameById={getGroupNameById}
+                />
               ) : (
                 <div className={s.emptyBlock}>—</div>
               )}

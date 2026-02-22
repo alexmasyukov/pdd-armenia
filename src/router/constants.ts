@@ -39,6 +39,10 @@ export const routes = {
     path: '/check-questions',
     titleI18nKey: 'check-questions',
   },
+  checkQuestions2026: {
+    path: '/check-questions-2026',
+    titleI18nKey: 'check-questions-2026',
+  },
   errors: {
     path: '/errors',
     titleI18nKey: 'errors',
