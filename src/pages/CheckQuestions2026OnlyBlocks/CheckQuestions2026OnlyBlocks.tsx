@@ -2,7 +2,7 @@ import React from 'react'
 import clsx from 'clsx'
 import Grid from '@mui/material/Grid'
 import ru2026Data from '../../data/ru_2026.json'
-import s from '../CheckQuestions/CheckQuestions.module.scss'
+import s from './CheckQuestions2026OnlyBlocks.module.scss'
 
 type Question = {
   id: number

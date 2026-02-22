@@ -47,6 +47,10 @@ export const routes = {
     path: '/check-questions-2026-only-blocks',
     titleI18nKey: 'check-questions-2026-only-blocks',
   },
+  firebaseGroups: {
+    path: '/firebase-groups',
+    titleI18nKey: 'firebase-groups',
+  },
   errors: {
     path: '/errors',
     titleI18nKey: 'errors',
