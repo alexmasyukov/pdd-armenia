@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import Grid from '@mui/material/Grid'
@@ -7,58 +7,32 @@ import Progress from '../../components/Progress/Progress'
 import { routes } from '../../router/constants'
 import CleanAllStatistics from '../../components/CleanButtons/CleanAllStatistics'
 import { useCleaned } from '../../hooks/useCleaned'
-import TopicsPlaceholder from '../../placeholders/TopicsPlaceholder'
-import { useFirebase } from '../../contexts/FirebaseContext'
 import { StatisticsStore } from '../../services/StatisticsStore'
 import { Language } from '../../enums'
 import { getStatisticByFirebaseGroup } from '../../helpers'
 import InFavoriteLink from '../../components/InFavoriteLink/InFavoriteLink'
 import s from './../Topics/Topics.module.scss'
 import { questionCountText } from '../../helpers/text'
-import { FirebaseGroup } from '../../types'
 import IsErrorsLink from '../../components/IsErrorsLink/IsErrorsLink'
+import groupsData from '../../data/groups-version-2.json'
+
+type DetailedGroup = {
+  id: string
+  name: string
+  order: number
+  questionIds: string[]
+}
+
+const groups = groupsData as DetailedGroup[]
 
 const DetailedTopics: React.FC = () => {
   const { t, i18n } = useTranslation()
   const { onCleaned } = useCleaned()
-  const { fetchGroups } = useFirebase()
-
-  const [groups, setGroups] = useState<FirebaseGroup[]>([])
-  const [loading, setLoading] = useState<boolean>(true)
 
   const allQuestionsStatistic = useMemo(
     () => StatisticsStore.getAllQuestionsStatistics(i18n.language as Language),
     []
   )
-
-  useEffect(() => {
-    const getGroups = async () => {
-      const fetchedGroups = await fetchGroups()
-      console.log('fetchedGroups', fetchedGroups)
-      setGroups(fetchedGroups)
-    }
-
-    setLoading(true)
-    getGroups().finally(() => setLoading(false))
-  }, [fetchGroups])
-
-  // TODO: fix this
-  // useEffect(() => {
-  //   const onStorageEvent = () => {
-  //     setFavoriteQuestions(getFavotiteQuestions(questions))
-  //   }
-  //
-  //   window.addEventListener('storage', onStorageEvent, false)
-  //
-  //   return () => {
-  //     window.removeEventListener('storage', onStorageEvent, false)
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [])
-
-  if (loading) {
-    return <TopicsPlaceholder />
-  }
 
   return (
     <>
@@ -107,7 +81,7 @@ const DetailedTopics: React.FC = () => {
                     </div>
                     <div>
                       <span>{stat.correct}</span>
-                      {' '}/{' '}
+                      {' '}/{' '}
                       <span>{stat.wrong}</span>
                     </div>
                   </div>

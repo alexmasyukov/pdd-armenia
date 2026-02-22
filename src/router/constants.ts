@@ -35,21 +35,9 @@ export const routes = {
       view: (id: string) => `/topic-errors/${id}`,
     },
   },
-  checkQuestions: {
-    path: '/check-questions',
-    titleI18nKey: 'check-questions',
-  },
-  checkQuestions2026: {
-    path: '/check-questions-2026',
-    titleI18nKey: 'check-questions-2026',
-  },
   checkQuestions2026OnlyBlocks: {
     path: '/check-questions-2026-only-blocks',
     titleI18nKey: 'check-questions-2026-only-blocks',
-  },
-  firebaseGroups: {
-    path: '/firebase-groups',
-    titleI18nKey: 'firebase-groups',
   },
   errors: {
     path: '/errors',

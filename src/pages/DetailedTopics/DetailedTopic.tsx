@@ -3,9 +3,17 @@ import Questions from '../../components/Questions/Questions'
 import { useAppState } from '../../contexts/AppStateContext/AppStateContext'
 import TopicPlaceholder from '../../placeholders/TopicPlaceholder'
 import { routes } from '../../router/constants'
-import { useFirebase } from '../../contexts/FirebaseContext'
-import { useEffect, useState } from 'react'
-import { FirebaseGroup, Question } from '../../types'
+import { Question } from '../../types'
+import groupsData from '../../data/groups-version-2.json'
+
+type DetailedGroup = {
+  id: string
+  name: string
+  order: number
+  questionIds: string[]
+}
+
+const groups = groupsData as DetailedGroup[]
 
 function getIntersection(array1: Question[], array2: string[]): Question[] {
   const set2 = new Set(array2)
@@ -15,33 +23,20 @@ function getIntersection(array1: Question[], array2: string[]): Question[] {
 const DetailedTopic = () => {
   const { id: topicId } = useParams<'id'>()
   const { content } = useAppState()
-  const { fetchGroup } = useFirebase()
 
-  const [group, setGroup] = useState<FirebaseGroup | null>(null)
-  const [loading, setLoading] = useState<boolean>(true)
-
-  useEffect(() => {
-    const getGroup = async () => {
-      const fetchedGroup = await fetchGroup(topicId!)
-      if (fetchedGroup) {
-        setGroup(fetchedGroup)
-      }
-    }
-
-    setLoading(true)
-    getGroup().finally(() => setLoading(false))
-  }, [fetchGroup, topicId])
-
-  // const topicQuestions = content.questions.filter((question) => question.gid === topicId);
-  // const groupName = content.groups.find((group) => group.id === topicId)?.name;
-
-  if (loading || content.loading) {
+  if (content.loading) {
     return <TopicPlaceholder />
   }
 
-  const topicQuestions = getIntersection(content.questions, group!.questionIds)
+  const group = groups.find((g) => g.id === topicId)
 
-  return <Questions questions={topicQuestions} title={group!.name} prevLink={routes.detailedTopics.path} />
+  if (!group) {
+    return <p>Группа не найдена</p>
+  }
+
+  const topicQuestions = getIntersection(content.questions, group.questionIds)
+
+  return <Questions questions={topicQuestions} title={group.name} prevLink={routes.detailedTopics.path} />
 }
 
 export default DetailedTopic

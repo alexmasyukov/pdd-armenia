@@ -13,10 +13,7 @@ const DetailedTopic = React.lazy(() => import('./../pages/DetailedTopics/Detaile
 const Topics = React.lazy(() => import('./../pages/Topics/Topics'))
 const Topic = React.lazy(() => import('./../pages/Topics/Topic'))
 const TopicErrors = React.lazy(() => import('./../pages/TopicErrors/TopicErrors'))
-const CheckQuestions = React.lazy(() => import('../pages/CheckQuestions/CheckQuestions'))
-const CheckQuestions2026 = React.lazy(() => import('../pages/CheckQuestions2026/CheckQuestions2026'))
 const CheckQuestions2026OnlyBlocks = React.lazy(() => import('../pages/CheckQuestions2026OnlyBlocks/CheckQuestions2026OnlyBlocks'))
-const FirebaseGroups = React.lazy(() => import('../pages/FirebaseGroups/FirebaseGroups'))
 const Errors = React.lazy(() => import('./../pages/Errors/Errors'))
 const Favorite = React.lazy(() => import('./../pages/Favorite/Favorite'))
 
@@ -95,37 +92,10 @@ const Router = () => {
         />
 
         <Route
-          path={routes.checkQuestions.path}
-          element={
-            <Suspense fallback={<TopicPlaceholder />}>
-              <CheckQuestions />
-            </Suspense>
-          }
-        />
-
-        <Route
-          path={routes.checkQuestions2026.path}
-          element={
-            <Suspense fallback={<TopicPlaceholder />}>
-              <CheckQuestions2026 />
-            </Suspense>
-          }
-        />
-
-        <Route
           path={routes.checkQuestions2026OnlyBlocks.path}
           element={
             <Suspense fallback={<TopicPlaceholder />}>
               <CheckQuestions2026OnlyBlocks />
-            </Suspense>
-          }
-        />
-
-        <Route
-          path={routes.firebaseGroups.path}
-          element={
-            <Suspense fallback={<TopicPlaceholder />}>
-              <FirebaseGroups />
             </Suspense>
           }
         />

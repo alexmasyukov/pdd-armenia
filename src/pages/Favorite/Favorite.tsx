@@ -9,9 +9,18 @@ import { useCleaned } from '../../hooks/useCleaned'
 import TopicPlaceholder from '../../placeholders/TopicPlaceholder'
 import { routes } from '../../router/constants'
 import { Group, Question } from '../../types'
-import { useFirebase } from '../../contexts/FirebaseContext'
 import { getQuestionsByGroupIdsAndFavoriteIds } from '../../helpers'
 import { FavoriteStore } from '../../services/FavoriteStore'
+import groupsData from '../../data/groups-version-2.json'
+
+type DetailedGroup = {
+  id: string
+  name: string
+  order: number
+  questionIds: string[]
+}
+
+const detailedGroups = groupsData as DetailedGroup[]
 
 const getQuestionsByGroupId = (questions: Question[], groupId: string) => {
   return questions.filter((question) => question.gid === groupId)
@@ -22,7 +31,6 @@ const Favorite: React.FC = () => {
   const { id: topicId } = useParams<'id'>()
   const { content } = useAppState()
   const { onCleaned } = useCleaned()
-  const { fetchGroup } = useFirebase()
 
   const [state, setState] = useState<{
     questions: Question[]
@@ -35,30 +43,20 @@ const Favorite: React.FC = () => {
   useEffect(() => {
     if (!content.loading && content.groups.length > 0 && content.questions.length > 0) {
       if (topicId) {
-        let questions: Question[] = []
-        let groupName: string | undefined = undefined
+        const detailedGroup = detailedGroups.find((g) => g.id === topicId)
 
-        if (topicId?.length > 10) {
-          // is firebase group id
-          const getGroup = async () => {
-            const fetchedGroup = await fetchGroup(topicId!)
-
-            if (fetchedGroup) {
-              setState({
-                questions: getQuestionsByGroupIdsAndFavoriteIds(
-                  content.questions,
-                  fetchedGroup.questionIds.map((q) => Number(q)),
-                  FavoriteStore.getFavorites()
-                ),
-                groupName: fetchedGroup.name,
-              })
-            }
-          }
-
-          getGroup()
+        if (detailedGroup) {
+          setState({
+            questions: getQuestionsByGroupIdsAndFavoriteIds(
+              content.questions,
+              detailedGroup.questionIds.map((q) => Number(q)),
+              FavoriteStore.getFavorites()
+            ),
+            groupName: detailedGroup.name,
+          })
         } else {
-          questions = getQuestionsByGroupId(content.questions, topicId)
-          groupName = content.groups.find((group) => group.id === topicId)?.name
+          const questions = getQuestionsByGroupId(content.questions, topicId)
+          const groupName = content.groups.find((group) => group.id === topicId)?.name
 
           if (groupName) {
             setState({

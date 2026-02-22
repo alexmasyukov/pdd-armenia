@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { PiCaretLeftBold } from 'react-icons/pi'
-// import clsx from 'clsx'
 import Question from '../Question/Question'
 import { AnswerEvent, AnswerHistory as AnswerHistoryType, Question as QuestionType } from '../../types'
 import AnswerHistory from '../AnswerHistory/AnswerHistory'
@@ -14,12 +13,8 @@ import { Language, QuestionStatus } from '../../enums'
 import ShowRightAnswersBtn from '../ShowRightAnswersBtn/ShowRightAnswersBtn'
 import ReportBtn from '../ReportBtn/ReportBtn'
 import ShowRightAnswerBtn from './components/ShowRightAnswerBtn'
-// import Help from '../Help/Help'
-// import HelpBtn from '../Help/HelpBtn'
 import s from './Questions.module.scss'
 import Grid from '@mui/material/Grid'
-import AddQuestion from '../Firebase/AddQuestion'
-import QuestionCheckStatus from '../QuestionCheckStatus/QuestionCheckStatus'
 import QuestionStatisticProgress from './components/QuestionStatisticProgress'
 
 interface Props {
@@ -51,7 +46,7 @@ const Questions: React.FC<Props> = ({
 }) => {
   const { t, i18n } = useTranslation()
   const navigate = useNavigate()
-  const { showRightAnswers, isLocalApp } = useAppState()
+  const { showRightAnswers } = useAppState()
   const [answerHistory, setAnswerHistory] = useState<AnswerHistoryType>(setEmptyAnswerHistory(questions))
   const [questionIndex, setQuestionIndex] = useState(0)
   const [hasNextQuestionBtn, setHasNextQuestionBtn] = useState(false)
@@ -167,12 +162,6 @@ const Questions: React.FC<Props> = ({
               showRightAnswer={showRightAnswers}
             />
 
-            {/*{isLocalApp && showHelp && (*/}
-            {/*  <div className={clsx(s['question-container'], s['help-container'])}>*/}
-            {/*    <Help questionId={currentQuestion.id} />*/}
-            {/*  </div>*/}
-            {/*)}*/}
-
             <div className={s['question-container']}>
               <div className={s.buttons}>
                 <div>
@@ -185,7 +174,6 @@ const Questions: React.FC<Props> = ({
 
                 <div className={s.rightBtns}>
                   {showShowCorrectAnswerBtn && <ShowRightAnswerBtn onClick={handleShowCorrectAnswerClick} />}
-                  {/*{isLocalApp && <HelpBtn onClick={() => setShowHelp(true)} />}*/}
 
                   {showNextQuestionBtn && (
                     <button className={s['next-question-btn']} onClick={hanldeNextQuestionClick}>
@@ -194,14 +182,9 @@ const Questions: React.FC<Props> = ({
                   )}
                 </div>
               </div>
-
-              <QuestionCheckStatus questionId={currentQuestion.id} disabled />
             </div>
           </div>
         </Grid>
-        {/*<Grid item md={6} mt={0}>*/}
-        {/*  <AddQuestion questionId={currentQuestion.id} />*/}
-        {/*</Grid>*/}
       </Grid>
     </>
   )

@@ -57,16 +57,3 @@ export type QuestionStatistics = [CorrectAnswerCount, WrongAnswerCount]
 export type QuestionsStatistics = Record<QuestionId, QuestionStatistics>
 
 export type QuestionsStatisticsByLanguage = Record<LocalStorageQuestionKey, QuestionStatistics>
-
-// Firebase types
-export type FirebaseQuestionState = {
-  qAppId: string
-  checkLastDate: string
-}
-
-export interface FirebaseGroup {
-  id: string
-  name: string
-  order: number
-  questionIds: string[]
-}
