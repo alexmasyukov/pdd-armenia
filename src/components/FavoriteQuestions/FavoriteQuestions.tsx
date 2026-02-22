@@ -21,7 +21,7 @@ const FavoriteQuestions: React.FC<Props> = ({
   prevLink = '',
   questionProgress = false,
 }) => {
-  const [favoriteQuestions, setFavoriteQuestions] = useState(questions)
+  const [favoriteQuestions, setFavoriteQuestions] = useState(getFavotiteQuestions(questions))
 
   useEffect(() => {
     const onStorageEvent = () => {

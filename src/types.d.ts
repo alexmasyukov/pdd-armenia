@@ -49,7 +49,7 @@ export type Favorites = QuestionId[]
 type CorrectAnswerCount = number
 type WrongAnswerCount = number
 
-export type LocalStorageQuestionKeyWithoutQuestionId = `q-${Language}`
+export type LocalStorageQuestionKeyWithoutQuestionId = `q2026-${Language}`
 export type LocalStorageQuestionKey = `${LocalStorageQuestionKeyWithoutQuestionId}-${Question['id']}`
 
 export type QuestionStatistics = [CorrectAnswerCount, WrongAnswerCount]

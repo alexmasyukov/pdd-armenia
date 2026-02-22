@@ -43,17 +43,17 @@ const Home: React.FC = () => {
             <HomeStatistic />
           </Paper>
           <Grid container spacing={1}>
-            <Grid item xs={6}>
+            {/* <Grid item xs={6}>
               <Link to={routes.detailedTopics.path}>
                 <Button red>
-                  Темы
+                  Расширенные темы
                 </Button>
               </Link>
-            </Grid>
-            <Grid item xs={6}>
+            </Grid> */}
+            <Grid item xs={12}>
               <Link to={routes.topics.path}>
-                <Button>
-                  <PiBookBookmarkFill size={22} /> Стандартные темы
+                <Button red>
+                  <PiBookBookmarkFill size={22} color="white" /> Вопросы по темам
                 </Button>
               </Link>
             </Grid>

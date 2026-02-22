@@ -30,11 +30,11 @@ export class StatisticsStore {
   static getLocalstorageQuestionKeyWithoutQuestionId = (
     lang: Language
   ): LocalStorageQuestionKeyWithoutQuestionId => {
-    return `q-${lang}`
+    return `q2026-${lang}`
   }
 
   static getLocalstorageQuestionKey = (questionId: QuestionId, lang: Language): LocalStorageQuestionKey => {
-    return `q-${lang}-${questionId}`
+    return `q2026-${lang}-${questionId}`
   }
 
   static getQuestionStatistics = (questionId: QuestionId, lang: Language): QuestionStatistics => {

@@ -1,7 +1,7 @@
 import { Favorites, QuestionId } from '../types'
 
 export class FavoriteStore {
-  private static favoritesKey = 'favorite'
+  private static favoritesKey = 'favorite-2026'
   private static initialFavorites: Favorites = []
 
   static getFavorites = () => {
