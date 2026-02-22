@@ -1,10 +1,8 @@
 import Switch from '@mui/material/Switch'
-import { useTranslation } from 'react-i18next'
 import Button from '../../components/Button/Button'
 import { useAppState } from '../../contexts/AppStateContext/AppStateContext'
 
 const SettingsPanel = () => {
-  const { t } = useTranslation()
   const { showRightAnswers, changeShowRightAnswersFlag } = useAppState()
 
   return (
@@ -17,7 +15,7 @@ const SettingsPanel = () => {
       }}
     >
       <Switch checked={showRightAnswers} size='small' color='info' onChange={changeShowRightAnswersFlag} />
-      {t('showRightAnswers')}
+      Отображать правильные ответы
     </Button>
   )
 }

@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next'
 import Grid from '@mui/material/Grid'
 import Progress from '../Progress/Progress'
 import { StatisticsStore } from '../../services/StatisticsStore'
@@ -7,10 +6,9 @@ import { Language } from '../../enums'
 import s from './HomeStatistic.module.scss'
 
 const HomeStatistic = () => {
-  const { t, i18n } = useTranslation()
   const { content } = useAppState()
 
-  const questionsStatistics = StatisticsStore.getAllQuestionsStatistics(i18n.language as Language)
+  const questionsStatistics = StatisticsStore.getAllQuestionsStatistics(Language.Russian)
   const questionsCount = Object.keys(questionsStatistics).length
 
   const allQuestionsCount = content.questions.length
@@ -24,25 +22,16 @@ const HomeStatistic = () => {
             <span>{questionsCount}</span> / {allQuestionsCount}
           </span>
           <Progress className={s.bar} max={allQuestionsCount} value={questionsCount} />
-          <span>{t('questions')}</span>
+          <span>Вопросы</span>
         </div>
       </Grid>
-      {/* <Grid item xs={4}>
-        <div className={s.item}>
-          <span>
-            <span>0</span> / {tickets}
-          </span>
-          <Progress className={s.bar} max={100} value={0} />
-          <span>{t('tickets')}</span>
-        </div>
-      </Grid> */}
       <Grid item xs={6}>
         <div className={s.item}>
           <span>
             <span>0</span> / {allTopicsCount}
           </span>
           <Progress className={s.bar} max={100} value={0} />
-          <span>{t('topics')}</span>
+          <span>Темы</span>
         </div>
       </Grid>
     </Grid>

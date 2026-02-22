@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
 import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
 import Progress from '../../components/Progress/Progress'
@@ -26,11 +25,10 @@ type DetailedGroup = {
 const groups = groupsData as DetailedGroup[]
 
 const DetailedTopics: React.FC = () => {
-  const { t, i18n } = useTranslation()
   const { onCleaned } = useCleaned()
 
   const allQuestionsStatistic = useMemo(
-    () => StatisticsStore.getAllQuestionsStatistics(i18n.language as Language),
+    () => StatisticsStore.getAllQuestionsStatistics(Language.Russian),
     []
   )
 
@@ -39,13 +37,13 @@ const DetailedTopics: React.FC = () => {
       <Container>
         <Grid container className={s.topicsTitle} mt={3} mb={1}>
           <Grid item xs={7} sm={8} md={9}>
-            {t('topic')}
+            Тема
           </Grid>
           <Grid item xs={5} sm={4} md={3} textAlign={'right'}>
             <div className={s.count}>
-              <div>{t('isErrors')}</div>
-              <div>{t('inFavorite')}</div>
-              <div>{t('solved')}</div>
+              <div>Ошибки</div>
+              <div>Избранное</div>
+              <div>Решено</div>
             </div>
           </Grid>
         </Grid>

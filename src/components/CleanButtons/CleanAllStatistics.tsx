@@ -1,5 +1,4 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next'
 import { PiKnifeThin } from 'react-icons/pi'
 import { Language } from '../../enums'
 import { StatisticsStore } from '../../services/StatisticsStore'
@@ -10,11 +9,9 @@ type Props = {
 }
 
 const CleanAllStatistics: React.FC<Props> = ({ onCleaned }) => {
-  const { t, i18n } = useTranslation()
-
   const handleCleanAllStatistics = () => {
-    if (window.confirm(t('clean-all-statistics-confirm'))) {
-      StatisticsStore.cleanAllStatistics(i18n.language as Language)
+    if (window.confirm('Вы уверены, что хотите полностью очистить статистику?')) {
+      StatisticsStore.cleanAllStatistics(Language.Russian)
       // This is needed to update the FavoriteQuestions component
       window.dispatchEvent(new Event('storage'))
       onCleaned && onCleaned()
@@ -23,7 +20,7 @@ const CleanAllStatistics: React.FC<Props> = ({ onCleaned }) => {
 
   return (
     <TextButton color='gray' variant='small' icon={PiKnifeThin} onClick={handleCleanAllStatistics}>
-      {t('clean-all-statistics')}
+      Очистить статистику
     </TextButton>
   )
 }

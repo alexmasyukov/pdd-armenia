@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
 import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
 import Progress from '../../components/Progress/Progress'
@@ -17,11 +16,10 @@ import s from './Topics.module.scss'
 import { pluralize } from '../../helpers/text'
 
 const Topics: React.FC = () => {
-  const { t, i18n } = useTranslation()
   const { onCleaned } = useCleaned()
   const { content } = useAppState()
 
-  const questionsStatistics = StatisticsStore.getAllQuestionsStatistics(i18n.language as Language)
+  const questionsStatistics = StatisticsStore.getAllQuestionsStatistics(Language.Russian)
 
   if (content.loading) {
     return <TopicsPlaceholder />
@@ -32,13 +30,12 @@ const Topics: React.FC = () => {
       <Container>
         <Grid container className={s.topicsTitle} mt={3} mb={1}>
           <Grid item xs={7} sm={9} md={10}>
-            {t('topic')}
+            Тема
           </Grid>
           <Grid item xs={5} sm={3} md={2} textAlign={'right'}>
             <div className={s.count}>
-              <div>{t('inFavorite')}</div>
-              <div>{t('solved')}</div>
-              {/* <div>{t('total')}</div> */}
+              <div>Избранное</div>
+              <div>Решено</div>
             </div>
           </Grid>
         </Grid>
@@ -76,7 +73,7 @@ const Topics: React.FC = () => {
                     </div>
                     <div>
                       <span>{statistics.correct}</span>
-                      {' '}/{' '}
+                      {' '}/{' '}
                       <span>{statistics.wrong}</span>
                     </div>
                   </div>

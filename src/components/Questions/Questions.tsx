@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { PiCaretLeftBold } from 'react-icons/pi'
 import Question from '../Question/Question'
@@ -44,7 +43,6 @@ const Questions: React.FC<Props> = ({
   prevLink,
   questionProgress = false,
 }) => {
-  const { t, i18n } = useTranslation()
   const navigate = useNavigate()
   const { showRightAnswers } = useAppState()
   const [answerHistory, setAnswerHistory] = useState<AnswerHistoryType>(setEmptyAnswerHistory(questions))
@@ -85,7 +83,7 @@ const Questions: React.FC<Props> = ({
   }
 
   const handleAnswer = ({ answer, answerIsCorrect, autoNextQuestion = true }: AnswerEvent) => {
-    saveToStorage(currentQuestion.id, answerIsCorrect, i18n.language as Language)
+    saveToStorage(currentQuestion.id, answerIsCorrect, Language.Russian)
 
     setAnswerHistory((prev) => {
       const newHistory = [...prev]
@@ -177,7 +175,7 @@ const Questions: React.FC<Props> = ({
 
                   {showNextQuestionBtn && (
                     <button className={s['next-question-btn']} onClick={hanldeNextQuestionClick}>
-                      {t('nextQuestion')}
+                      Следующий вопрос
                     </button>
                   )}
                 </div>

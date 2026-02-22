@@ -1,5 +1,4 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next'
 import Answer from './Answer'
 import { AnswerEvent, AnswerKey, Question as QuestionType } from '../../types'
 import s from './Question.module.scss'
@@ -19,7 +18,6 @@ const Question: React.FC<Props> = ({
   showRightAnswer,
   item: { id: qid, q, a1, a2, a3, a4, a5, a6, correct, img, gid },
 }) => {
-  const { t } = useTranslation()
   const answered = answerFromHistory
 
   const handleAnswerClick = (answerKey: AnswerKey) => () => {
@@ -45,7 +43,7 @@ const Question: React.FC<Props> = ({
       {img && <img src={`${process.env.PUBLIC_URL}/images/questions/${gid}/${img}.jpg`} alt='' />}
       {!img && (
         <div className={s.withoutImg}>
-          {t('questionWithoutImg')}
+          Вопрос без изображения
           <div />
         </div>
       )}

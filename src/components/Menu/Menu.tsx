@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
@@ -31,20 +30,17 @@ type Props = {
 }
 
 const Menu = ({ open, toggleMenu }: Props) => {
-  const { t } = useTranslation()
   const navigate = useNavigate()
 
   const DrawerList = (
     <Box sx={{ width: 250 }} role='presentation' onClick={toggleMenu(false)}>
       <MenuList>
-        {/* <Divider /> */}
-
         <MenuItem disablePadding>
           <ListItemButton onClick={() => navigate(routes.home.path)}>
             <Icon>
               <PiDotsNineBold size={20} />
             </Icon>
-            <ListItemText>{t('home')}</ListItemText>
+            <ListItemText>Главная</ListItemText>
           </ListItemButton>
         </MenuItem>
 
@@ -53,7 +49,7 @@ const Menu = ({ open, toggleMenu }: Props) => {
             <Icon>
               <PiBookBookmarkLight size={20} />
             </Icon>
-            <ListItemText>{t('topics')}</ListItemText>
+            <ListItemText>Темы</ListItemText>
           </ListItemButton>
         </MenuItem>
 
@@ -63,7 +59,7 @@ const Menu = ({ open, toggleMenu }: Props) => {
               <PiStarLight size={20} />
             </Icon>
             <ListItemText>
-              {t('favorite')}
+              Избранное
               <Badge
                 badgeContent={FavoriteStore.getFavorites().length}
                 color='warning'
@@ -79,7 +75,7 @@ const Menu = ({ open, toggleMenu }: Props) => {
             <Icon>
               <PiWarningLight size={20} />
             </Icon>
-            <ListItemText>{t('errors')}</ListItemText>
+            <ListItemText>Ошибки</ListItemText>
           </ListItemButton>
         </MenuItem>
 
@@ -88,7 +84,7 @@ const Menu = ({ open, toggleMenu }: Props) => {
             <Icon>
               <PiClockCountdownLight size={20} />
             </Icon>
-            <ListItemText>{t('exam')}</ListItemText>
+            <ListItemText>Экзамен</ListItemText>
           </ListItemButton>
         </MenuItem>
 

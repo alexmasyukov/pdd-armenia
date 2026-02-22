@@ -1,5 +1,4 @@
 import { FC, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { PiList } from 'react-icons/pi'
 import { CiDark } from 'react-icons/ci'
@@ -9,18 +8,12 @@ import { useAppSettings } from '../../contexts/AppSettingsContext/AppSettingsCon
 import s from './Header.module.scss'
 
 const Header: FC = () => {
-  const { t } = useTranslation()
   const { theme, toggleTheme } = useAppSettings()
   const [open, setOpen] = useState(false)
 
   const toggleMenu = (newOpen: boolean) => () => {
     setOpen(newOpen)
   }
-
-  // const changeLanguage = (lng: string) => {
-  //   localStorage.setItem('lang', lng);
-  //   i18n.changeLanguage(lng);
-  // };
 
   const handleMenuClick = () => {
     setOpen(true)
@@ -36,33 +29,20 @@ const Header: FC = () => {
             <img src={`${process.env.PUBLIC_URL}/images/flag.png`} alt='' />
 
             <h1>
-              <span>{t('pdd')}</span> 2026
+              <span>ПДД</span> 2026
             </h1>
           </Link>
         </div>
 
         <div className={s.right}>
-          {/* <span
-            onClick={() => changeLanguage('ru')}
-            className={clsx(s['lang-btn'], clsx({ [s.active]: i18n.language === 'ru' }))}
-          >
-            Рус
-          </span>
-          <span
-            onClick={() => changeLanguage('am')}
-            className={clsx(s['lang-btn'], { [s.active]: i18n.language === 'am' })}
-          >
-            Հայ
-          </span> */}
-
           <div className='theme-btn' onClick={toggleTheme}>
             {theme === 'dark' ? (
               <>
-                <MdOutlineWbSunny size={14} /> {t('lightTheme')}
+                <MdOutlineWbSunny size={14} /> Светлая тема
               </>
             ) : (
               <>
-                <CiDark size={14} /> {t('darkTheme')}
+                <CiDark size={14} /> Темная тема
               </>
             )}
           </div>

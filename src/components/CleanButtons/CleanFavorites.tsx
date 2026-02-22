@@ -1,5 +1,4 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next'
 import { PiStarHalfThin } from 'react-icons/pi'
 import { FavoriteStore } from '../../services/FavoriteStore'
 import TextButton from '../TextButton/TextButton'
@@ -11,10 +10,8 @@ type Props = {
 }
 
 const CleanFavorites: React.FC<Props> = ({ onCleaned, red, smallIcon }) => {
-  const { t } = useTranslation()
-
   const handleCleanFavorites = () => {
-    if (window.confirm(t('clean-favorites-confirm'))) {
+    if (window.confirm('Вы уверены, что хотите очистить избранное?')) {
       FavoriteStore.cleanFavorites()
       // This is needed to update the FavoriteQuestions component
       window.dispatchEvent(new Event('storage'))
@@ -32,7 +29,7 @@ const CleanFavorites: React.FC<Props> = ({ onCleaned, red, smallIcon }) => {
       }}
       onClick={handleCleanFavorites}
     >
-      {t('clean-favorites')}
+      Очистить избранное
     </TextButton>
   )
 }

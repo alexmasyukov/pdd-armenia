@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { Grid } from '@mui/material'
 import CleanFavorites from '../../components/CleanButtons/CleanFavorites'
@@ -27,7 +26,6 @@ const getQuestionsByGroupId = (questions: Question[], groupId: string) => {
 }
 
 const Favorite: React.FC = () => {
-  const { t } = useTranslation()
   const { id: topicId } = useParams<'id'>()
   const { content } = useAppState()
   const { onCleaned } = useCleaned()
@@ -74,7 +72,7 @@ const Favorite: React.FC = () => {
     }
   }, [content.loading, topicId, content])
 
-  const title = topicId ? `${t('favorite')}: ${state.groupName}` : t('favorite')
+  const title = topicId ? `Избранное: ${state.groupName}` : 'Избранное'
   const prevLink = topicId ? routes.detailedTopics.path : routes.home.path
 
   if (content.loading) {

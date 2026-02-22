@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { PiWarningLight } from 'react-icons/pi'
 import { FaTelegram } from 'react-icons/fa6'
 import { Question } from '../../types'
@@ -19,7 +18,6 @@ async function copyContent({ questionId, group }: Props) {
 }
 
 const ReportBtn = ({ questionId, group }: Props) => {
-  const { t } = useTranslation()
   const [showMessage, setShowMessage] = useState(true)
 
   useEffect(() => {
@@ -32,7 +30,7 @@ const ReportBtn = ({ questionId, group }: Props) => {
         className={`favorite-btn report-btn ${showMessage ? 'active' : ''}`}
         onClick={() => setShowMessage((prev) => !prev)}
       >
-        <PiWarningLight size={16} /> {t('report')}
+        <PiWarningLight size={16} /> Сообщить об ошибке
       </div>
       {showMessage && (
         <div className='report'>
@@ -61,7 +59,7 @@ const ReportBtn = ({ questionId, group }: Props) => {
               })
             }
           >
-            {t('copy-message')}
+            Копировать сообщение
           </button>
         </div>
       )}

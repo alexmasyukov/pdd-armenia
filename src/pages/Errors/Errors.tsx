@@ -1,5 +1,4 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next'
 import FavoriteQuestions from '../../components/FavoriteQuestions/FavoriteQuestions'
 import { useAppState } from '../../contexts/AppStateContext/AppStateContext'
 import TopicPlaceholder from '../../placeholders/TopicPlaceholder'
@@ -7,7 +6,6 @@ import { routes } from '../../router/constants'
 import { getQuestionsHasErrors } from './helpers'
 
 const Errors: React.FC = () => {
-  const { t } = useTranslation()
   const { content } = useAppState()
 
   if (content.loading) {
@@ -21,7 +19,7 @@ const Errors: React.FC = () => {
       {content.questions.length > 0 ? (
         <FavoriteQuestions
           questions={questions}
-          title={t('errors')}
+          title={'Ошибки'}
           prevLink={routes.home.path}
           questionProgress={true}
         />
