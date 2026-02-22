@@ -36,7 +36,7 @@ const Header: FC = () => {
             <img src={`${process.env.PUBLIC_URL}/images/flag.png`} alt='' />
 
             <h1>
-              <span>{t('pdd')}</span> 2024
+              <span>{t('pdd')}</span> 2026
             </h1>
           </Link>
         </div>

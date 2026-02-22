@@ -15,6 +15,7 @@ const Topic = React.lazy(() => import('./../pages/Topics/Topic'))
 const TopicErrors = React.lazy(() => import('./../pages/TopicErrors/TopicErrors'))
 const CheckQuestions = React.lazy(() => import('../pages/CheckQuestions/CheckQuestions'))
 const CheckQuestions2026 = React.lazy(() => import('../pages/CheckQuestions2026/CheckQuestions2026'))
+const CheckQuestions2026OnlyBlocks = React.lazy(() => import('../pages/CheckQuestions2026/CheckQuestions2026OnlyBlocks'))
 const Errors = React.lazy(() => import('./../pages/Errors/Errors'))
 const Favorite = React.lazy(() => import('./../pages/Favorite/Favorite'))
 
@@ -106,6 +107,15 @@ const Router = () => {
           element={
             <Suspense fallback={<TopicPlaceholder />}>
               <CheckQuestions2026 />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path={routes.checkQuestions2026OnlyBlocks.path}
+          element={
+            <Suspense fallback={<TopicPlaceholder />}>
+              <CheckQuestions2026OnlyBlocks />
             </Suspense>
           }
         />

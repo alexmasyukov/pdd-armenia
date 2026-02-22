@@ -43,6 +43,10 @@ export const routes = {
     path: '/check-questions-2026',
     titleI18nKey: 'check-questions-2026',
   },
+  checkQuestions2026OnlyBlocks: {
+    path: '/check-questions-2026-only-blocks',
+    titleI18nKey: 'check-questions-2026-only-blocks',
+  },
   errors: {
     path: '/errors',
     titleI18nKey: 'errors',
