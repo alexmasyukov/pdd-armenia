@@ -6,27 +6,32 @@ import s from './My.module.scss'
 
 type Props = {
   questionId: QuestionId
+  groups?: FirebaseGroup[]
+  onGroupsChange?: (groups: FirebaseGroup[]) => void
 }
 
-const AddQuestion = ({ questionId }: Props) => {
-  const [groups, setGroups] = useState<FirebaseGroup[]>([])
-  // const questionId = '6667';
-  // const [questionId] = useState<string>(() => Math.floor(Math.random() * 10000).toString())
+const AddQuestion = ({ questionId, groups: groupsProp, onGroupsChange }: Props) => {
+  const [groups, setGroups] = useState<FirebaseGroup[]>(groupsProp ?? [])
   const { fetchGroups, addQuestionToGroup, removeQuestionFromGroup } = useFirebase()
 
   useEffect(() => {
-    const getGroups = async () => {
-      const fetchedGroups = await fetchGroups()
-      setGroups(fetchedGroups)
+    if (groupsProp !== undefined) {
+      setGroups(groupsProp)
+      return
     }
-    getGroups()
-  }, [fetchGroups])
+    fetchGroups().then(setGroups).catch(console.error)
+  }, [groupsProp])
+
+  const refreshGroups = async () => {
+    const fetched = await fetchGroups()
+    setGroups(fetched)
+    onGroupsChange?.(fetched)
+  }
 
   const handleAddQuestion = async (groupId: string) => {
     try {
       await addQuestionToGroup(groupId, questionId)
-      const fetchedGroups = await fetchGroups()
-      setGroups(fetchedGroups) // Обновление данных после добавления
+      await refreshGroups()
     } catch (error) {
       console.error(error)
       alert('Error!')
@@ -36,8 +41,7 @@ const AddQuestion = ({ questionId }: Props) => {
   const handleRemoveQuestion = async (groupId: string) => {
     try {
       await removeQuestionFromGroup(groupId, questionId)
-      const fetchedGroups = await fetchGroups()
-      setGroups(fetchedGroups) // Обновление данных после удаления
+      await refreshGroups()
     } catch (error) {
       console.error(error)
       alert('Error!')
@@ -50,10 +54,8 @@ const AddQuestion = ({ questionId }: Props) => {
     <table className={s.table}>
       <thead>
         <tr>
-          {/*<th>ID</th>*/}
           <th>Name</th>
           <th>Count</th>
-          {/*<th>Link</th>*/}
           <th></th>
         </tr>
       </thead>
@@ -68,12 +70,8 @@ const AddQuestion = ({ questionId }: Props) => {
           const hasQuestionId = group.questionIds.includes(String(questionId))
           return (
             <tr key={group.id} className={clsx({ [s.active]: hasQuestionId })}>
-              {/*<td>{group.id}</td>*/}
               <td>{group.name}</td>
               <td>{group.questionIds.length}</td>
-              {/*<td>*/}
-              {/*  <Link to={`/group/${group.id}`}>View</Link>*/}
-              {/*</td>*/}
               <td style={{ minWidth: '78px' }}>
                 {!hasQuestionId && (
                   <button
@@ -83,7 +81,6 @@ const AddQuestion = ({ questionId }: Props) => {
                     Add
                   </button>
                 )}
-
                 {hasQuestionId && <button onClick={() => handleRemoveQuestion(group.id)}>Remove</button>}
               </td>
             </tr>

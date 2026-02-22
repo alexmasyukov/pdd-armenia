@@ -2,16 +2,15 @@ import { initializeApp } from 'firebase/app'
 import {
   arrayRemove,
   arrayUnion,
-  // collection,
+  collection,
   deleteDoc,
   doc,
-  // DocumentData,
-  // getDoc,
-  // getDocs,
+  DocumentData,
+  getDocs,
   getFirestore,
-  // orderBy,
-  // query,
-  // QuerySnapshot,
+  orderBy,
+  query,
+  QuerySnapshot,
   setDoc,
   updateDoc,
 } from 'firebase/firestore'
@@ -24,19 +23,13 @@ const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 
 const fetchGroups = async (): Promise<FirebaseGroup[]> => {
-  // const groupsCollection = collection(db, 'groups')
-  // const q = query(groupsCollection, orderBy('order'))
-  // const groupSnapshot: QuerySnapshot<DocumentData> = await getDocs(q)
-  // return groupSnapshot.docs.map((doc) => ({
-  //   id: doc.id,
-  //   ...doc.data(),
-  // })) as FirebaseGroup[]
-
-  // get all groups from mockGroups
-  return new Promise((resolve) => {
-    const groups = mockGroups.sort((a, b) => a.order - b.order)
-    resolve(groups)
-  })
+  const groupsCollection = collection(db, 'groups')
+  const q = query(groupsCollection, orderBy('order'))
+  const groupSnapshot: QuerySnapshot<DocumentData> = await getDocs(q)
+  return groupSnapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  })) as FirebaseGroup[]
 }
 
 const fetchGroup = async (id: string): Promise<FirebaseGroup | null> => {
