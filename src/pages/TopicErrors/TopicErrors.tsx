@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import FavoriteQuestions from '../../components/FavoriteQuestions/FavoriteQuestions'
+import Questions from '../../components/Questions/Questions'
 import { useAppState } from '../../contexts/AppStateContext/AppStateContext'
 import TopicPlaceholder from '../../placeholders/TopicPlaceholder'
 import { routes } from '../../router/constants'
@@ -41,7 +41,7 @@ const TopicErrors: React.FC = () => {
   return (
     <>
       {questions.length > 0 ? (
-        <FavoriteQuestions questions={questions} title={title} prevLink={prevLink} />
+        <Questions questions={questions} title={title} prevLink={prevLink} />
       ) : (
         <p>Вопросов c неверными ответами не найдено</p>
       )}

@@ -1,5 +1,5 @@
 import React from 'react'
-import FavoriteQuestions from '../../components/FavoriteQuestions/FavoriteQuestions'
+import Questions from '../../components/Questions/Questions'
 import { useAppState } from '../../contexts/AppStateContext/AppStateContext'
 import TopicPlaceholder from '../../placeholders/TopicPlaceholder'
 import { routes } from '../../router/constants'
@@ -16,8 +16,8 @@ const Errors: React.FC = () => {
 
   return (
     <>
-      {content.questions.length > 0 ? (
-        <FavoriteQuestions
+      {questions.length > 0 ? (
+        <Questions
           questions={questions}
           title={'Ошибки'}
           prevLink={routes.home.path}

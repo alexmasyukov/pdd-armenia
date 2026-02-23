@@ -13,6 +13,7 @@ import { useCleaned } from '../../hooks/useCleaned'
 import { useAppState } from '../../contexts/AppStateContext/AppStateContext'
 import SettingsPanel from '../../components/SettingsPanel/SettingPanel'
 import HomePlaceholder from '../../placeholders/HomePlaceholder'
+import { getQuestionsHasErrors } from '../Errors/helpers'
 
 const Home: React.FC = () => {
   const { content } = useAppState()
@@ -67,7 +68,7 @@ const Home: React.FC = () => {
             </Grid>
             <Grid item xs={6}>
               <Link to={routes.errors.path}>
-                <Button>
+                <Button counter={getQuestionsHasErrors(content.questions).length}>
                   <PiWarningFill size={22} />
                   Ошибки
                 </Button>

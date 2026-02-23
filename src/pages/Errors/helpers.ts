@@ -12,6 +12,6 @@ export const getQuestionsHasErrors = (allQuestions: Question[]): Question[] => {
       return false
     }
 
-    return StatisticsStore.isQuestionHasErrors(questionStatistic)
+    return StatisticsStore.isWrongQuestionAnswersMoreThanCorrect(questionStatistic)
   })
 }
