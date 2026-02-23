@@ -5,7 +5,7 @@ import { AnswerKey, Question as QuestionType } from '../../types'
 import { getExamQuestions } from './helpers'
 import ExamProcess from './ExamProcess'
 import ExamResult from './ExamResult'
-import TopicPlaceholder from '../../placeholders/TopicPlaceholder'
+import ExamPlaceholder from '../../placeholders/ExamPlaceholder'
 import s from './Exam.module.scss'
 
 type ExamState =
@@ -40,7 +40,7 @@ const Exam: React.FC = () => {
     setState({ phase: 'idle' })
   }
 
-  if (content.loading) return <TopicPlaceholder />
+  if (content.loading) return <ExamPlaceholder />
 
   if (state.phase === 'inProgress') {
     return <ExamProcess questions={state.questions} onFinish={handleFinish} onCancel={handleCancel} />

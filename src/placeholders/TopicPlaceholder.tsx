@@ -1,65 +1,38 @@
-import Grid from '@mui/material/Grid'
 import Skeleton from '@mui/material/Skeleton'
 
 const TopicPlaceholder = () => {
-  const phb = <Skeleton animation='pulse' variant='rounded' height={43} />
-  const phs = <Skeleton animation='pulse' variant='rounded' height={16} />
-
   return (
     <>
-      <Grid container spacing={1} mt={0.5}>
-        <Grid item xs={12}>
-          <Skeleton animation='pulse' variant='rounded' height={12} />
-        </Grid>
-        <Grid item xs={12}>
-          <Skeleton animation='pulse' variant='rounded' height={49} />
-        </Grid>
-      </Grid>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Skeleton animation='pulse' variant='rounded' height={22} width={150} />
+        <Skeleton animation='pulse' variant='rounded' height={22} width={40} />
+      </div>
 
-      <Grid container spacing={1} mt={2}>
-        <Grid item xs={12}>
-          <Skeleton animation='pulse' variant='rounded' height={90} width={200} />
-        </Grid>
-      </Grid>
+      <div style={{ display: 'flex', gap: 4, marginTop: 12 }}>
+        {Array.from({ length: 12 }).map((_, i) => (
+          <Skeleton key={i} animation='pulse' variant='rounded' height={28} width={28} />
+        ))}
+      </div>
 
-      <Grid container spacing={1} mt={2}>
-        <Grid item sm={6} xs={12}>
-          <Grid container spacing={1}>
-            <Grid item xs={12}>
-              {phb}
-            </Grid>
-            <Grid item xs={12}>
-              {phb}
-            </Grid>
-            <Grid item xs={12}>
-              {phb}
-            </Grid>
-            <Grid item xs={12}>
-              {phb}
-            </Grid>
-            <Grid item xs={12}>
-              {phb}
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
+      <Skeleton animation='pulse' variant='rounded' height={1} sx={{ mt: 1.5, mb: 1.5 }} />
 
-      <Grid container spacing={1} mt={2}>
-        <Grid item sm={3} xs={6}>
-          {phs}
-        </Grid>
-        <Grid item sm={9} xs={6} />
+      <Skeleton animation='pulse' variant='rounded' height={180} sx={{ mb: 1.5 }} />
 
-        <Grid item sm={3} xs={6}>
-          {phs}
-        </Grid>
-        <Grid item sm={9} xs={6} />
+      <Skeleton animation='pulse' variant='rounded' height={18} sx={{ mb: 2 }} />
+      <Skeleton animation='pulse' variant='rounded' height={18} width='70%' sx={{ mb: 2 }} />
 
-        <Grid item sm={3} xs={6}>
-          {phs}
-        </Grid>
-        <Grid item sm={9} xs={6} />
-      </Grid>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <Skeleton animation='pulse' variant='rounded' height={43} />
+        <Skeleton animation='pulse' variant='rounded' height={43} />
+        <Skeleton animation='pulse' variant='rounded' height={43} />
+        <Skeleton animation='pulse' variant='rounded' height={43} />
+      </div>
+
+      <div style={{ display: 'flex', gap: 8, marginTop: 16 }}>
+        <Skeleton animation='pulse' variant='rounded' height={16} width={80} />
+        <Skeleton animation='pulse' variant='rounded' height={16} width={80} />
+        <Skeleton animation='pulse' variant='rounded' height={16} width={80} />
+      </div>
     </>
   )
 }
