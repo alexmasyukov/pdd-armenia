@@ -619,6 +619,11 @@ h4 {
     font-weight: 400;
 }
 
+.placeholder-question-number {
+    flex-shrink: 0;
+    border-right: 4px solid var(--bg);
+}
+
 .line {
     width: 100%;
     height: 1px;

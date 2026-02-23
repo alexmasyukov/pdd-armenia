@@ -1,5 +1,11 @@
 import Skeleton from '@mui/material/Skeleton'
 
+const fullWidth = {
+  width: '100vw',
+  marginLeft: 'calc(-50vw + 50%)',
+  boxSizing: 'border-box' as const,
+}
+
 const TopicPlaceholder = () => {
   return (
     <>
@@ -8,13 +14,29 @@ const TopicPlaceholder = () => {
         <Skeleton animation='pulse' variant='rounded' height={22} width={40} />
       </div>
 
-      <div style={{ display: 'flex', gap: 4, marginTop: 12 }}>
-        {Array.from({ length: 12 }).map((_, i) => (
-          <Skeleton key={i} animation='pulse' variant='rounded' height={28} width={28} />
+      <div
+        style={{
+          ...fullWidth,
+          display: 'flex',
+          gap: 0,
+          marginTop: 12,
+          padding: '0 8px 6px',
+          background: 'var(--question-number-bg)',
+        }}
+      >
+        {Array.from({ length: 80 }).map((_, i) => (
+          <Skeleton
+            key={i}
+            animation='pulse'
+            variant='rectangular'
+            height={36}
+            width={36}
+            className='placeholder-question-number'
+          />
         ))}
       </div>
 
-      <Skeleton animation='pulse' variant='rounded' height={1} sx={{ mt: 1.5, mb: 1.5 }} />
+      <div style={{ ...fullWidth, height: 1, borderBottom: '1px solid var(--hr)', marginBottom: 12 }} />
 
       <Skeleton animation='pulse' variant='rounded' height={180} sx={{ mb: 1.5 }} />
 
