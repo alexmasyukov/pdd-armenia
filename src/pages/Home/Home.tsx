@@ -15,6 +15,7 @@ import SettingsPanel from '../../components/SettingsPanel/SettingPanel'
 import HomePlaceholder from '../../placeholders/HomePlaceholder'
 import { getQuestionsHasErrors } from '../Errors/helpers'
 import QuestionVerifiedBlock from '../../components/QuestionVerifiedBlock/QuestionVerifiedBlock'
+import TelegramButton from '../../components/TelegramButton/TelegramButton'
 
 const Home: React.FC = () => {
   const { content } = useAppState()
@@ -55,7 +56,7 @@ const Home: React.FC = () => {
             <Grid item xs={12}>
               <Link to={routes.topics.path}>
                 <Button red>
-                  <PiBookBookmarkFill size={22} color="white" /> Вопросы по темам
+                  <PiBookBookmarkFill size={22} color='white' /> Вопросы по темам
                 </Button>
               </Link>
             </Grid>
@@ -83,14 +84,15 @@ const Home: React.FC = () => {
             </Grid>
           </Grid>
 
-          <Grid container mt={3} spacing={0.5}>
-            <Grid item xs={12}>
+          <div style={{ display: 'flex', marginTop: '24px', gap: '8px' }}>
+            <div style={{ flex: 1 }}>
               <CleanAllStatistics onCleaned={onCleaned} />
-            </Grid>
-            <Grid item xs={12}>
               <CleanFavorites onCleaned={onCleaned} />
-            </Grid>
-          </Grid>
+            </div>
+            <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+              <TelegramButton />
+            </div>
+          </div>
         </div>
       </Grid>
     </>

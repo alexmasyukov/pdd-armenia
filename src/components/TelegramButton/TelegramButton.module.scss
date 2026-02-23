@@ -1,0 +1,32 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  //background: #202020; //#1c93e3;
+  background: var(--home-btn-bg);
+  border-radius: 50px;
+  padding: 8px 14px 8px 10px;
+  cursor: pointer;
+  gap: 9px;
+  user-select: none;
+
+  &:hover {
+    background: #1c93e3;
+  }
+}
+
+
+.icon {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.text {
+  color: var(--home-btn);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  text-align: left;
+  line-height: 1.1;
+}
