@@ -26,7 +26,7 @@ const Topics: React.FC = () => {
 
   return (
     <>
-      <Grid container className={s.topicsTitle} mt={3} mb={1}>
+      <Grid container className={s.topicsTitle}>
         <Grid item xs={7} sm={9} md={10}>
           Тема
         </Grid>

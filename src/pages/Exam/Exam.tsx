@@ -11,7 +11,7 @@ import s from './Exam.module.scss'
 type ExamState =
   | { phase: 'idle' }
   | { phase: 'inProgress'; questions: QuestionType[] }
-  | { phase: 'finished'; questions: QuestionType[]; answers: Map<number, AnswerKey> }
+  | { phase: 'finished'; questions: QuestionType[]; answers: Map<number, AnswerKey>; timeSpent: number }
 
 const Exam: React.FC = () => {
   const { content } = useAppState()
@@ -22,16 +22,18 @@ const Exam: React.FC = () => {
     setState({ phase: 'inProgress', questions })
   }
 
-  const handleFinish = useCallback((answers: Map<number, AnswerKey>) => {
+  const handleFinish = useCallback((answers: Map<number, AnswerKey>, timeSpent: number) => {
     setState((prev) => {
       if (prev.phase !== 'inProgress') return prev
-      return { phase: 'finished', questions: prev.questions, answers }
+      return { phase: 'finished', questions: prev.questions, answers, timeSpent }
     })
   }, [])
 
   const handleRetry = () => {
-    const questions = getExamQuestions(content.questions)
-    setState({ phase: 'inProgress', questions })
+    setState((prev) => {
+      if (prev.phase !== 'finished') return prev
+      return { phase: 'inProgress', questions: prev.questions }
+    })
   }
 
   const handleCancel = () => {
@@ -45,7 +47,7 @@ const Exam: React.FC = () => {
   }
 
   if (state.phase === 'finished') {
-    return <ExamResult questions={state.questions} answers={state.answers} onRetry={handleRetry} />
+    return <ExamResult questions={state.questions} answers={state.answers} timeSpent={state.timeSpent} onRetry={handleRetry} />
   }
 
   return (

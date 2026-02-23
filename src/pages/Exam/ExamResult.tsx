@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { PiCheckCircleBold, PiXCircleBold, PiTimerBold, PiWarningBold, PiListNumbersBold } from 'react-icons/pi'
 import clsx from 'clsx'
 import { AnswerKey, Question as QuestionType } from '../../types'
 import { routes } from '../../router/constants'
@@ -10,13 +11,20 @@ import s from './Exam.module.scss'
 const MAX_ERRORS = 2
 const noop = () => {}
 
+const formatTime = (seconds: number): string => {
+  const m = Math.floor(seconds / 60)
+  const sec = seconds % 60
+  return `${m.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`
+}
+
 interface Props {
   questions: QuestionType[]
   answers: Map<number, AnswerKey>
+  timeSpent: number
   onRetry: () => void
 }
 
-const ExamResult: React.FC<Props> = ({ questions, answers, onRetry }) => {
+const ExamResult: React.FC<Props> = ({ questions, answers, timeSpent, onRetry }) => {
   const navigate = useNavigate()
 
   const errorQuestions = questions.filter((q) => {
@@ -26,16 +34,30 @@ const ExamResult: React.FC<Props> = ({ questions, answers, onRetry }) => {
 
   const errorsCount = errorQuestions.length
   const passed = errorsCount <= MAX_ERRORS
+  const correctCount = questions.length - errorsCount
 
   return (
     <>
       <div className={clsx(s['result-banner'], passed ? s.passed : s.failed)}>
-        <h2>{passed ? 'Поздравляем! Экзамен сдан!' : 'Экзамен не сдан'}</h2>
-        <p>
-          {errorsCount === 0
-            ? 'Без ошибок!'
-            : `${errorsCount} ${pluralize(errorsCount, 'ошибка', 'ошибки', 'ошибок')} из ${questions.length} вопросов`}
-        </p>
+        <div className={s['result-icon']}>
+          {passed ? <PiCheckCircleBold size={40} /> : <PiXCircleBold size={40} />}
+        </div>
+        <h2>{passed ? 'Экзамен сдан!' : 'Экзамен не сдан'}</h2>
+
+        <div className={s['result-stats']}>
+          <div className={s['result-stat']}>
+            <PiListNumbersBold size={16} />
+            <span>{correctCount} из {questions.length} правильных</span>
+          </div>
+          <div className={s['result-stat']}>
+            <PiWarningBold size={16} />
+            <span>{errorsCount} {pluralize(errorsCount, 'ошибка', 'ошибки', 'ошибок')}</span>
+          </div>
+          <div className={s['result-stat']}>
+            <PiTimerBold size={16} />
+            <span>{formatTime(timeSpent)}</span>
+          </div>
+        </div>
       </div>
 
       <div className={s['result-actions']}>

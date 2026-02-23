@@ -36,30 +36,50 @@
 }
 
 .result-banner {
-  padding: 20px;
+  padding: 24px;
   border-radius: 8px;
   text-align: center;
   margin-bottom: 24px;
+  border: 1px solid;
 
   h2 {
-    margin: 0 0 8px;
-    font-size: 22px;
-  }
-
-  p {
-    margin: 0;
-    font-size: 16px;
+    margin: 8px 0 16px;
+    font-size: 20px;
   }
 
   &.passed {
-    background: var(--answer-correct-bg);
-    color: #fff;
+    border-color: var(--answer-correct-bg);
+    color: var(--txt);
+
+    .result-icon { color: var(--answer-correct-bg); }
   }
 
   &.failed {
-    background: var(--answer-wrong-bg);
-    color: #fff;
+    border-color: var(--answer-wrong-bg);
+    color: var(--txt);
+
+    .result-icon { color: var(--answer-wrong-bg); }
   }
+}
+
+.result-icon {
+  display: flex;
+  justify-content: center;
+}
+
+.result-stats {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 4px;
+}
+
+.result-stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--txt-dark);
 }
 
 .result-actions {
@@ -114,7 +134,6 @@
 }
 
 .start-screen {
-  padding: 30px 0;
   max-width: 420px;
   margin: 0 auto;
 }

@@ -33,7 +33,7 @@ const DetailedTopics: React.FC = () => {
 
   return (
     <>
-      <Grid container className={s.topicsTitle} mt={3} mb={1}>
+      <Grid container className={s.topicsTitle}>
         <Grid item xs={7} sm={8} md={9}>
           Тема
         </Grid>

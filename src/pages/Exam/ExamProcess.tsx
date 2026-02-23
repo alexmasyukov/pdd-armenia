@@ -11,7 +11,7 @@ const EXAM_TIME = 30 * 60 // 30 минут в секундах
 
 interface Props {
   questions: QuestionType[]
-  onFinish: (answers: Map<number, AnswerKey>) => void
+  onFinish: (answers: Map<number, AnswerKey>, timeSpent: number) => void
   onCancel: () => void
 }
 
@@ -27,6 +27,8 @@ const ExamProcess: React.FC<Props> = ({ questions, onFinish, onCancel }) => {
   const [answers, setAnswers] = useState<Map<number, AnswerKey>>(new Map())
   const answersRef = useRef(answers)
   answersRef.current = answers
+  const timeLeftRef = useRef(timeLeft)
+  timeLeftRef.current = timeLeft
 
   const answeredCount = answers.size
   const totalQuestions = questions.length
@@ -50,14 +52,14 @@ const ExamProcess: React.FC<Props> = ({ questions, onFinish, onCancel }) => {
   // Время вышло
   useEffect(() => {
     if (timeLeft === 0) {
-      onFinish(answersRef.current)
+      onFinish(answersRef.current, EXAM_TIME - timeLeftRef.current)
     }
   }, [timeLeft, onFinish])
 
   // Все вопросы отвечены
   useEffect(() => {
     if (answeredCount === totalQuestions) {
-      onFinish(answersRef.current)
+      onFinish(answersRef.current, EXAM_TIME - timeLeftRef.current)
     }
   }, [answeredCount, totalQuestions, onFinish])
 
@@ -132,7 +134,7 @@ const ExamProcess: React.FC<Props> = ({ questions, onFinish, onCancel }) => {
         </div>
 
         <div className={s.bottom}>
-          <button className={s['finish-btn']} onClick={() => onFinish(answers)}>
+          <button className={s['finish-btn']} onClick={() => onFinish(answers, EXAM_TIME - timeLeft)}>
             <PiFlagCheckeredBold size={16} /> Завершить ({answeredCount}/{totalQuestions})
           </button>
           <div className={clsx(s.timer, { [s.warning]: timeLeft < 60 })}>

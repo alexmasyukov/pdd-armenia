@@ -352,7 +352,7 @@ body {
 .percent {
     font-size: 12px;
     color: var(--txt);
-    margin: 5px 0 10px 0;
+    margin: 0 0 10px 0;
 }
 
 .percent .scale {
@@ -406,7 +406,6 @@ body {
 .statistic {
     display: flex;
     justify-content: space-between;
-    margin-top: 12px;
 }
 
 .app-container {
@@ -416,6 +415,7 @@ body {
     padding: 0 16px;
     box-sizing: border-box;
 }
+
 
 .home-page-container {
     width: 100%;
@@ -518,7 +518,7 @@ a {
     font-size: 14px;
     align-items: center;
     cursor: pointer;
-    padding: 8px 0;
+    padding-bottom: 8px;
     line-height: 14px;
 }
 

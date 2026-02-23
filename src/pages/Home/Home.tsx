@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { PiBookBookmarkFill, PiExamFill, PiStarFill, PiWarningFill } from 'react-icons/pi'
+import { PiBookBookmarkFill, PiFire, PiStarFill, PiWarningFill } from 'react-icons/pi'
 import DonateBlock from '../../components/DonateBlock/DonateBlock'
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
@@ -37,7 +37,6 @@ const Home: React.FC = () => {
               padding: '25px',
               pt: 2,
               pb: 2,
-              mt: 2,
               mb: 3,
               borderRadius: '6px',
               boxShadow: '0 0 15px 0 rgba(0, 0, 0, 0.06)',
@@ -54,17 +53,17 @@ const Home: React.FC = () => {
                 </Button>
               </Link>
             </Grid> */}
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <Link to={routes.topics.path}>
-                <Button red>
-                  <PiBookBookmarkFill size={22} color='white' /> Вопросы по темам
+                <Button>
+                  <PiBookBookmarkFill size={22} /> Вопросы по темам
                 </Button>
               </Link>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <Link to={routes.exam.path}>
-                <Button>
-                  <PiExamFill size={22} /> Экзамен
+                <Button red>
+                  <PiFire size={22} color='white' /> Экзамен
                 </Button>
               </Link>
             </Grid>
