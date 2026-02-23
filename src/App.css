@@ -265,6 +265,7 @@ body {
     cursor: pointer;
     display: flex;
     align-items: center;
+    user-select: none;
     padding: 0;
     color: var(--color-blue);
     font-size: 14px;

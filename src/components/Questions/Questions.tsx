@@ -16,6 +16,8 @@ import s from './Questions.module.scss'
 import Grid from '@mui/material/Grid'
 import QuestionStatisticProgress from './components/QuestionStatisticProgress'
 import QuestionVerifiedBlock from '../QuestionVerifiedBlock/QuestionVerifiedBlock'
+import FontSizeControl from '../FontSizeControl/FontSizeControl'
+import { useFontSize } from '../../hooks/useFontSize'
 
 interface Props {
   questions: QuestionType[]
@@ -46,10 +48,11 @@ const Questions: React.FC<Props> = ({
 }) => {
   const navigate = useNavigate()
   const { showRightAnswers } = useAppState()
+  const { questionFontSize, answerFontSize, setQuestionFontSize, setAnswerFontSize } = useFontSize()
   const [answerHistory, setAnswerHistory] = useState<AnswerHistoryType>(setEmptyAnswerHistory(questions))
   const [questionIndex, setQuestionIndex] = useState(0)
   const [hasNextQuestionBtn, setHasNextQuestionBtn] = useState(false)
-  const [showHelp, setShowHelp] = useState(false)
+
 
   const maxIndex = questions.length - 1
   const currentQuestion = questions[questionIndex]
@@ -64,7 +67,6 @@ const Questions: React.FC<Props> = ({
 
   useEffect(() => {
     setHasNextQuestionBtn(false)
-    setShowHelp(false)
   }, [questionIndex])
 
   const hanldeNextQuestionClick = () => {
@@ -159,6 +161,8 @@ const Questions: React.FC<Props> = ({
               enabled={answerFromHistory.status === QuestionStatus.NotAnswered}
               onAnswer={handleAnswer}
               showRightAnswer={showRightAnswers}
+              questionFontSize={questionFontSize}
+              answerFontSize={answerFontSize}
             />
 
             <div className={s['question-container']}>
@@ -169,6 +173,11 @@ const Questions: React.FC<Props> = ({
                   <ShowRightAnswersBtn />
 
                   <ReportBtn questionId={currentQuestion.id} group={title} />
+
+                  <FontSizeControl
+                    onQuestionFontSizeChange={setQuestionFontSize}
+                    onAnswerFontSizeChange={setAnswerFontSize}
+                  />
                 </div>
 
                 <div className={s.rightBtns}>
@@ -182,6 +191,7 @@ const Questions: React.FC<Props> = ({
                 </div>
               </div>
             </div>
+
 
             <QuestionVerifiedBlock />
           </div>

@@ -1,0 +1,52 @@
+.popover {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  user-select: none;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.label {
+  min-width: 52px;
+  color: var(--txt);
+}
+
+.link {
+  cursor: pointer;
+  text-decoration: underline;
+  color: var(--color-blue);
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.value {
+  min-width: 22px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--color-gray-dark);
+}
+
+.reset {
+  cursor: pointer;
+  text-decoration: underline;
+  color: var(--color-gray-dark);
+  font-size: 12px;
+
+  &:hover {
+    color: var(--color-red);
+  }
+}
+
+.closeRow {
+  text-align: center;
+  margin-top: 4px;
+}
