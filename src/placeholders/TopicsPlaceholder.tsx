@@ -33,7 +33,7 @@ const TopicsPlaceholder = () => {
 
   return (
     <>
-      <Grid container spacing={2} mt={1}>
+      <Grid container spacing={2}>
         <Grid item xs={12}>
           <Skeleton animation='pulse' variant='rounded' height={25} />
         </Grid>
