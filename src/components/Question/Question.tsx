@@ -48,6 +48,7 @@ const Question: React.FC<Props> = ({
         </div>
       )}
 
+      {/* <p><span className={s.qid}>{qid}.</span> {q}</p> */}
       <p>{q}</p>
 
       <ul className={s.answers}>

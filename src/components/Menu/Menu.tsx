@@ -19,6 +19,8 @@ import { routes } from '../../router/constants'
 import { Badge } from '@mui/material'
 import { FavoriteStore } from '../../services/FavoriteStore'
 import ShowRightAnswersBtn from '../ShowRightAnswersBtn/ShowRightAnswersBtn'
+import { useAppState } from '../../contexts/AppStateContext/AppStateContext'
+import { getQuestionsHasErrors } from '../../pages/Errors/helpers'
 
 const Icon = styled(ListItemIcon)({
   minWidth: '36px',
@@ -31,6 +33,8 @@ type Props = {
 
 const Menu = ({ open, toggleMenu }: Props) => {
   const navigate = useNavigate()
+  const { content } = useAppState()
+  const errorsCount = content.loading ? 0 : getQuestionsHasErrors(content.questions).length
 
   const DrawerList = (
     <Box sx={{ width: 250 }} role='presentation' onClick={toggleMenu(false)}>
@@ -75,7 +79,15 @@ const Menu = ({ open, toggleMenu }: Props) => {
             <Icon>
               <PiWarningLight size={20} />
             </Icon>
-            <ListItemText>Ошибки</ListItemText>
+            <ListItemText>
+              Ошибки
+              <Badge
+                badgeContent={errorsCount}
+                color='warning'
+                sx={{ ml: 3 }}
+                max={10000}
+              />
+            </ListItemText>
           </ListItemButton>
         </MenuItem>
 
