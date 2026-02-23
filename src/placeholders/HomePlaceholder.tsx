@@ -16,10 +16,7 @@ const HomePlaceholder = () => {
         </Grid>
 
         <Grid container spacing={1} mt={2}>
-          <Grid item xs={6}>
-            {phb}
-          </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             {phb}
           </Grid>
           <Grid item xs={6}>
@@ -30,6 +27,9 @@ const HomePlaceholder = () => {
           </Grid>
           <Grid item xs={12}>
             {phb}
+          </Grid>
+          <Grid item xs={12}>
+            <Skeleton animation='pulse' variant='rounded' height={54} />
           </Grid>
         </Grid>
 

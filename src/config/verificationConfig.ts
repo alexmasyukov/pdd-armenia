@@ -1,0 +1,1 @@
+export const VERIFICATION_DATE = '20.02.2026, 12:00'

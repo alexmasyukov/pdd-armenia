@@ -14,6 +14,7 @@ import { useAppState } from '../../contexts/AppStateContext/AppStateContext'
 import SettingsPanel from '../../components/SettingsPanel/SettingPanel'
 import HomePlaceholder from '../../placeholders/HomePlaceholder'
 import { getQuestionsHasErrors } from '../Errors/helpers'
+import QuestionVerifiedBlock from '../../components/QuestionVerifiedBlock/QuestionVerifiedBlock'
 
 const Home: React.FC = () => {
   const { content } = useAppState()
@@ -76,6 +77,9 @@ const Home: React.FC = () => {
             </Grid>
             <Grid item xs={12}>
               <SettingsPanel />
+            </Grid>
+            <Grid item xs={12}>
+              <QuestionVerifiedBlock />
             </Grid>
           </Grid>
 

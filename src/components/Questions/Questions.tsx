@@ -15,6 +15,7 @@ import ShowRightAnswerBtn from './components/ShowRightAnswerBtn'
 import s from './Questions.module.scss'
 import Grid from '@mui/material/Grid'
 import QuestionStatisticProgress from './components/QuestionStatisticProgress'
+import QuestionVerifiedBlock from '../QuestionVerifiedBlock/QuestionVerifiedBlock'
 
 interface Props {
   questions: QuestionType[]
@@ -181,6 +182,8 @@ const Questions: React.FC<Props> = ({
                 </div>
               </div>
             </div>
+
+            <QuestionVerifiedBlock />
           </div>
         </Grid>
       </Grid>
