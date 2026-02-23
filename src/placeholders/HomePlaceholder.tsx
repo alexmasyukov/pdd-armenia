@@ -42,10 +42,10 @@ const HomePlaceholder = () => {
 
         <Grid container spacing={1} mt={3}>
           <Grid item xs={6}>
-            {phb}
+            {phs}
           </Grid>
           <Grid item xs={6}>
-            {phb}
+            {phs}
           </Grid>
         </Grid>
       </div>

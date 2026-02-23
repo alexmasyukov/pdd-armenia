@@ -3,7 +3,6 @@ import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import { Outlet, useLocation } from 'react-router-dom'
 import Header from '../../components/Header/Header'
-import { routes } from '../../router/constants'
 
 type Props = {
   children?: React.ReactNode
