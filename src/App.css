@@ -241,6 +241,11 @@ body {
     color: var(--question-number-correct);
 }
 
+.question-numbers li.answered {
+    background: var(--color-blue) !important;
+    color: #fff;
+}
+
 .question-numbers li.wrong {
     background: var(--question-number-wrong-bg) !important;
     color: var(--question-number-wrong);

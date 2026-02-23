@@ -39,6 +39,9 @@ export const routes = {
     path: '/check-questions-2026-only-blocks',
     titleI18nKey: 'check-questions-2026-only-blocks',
   },
+  exam: {
+    path: '/exam',
+  },
   errors: {
     path: '/errors',
     titleI18nKey: 'errors',

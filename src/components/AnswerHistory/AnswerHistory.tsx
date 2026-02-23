@@ -46,7 +46,8 @@ const AnswerHistory: React.FC<Props> = ({ answerHistory, activeQuestionIndex, on
                 },
                 { correct: item.status === QuestionStatus.Correct },
                 { wrong: item.status === QuestionStatus.Wrong },
-                { 'not-answered': item.status === QuestionStatus.NotAnswered }
+                { 'not-answered': item.status === QuestionStatus.NotAnswered },
+                { answered: item.status === QuestionStatus.Answered }
               )}
               onClick={onSelectQuestion(index)}
             >
