@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { PiBookBookmarkFill, PiStarFill, PiWarningFill } from 'react-icons/pi'
+import DonateBlock from '../../components/DonateBlock/DonateBlock'
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import { FavoriteStore } from '../../services/FavoriteStore'
@@ -83,6 +84,8 @@ const Home: React.FC = () => {
               <QuestionVerifiedBlock noMarginTop blue />
             </Grid>
           </Grid>
+
+          <DonateBlock />
 
           <div style={{ display: 'flex', marginTop: '24px', gap: '8px' }}>
             <div style={{ flex: 1 }}>
