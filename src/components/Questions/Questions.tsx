@@ -15,7 +15,6 @@ import ShowRightAnswerBtn from './components/ShowRightAnswerBtn'
 import s from './Questions.module.scss'
 import Grid from '@mui/material/Grid'
 import QuestionStatisticProgress from './components/QuestionStatisticProgress'
-import QuestionVerifiedBlock from '../QuestionVerifiedBlock/QuestionVerifiedBlock'
 import FontSizeControl from '../FontSizeControl/FontSizeControl'
 import { useFontSize } from '../../hooks/useFontSize'
 
@@ -191,9 +190,6 @@ const Questions: React.FC<Props> = ({
                 </div>
               </div>
             </div>
-
-
-            <QuestionVerifiedBlock />
           </div>
         </Grid>
       </Grid>
