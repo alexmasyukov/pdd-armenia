@@ -35,9 +35,9 @@ const ReportBtn = ({ questionId, group }: Props) => {
       {showMessage && (
         <div className='report'>
           <p className='title'>
-            <FaTelegram size={16} /> Пожалуйста, отправьте это соощение в Telegram канал <br />{' '}
-            <a href='https://t.me/armeniaTrafficLawsApp' target='_blank' rel='noreferrer'>
-              @armeniaTrafficLawsApp
+            <FaTelegram size={16} /> Пожалуйста, отправьте это соощение в Telegram <br />{' '}
+            <a href='https://t.me/am_autoclub' target='_blank' rel='noreferrer'>
+              @am_autoclub
             </a>{' '}
             с вашим описанием ошибки:
           </p>
