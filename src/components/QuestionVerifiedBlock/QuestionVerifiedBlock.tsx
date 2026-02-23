@@ -13,7 +13,7 @@ const QuestionVerifiedBlock = ({ noMarginTop, blue }: Props) => {
     <div
       className={`check-status-btn ${s['verified-block']} ${noMarginTop ? s['no-margin-top'] : ''} ${blue ? s['blue'] : ''}`}
     >
-      <PiSealCheckLight />
+      <PiSealCheckLight size={28} />
       <span>
         В приложении были использованы экзаменационные вопросы из{' '}
         <MuiLink

@@ -126,6 +126,7 @@
 
     --check-status-btn-bg: #f8f8f8;
     --check-status-btn-color: #a0a0a0;
+    --donate-color: #ff538c;
 }
 
 .dark-theme {
@@ -186,6 +187,7 @@
 
     --check-status-btn-bg: #171717;
     --check-status-btn-color: #555;
+    --donate-color: #ff538c;
 }
 
 /* 
