@@ -13,7 +13,6 @@ import ShowRightAnswersBtn from '../ShowRightAnswersBtn/ShowRightAnswersBtn'
 import ReportBtn from '../ReportBtn/ReportBtn'
 import ShowRightAnswerBtn from './components/ShowRightAnswerBtn'
 import s from './Questions.module.scss'
-import Grid from '@mui/material/Grid'
 import QuestionStatisticProgress from './components/QuestionStatisticProgress'
 import FontSizeControl from '../FontSizeControl/FontSizeControl'
 import { useFontSize } from '../../hooks/useFontSize'
@@ -145,9 +144,7 @@ const Questions: React.FC<Props> = ({
       />
       <div className='line' />
 
-      <Grid container spacing={2}>
-        <Grid item md={6}>
-          <div className={s['question-container']}>
+      <div className={s['question-container']}>
             {questionProgress && (
               <div className='question-statistics-progress'>
                 <QuestionStatisticProgress questionId={currentQuestion.id} />
@@ -190,9 +187,7 @@ const Questions: React.FC<Props> = ({
                 </div>
               </div>
             </div>
-          </div>
-        </Grid>
-      </Grid>
+      </div>
     </>
   )
 }

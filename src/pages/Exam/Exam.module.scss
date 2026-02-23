@@ -100,43 +100,17 @@
 }
 
 .error-question-card {
+  border: 1px dashed var(--hr);
+  border-radius: 8px;
+  padding: 4px 16px;
   margin-bottom: 16px;
+}
 
-  img {
-    max-width: 100%;
-    margin-bottom: 8px;
-  }
-
-  .question-text {
-    font-weight: 500;
-    font-size: 16px;
-    margin-bottom: 8px;
-  }
-
-  .answer-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-
-    li {
-      margin-bottom: 6px;
-      border-radius: 3px;
-      padding: 10px 12px;
-      font-size: 14px;
-      background: var(--answer-bg);
-      color: var(--answer);
-
-      &.correct {
-        background: var(--answer-correct-bg);
-        color: var(--answer-correct);
-      }
-
-      &.wrong {
-        background: var(--answer-wrong-bg);
-        color: var(--answer-wrong);
-      }
-    }
-  }
+.error-question-number {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--txt-dark);
+  margin-top: 12px;
 }
 
 .start-screen {
@@ -199,7 +173,6 @@
 }
 
 .question-container {
-  max-width: 664px;
 }
 
 .answered-marker {

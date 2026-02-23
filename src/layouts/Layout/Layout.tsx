@@ -34,20 +34,11 @@ const Layout = ({ children }: Props) => {
     )
   }
 
-  if (pathname === routes.topics.path || pathname === routes.detailedTopics.path) {
-    return (
-      <>
-        <Container>{header}</Container>
-        {base}
-      </>
-    )
-  }
-
   return (
-    <Container>
+    <div className='app-container'>
       {header}
       {base}
-    </Container>
+    </div>
   )
 }
 

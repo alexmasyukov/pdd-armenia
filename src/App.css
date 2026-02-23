@@ -406,6 +406,15 @@ body {
 .statistic {
     display: flex;
     justify-content: space-between;
+    margin-top: 12px;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 664px;
+    margin: 0 auto;
+    padding: 0 16px;
+    box-sizing: border-box;
 }
 
 .home-page-container {
@@ -415,7 +424,6 @@ body {
 }
 
 .page-container {
-    max-width: 664px;
     margin-bottom: 50px;
 }
 

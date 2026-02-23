@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import Grid from '@mui/material/Grid'
-import Container from '@mui/material/Container'
 import Progress from '../../components/Progress/Progress'
 import { routes } from '../../router/constants'
 import CleanAllStatistics from '../../components/CleanButtons/CleanAllStatistics'
@@ -34,27 +33,22 @@ const DetailedTopics: React.FC = () => {
 
   return (
     <>
-      <Container>
-        <Grid container className={s.topicsTitle} mt={3} mb={1}>
-          <Grid item xs={7} sm={8} md={9}>
-            Тема
-          </Grid>
-          <Grid item xs={5} sm={4} md={3} textAlign={'right'}>
-            <div className={s.count}>
-              <div>Ошибки</div>
-              <div>Избранное</div>
-              <div>Решено</div>
-            </div>
-          </Grid>
+      <Grid container className={s.topicsTitle} mt={3} mb={1}>
+        <Grid item xs={7} sm={8} md={9}>
+          Тема
         </Grid>
-      </Container>
-
-      <Grid container>
-        <div className='line' />
+        <Grid item xs={5} sm={4} md={3} textAlign={'right'}>
+          <div className={s.count}>
+            <div>Ошибки</div>
+            <div>Избранное</div>
+            <div>Решено</div>
+          </div>
+        </Grid>
       </Grid>
 
-      <Container>
-        {groups.map((group, index) => {
+      <div className='line' />
+
+      {groups.map((group, index) => {
           const stat = getStatisticByFirebaseGroup({
             firebaseGroupQuestionIds: group.questionIds.map((id) => Number(id)),
             allQuestionsStatistic,
@@ -105,10 +99,9 @@ const DetailedTopics: React.FC = () => {
           )
         })}
 
-        <Grid container mb={1} justifyContent='flex-end'>
-          <CleanAllStatistics onCleaned={onCleaned} />
-        </Grid>
-      </Container>
+      <Grid container mb={1} justifyContent='flex-end'>
+        <CleanAllStatistics onCleaned={onCleaned} />
+      </Grid>
     </>
   )
 }
