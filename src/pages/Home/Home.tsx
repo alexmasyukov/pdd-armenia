@@ -79,7 +79,7 @@ const Home: React.FC = () => {
               <SettingsPanel />
             </Grid>
             <Grid item xs={12}>
-              <QuestionVerifiedBlock />
+              <QuestionVerifiedBlock noMarginTop blue />
             </Grid>
           </Grid>
 

@@ -1,7 +1,22 @@
 .verified-block {
+  svg {
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px;
+    flex-shrink: 0;
+  }
+
   a {
     display: inline;
-    color: var(--check-status-btn-color);
-    text-decoration: underline;
+  }
+}
+
+.no-margin-top {
+  margin-top: 0 !important;
+}
+
+.blue {
+  svg {
+    color: #90caf9;
   }
 }
