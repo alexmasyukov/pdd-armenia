@@ -1,10 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import {
-  PiListNumbersBold,
-  PiTimerBold,
-  PiWarningCircleBold,
-  PiCarFill,
-} from 'react-icons/pi'
+import { PiListNumbersBold, PiTimerBold, PiWarningCircleBold } from 'react-icons/pi'
 import { useAppState } from '../../contexts/AppStateContext/AppStateContext'
 import { AnswerKey, Question as QuestionType } from '../../types'
 import { getExamQuestions } from './helpers'
@@ -57,7 +52,6 @@ const Exam: React.FC = () => {
     <div className={s['start-screen']}>
       <div className={s.card}>
         <div className={s['card-header']}>
-          <PiCarFill size={24} />
           <h2>Экзамен ПДД</h2>
         </div>
 

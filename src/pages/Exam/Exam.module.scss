@@ -31,6 +31,8 @@
   cursor: pointer;
   font-size: 14px;
   height: 40px;
+
+  &:hover { opacity: 0.85; }
 }
 
 .result-banner {
@@ -77,11 +79,15 @@
   .retry-btn {
     background: var(--color-blue);
     color: #fff;
+
+    &:hover { opacity: 0.85; }
   }
 
   .home-btn {
     background: var(--answer-bg);
     color: var(--txt);
+
+    &:hover { opacity: 0.85; }
   }
 }
 
@@ -136,6 +142,7 @@
 .start-screen {
   padding: 30px 0;
   max-width: 420px;
+  margin: 0 auto;
 }
 
 .card {
@@ -145,15 +152,8 @@
 }
 
 .card-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  text-align: center;
   margin-bottom: 20px;
-
-  svg {
-    color: var(--color-blue);
-    flex-shrink: 0;
-  }
 
   h2 {
     margin: 0;
@@ -194,6 +194,8 @@
   font-size: 16px;
   height: 48px;
   font-weight: 500;
+
+  &:hover { opacity: 0.85; }
 }
 
 .question-container {
