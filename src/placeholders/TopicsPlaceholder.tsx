@@ -1,6 +1,5 @@
 import Grid from '@mui/material/Grid'
 import Skeleton from '@mui/material/Skeleton'
-import Container from '@mui/material/Container'
 
 const arr = Array.from({ length: 9 })
 
@@ -33,7 +32,7 @@ const TopicsPlaceholder = () => {
   )
 
   return (
-    <Container>
+    <>
       <Grid container spacing={2} mt={1}>
         <Grid item xs={12}>
           <Skeleton animation='pulse' variant='rounded' height={25} />
@@ -55,7 +54,7 @@ const TopicsPlaceholder = () => {
           {phs}
         </Grid>
       </Grid>
-    </Container>
+    </>
   )
 }
 
