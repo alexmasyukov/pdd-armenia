@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { PiBookBookmarkFill, PiFire, PiStarFill, PiWarningFill } from 'react-icons/pi'
+import { PiBookBookmarkFill, PiFireFill,PiStarFill, PiWarningFill } from 'react-icons/pi'
 import DonateBlock from '../../components/DonateBlock/DonateBlock'
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
@@ -63,7 +63,7 @@ const Home: React.FC = () => {
             <Grid item xs={6}>
               <Link to={routes.exam.path}>
                 <Button red>
-                  <PiFire size={22} color='white' /> Экзамен
+                  <PiFireFill size={22} color='white' /> Экзамен
                 </Button>
               </Link>
             </Grid>
