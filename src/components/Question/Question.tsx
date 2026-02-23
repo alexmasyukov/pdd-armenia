@@ -44,7 +44,7 @@ const Question: React.FC<Props> = ({
 
   return (
     <div className={s.question}>
-      {img && <img src={`${process.env.PUBLIC_URL}/images/questions/${gid}/${img}.jpg`} alt='' />}
+      {img && <img src={`${process.env.PUBLIC_URL}/images/questions/${gid}/${img}.webp`} alt='' />}
       {!img && (
         <div className={s.withoutImg}>
           Вопрос без изображения

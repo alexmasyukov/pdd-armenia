@@ -115,7 +115,7 @@ const ExamProcess: React.FC<Props> = ({ questions, onFinish, onCancel }) => {
 
       <div className={s['question-container']}>
         <div className={qs.question}>
-          {img && <img src={`${process.env.PUBLIC_URL}/images/questions/${gid}/${img}.jpg`} alt='' />}
+          {img && <img src={`${process.env.PUBLIC_URL}/images/questions/${gid}/${img}.webp`} alt='' />}
           {!img && (
             <div className={qs.withoutImg}>
               Вопрос без изображения

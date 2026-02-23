@@ -29,7 +29,7 @@ const QuestionBlock = ({ q }: { q: Question }) => (
     <div className={s.questionImage}>
       {q.img ? (
         <img
-          src={`${process.env.PUBLIC_URL}/images/questions/${q.gid}/${q.img}.jpg`}
+          src={`${process.env.PUBLIC_URL}/images/questions/${q.gid}/${q.img}.webp`}
           alt=''
         />
       ) : (
