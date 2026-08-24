@@ -32,7 +32,7 @@ const QuestionVerifiedBlock = ({ noMarginTop, blue }: Props) => {
             <br />
             Экзаменационные вопросы валидированы на основе PDF файлов{' '}
             <MuiLink
-              href={`${process.env.PUBLIC_URL}/pdd-questions-armenia-ru-02-2026.zip`}
+              href={`${process.env.PUBLIC_URL}/pdd-questions-armenia-ru-08-2026.zip`}
               underline='always'
             >
               (архив от {VERIFICATION_DATE})
