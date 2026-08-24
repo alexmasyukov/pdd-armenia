@@ -17,7 +17,7 @@ const QuestionVerifiedBlock = ({ noMarginTop, blue }: Props) => {
       <span>
         В приложении были использованы экзаменационные вопросы из{' '}
         <MuiLink
-          href='https://police.am/%D5%BE%D5%A1%D6%80%D5%B8%D6%80%D5%A4%D5%A1%D5%AF%D5%A1%D5%B6-%D5%A5%D5%BE-%D5%A5%D6%80%D5%A9%D5%A5%D5%BE%D5%A5%D5%AF%D5%B8%D6%82%D5%A9%D5%B5%D5%A1%D5%B6-%D5%BF%D5%A5%D5%B2%D5%A5%D5%AF%D5%A1%D5%BF%D5%B8%D6%82/the-list-of-driving-theory-test-questions.html'
+          href='https://roadpolice.am/ru/viv-exam'
           target='_blank'
           rel='noreferrer'
           underline='always'
