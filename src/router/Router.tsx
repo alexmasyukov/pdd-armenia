@@ -13,8 +13,12 @@ const DetailedTopic = React.lazy(() => import('./../pages/DetailedTopics/Detaile
 const Topics = React.lazy(() => import('./../pages/Topics/Topics'))
 const Topic = React.lazy(() => import('./../pages/Topics/Topic'))
 const TopicErrors = React.lazy(() => import('./../pages/TopicErrors/TopicErrors'))
-const CheckQuestions2026OnlyBlocks = React.lazy(() => import('../pages/CheckQuestions2026OnlyBlocks/CheckQuestions2026OnlyBlocks'))
+const CheckQuestions2026OnlyBlocks = React.lazy(
+  () => import('../pages/CheckQuestions2026OnlyBlocks/CheckQuestions2026OnlyBlocks')
+)
 const Exam = React.lazy(() => import('./../pages/Exam/Exam'))
+const TheoryGroups = React.lazy(() => import('./../pages/Theory/TheoryGroups'))
+const TheoryGroup = React.lazy(() => import('./../pages/Theory/TheoryGroup'))
 const Errors = React.lazy(() => import('./../pages/Errors/Errors'))
 const Favorite = React.lazy(() => import('./../pages/Favorite/Favorite'))
 
@@ -97,6 +101,23 @@ const Router = () => {
           element={
             <Suspense fallback={<TopicPlaceholder />}>
               <CheckQuestions2026OnlyBlocks />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path={routes.theory.path}
+          element={
+            <Suspense fallback={<TopicsPlaceholder />}>
+              <TheoryGroups />
+            </Suspense>
+          }
+        />
+        <Route
+          path={routes.theory.questionsById.path}
+          element={
+            <Suspense fallback={<TopicPlaceholder />}>
+              <TheoryGroup />
             </Suspense>
           }
         />

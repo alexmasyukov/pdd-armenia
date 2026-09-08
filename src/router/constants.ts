@@ -39,6 +39,14 @@ export const routes = {
     path: '/check-questions-2026-only-blocks',
     titleI18nKey: 'check-questions-2026-only-blocks',
   },
+  theory: {
+    path: '/theory/questions',
+    titleI18nKey: 'theory',
+    questionsById: {
+      path: '/theory/questions/:id',
+      view: (id: string) => `/theory/questions/${id}`,
+    },
+  },
   exam: {
     path: '/exam',
   },
