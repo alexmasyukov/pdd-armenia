@@ -6,6 +6,7 @@ import { AnswerKey, Question as QuestionType } from '../../types'
 import { QuestionStatus } from '../../enums'
 import s from './Exam.module.scss'
 import qs from '../../components/Question/Question.module.scss'
+import DatabaseOutdatedBlock from '../../components/DatabaseOutdatedBlock/DatabaseOutdatedBlock'
 
 const EXAM_TIME = 30 * 60 // 30 минут в секундах
 
@@ -140,6 +141,10 @@ const ExamProcess: React.FC<Props> = ({ questions, onFinish, onCancel }) => {
           <div className={clsx(s.timer, { [s.warning]: timeLeft < 60 })}>
             <PiTimerBold size={20} /> {formatTime(timeLeft)}
           </div>
+        </div>
+
+        <div style={{ marginTop: '32px' }}>
+          <DatabaseOutdatedBlock />
         </div>
       </div>
     </>

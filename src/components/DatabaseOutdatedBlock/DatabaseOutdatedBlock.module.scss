@@ -1,0 +1,31 @@
+.outdated-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(241, 28, 50, 0.35);
+  background: rgba(241, 28, 50, 0.08);
+  color: var(--txt);
+  font-size: 14px;
+  line-height: 1.45;
+
+  svg {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    color: var(--color-red);
+  }
+
+  a {
+    display: inline;
+  }
+}
+
+.title {
+  display: block;
+  margin-bottom: 2px;
+  font-weight: 700;
+  color: var(--color-red);
+}
